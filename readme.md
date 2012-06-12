@@ -23,16 +23,29 @@ The following things will be defined:
 
 # What is Front-End Development?
 
+Front-End Development is programming the visual layer of a
+web-application. Ruby apps like Hulu, Github, and Kanbanpad look the way
+they do *because* of front-end development. A front-end developer is
+just as nessecary as a back-end developer, despite this nessecity;
+front-end development has a severe lack of attention and care. This
+leads to huge problems for our community and we need to fix it.
+
+Front-end development requires *masterful* use of HTML & CSS. This is
+due to the complexity of frameworks like Ruby on Rails. This repository
+shall serve as a guideline of how to reach that level of mastery.
+
 # Stylesheet Layer
 
-This is a stylesheet guide that was created under the idea of working
-with web-applications, and specifically Ruby on Rails.
+The stylesheet layer deals with CSS, Scss, and tools like Compass.
 
-CSS and SCSS are both taken in mind for this guide. Styles are the
-overall concept, and the technoligies behind it are a few different
-libaries (CSS, Scss, Compass).
+It deals with the visual code required to make web-apps look the way
+they do.
 
-## CSS / SCSS General Style Guidelines
+Because the stylesheet layer uses many different tools, it makes sense
+to call them stylesheets instead of CSS for the distinction of it being
+many tools of an ecosystem.
+
+## Stylesheet General Guidelines
 
 Consistency is absolutely key with stylesheets. Because you don't have a
 framework available for testing, the only thing you can rely upon is
@@ -43,11 +56,11 @@ These problems are even worse when you work in a team that has multiple
 people that do work on the front-end layer. So, everyone should commit
 to a guideline like the following.
 
-### Format
+## Stylesheet Format 
 
-A collection of best-practices recommended for formatting your css/scss.
+A collection of best-practices recommended for formatting Css, Scss, and Compass.
 
-#### Order
+### Order
 
 ``` css
 .selector {
@@ -60,6 +73,3 @@ A collection of best-practices recommended for formatting your css/scss.
 
 Alphabetizing your definitions gives you consistency. It's recommended
 that you do this so you always know where to expect definitions.
-
-
-
