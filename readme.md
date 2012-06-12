@@ -62,7 +62,7 @@ A collection of best-practices recommended for formatting Css, Scss, and Compass
 
 #### Selector Naming
 
-#### Definition Order (A) Preferred
+#### Definition Order (A) *Recommended*
 
 Alphabetizing your definitions gives you consistency. It's recommended
 that you do this so you always know where to expect definitions.
