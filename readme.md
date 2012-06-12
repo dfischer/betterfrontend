@@ -60,19 +60,44 @@ to a guideline like the following.
 
 A collection of best-practices recommended for formatting Css, Scss, and Compass.
 
-#### Order
+#### Selector Naming
+
+#### Definition Order (A) Preferred
+
+Alphabetizing your definitions gives you consistency. It's recommended
+that you do this so you always know where to expect definitions.
 
 ``` css
 .selector {
   background: none;
   display: inline-block;
+  height: 30px;
+  margin: 10px;
+  padding: 10px;
   position: relative;
+  width: 30px;
   z-index: 2;
 }
 ```
 
-Alphabetizing your definitions gives you consistency. It's recommended
-that you do this so you always know where to expect definitions.
+#### Definition Order (B) *Not recommended*
+
+Put together definitions that are related in terms of what they do.
+Because this is subjective, this is not recommended. This can lead to
+lack of consistency in projects and that reduces efficiency.
+
+``` css
+.selector {
+  background: none;
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  padding: 10px;
+  margin: 0px;
+  position: relative;
+  z-index: 2;
+}
+```
 
 ## Markup Layer
 
