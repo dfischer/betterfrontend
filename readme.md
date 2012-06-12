@@ -21,7 +21,9 @@ The following things will be defined:
 * How to work on the front-end layer of a web-application framework
   effectively.
 
-# A Stylesheet Guide Meant for Web-Applications
+# What is Front-End Development?
+
+# Stylesheet Layer
 
 This is a stylesheet guide that was created under the idea of working
 with web-applications, and specifically Ruby on Rails.
@@ -29,5 +31,31 @@ with web-applications, and specifically Ruby on Rails.
 CSS and SCSS are both taken in mind for this guide. Styles are the
 overall concept, and the technoligies behind it are a few different
 libaries (CSS, Scss, Compass).
+
+## CSS / SCSS General Style Guidelines
+
+Consistency is absolutely key with stylesheets. Because you don't have a
+framework available for testing, the only thing you can rely upon is
+consistency and best-practices to have a maintainable stylesheet. At the
+root, it starts with how you lay out your code.
+
+These problems are even worse when you work in a team that has multiple
+people that do work on the front-end layer. So, everyone should commit
+to a guideline like the following.
+
+### Format
+
+``` css
+.selector {
+  background: none;
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+}
+```
+
+Alphabetizing your definitions gives you consistency. It's recommended
+that you do this so you always know where to expect definitions.
+
 
 
