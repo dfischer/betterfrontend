@@ -73,3 +73,11 @@ A collection of best-practices recommended for formatting Css, Scss, and Compass
 
 Alphabetizing your definitions gives you consistency. It's recommended
 that you do this so you always know where to expect definitions.
+
+## Markup Layer
+
+The Markup layer deals with HTML, Haml, Mustache, and similar tools to
+create markup.
+
+This layer acts as the semantic relationship to the content it serves.
+Stylistically, it should have no bearing.
