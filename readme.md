@@ -45,6 +45,10 @@ to a guideline like the following.
 
 ### Format
 
+A collection of best-practices recommended for formatting your css/scss.
+
+#### Order
+
 ``` css
 .selector {
   background: none;
