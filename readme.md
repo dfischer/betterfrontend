@@ -21,7 +21,7 @@ The following things will be defined:
 * How to work on the front-end layer of a web-application framework
   effectively.
 
-# What is Front-End Development?
+## What is Front-End Development?
 
 Front-End Development is programming the visual layer of a
 web-application. Ruby apps like Hulu, Github, and Kanbanpad look the way
@@ -34,7 +34,7 @@ Front-end development requires *masterful* use of HTML & CSS. This is
 due to the complexity of frameworks like Ruby on Rails. This repository
 shall serve as a guideline of how to reach that level of mastery.
 
-# Stylesheet Layer
+## Stylesheet Layer
 
 The stylesheet layer deals with CSS, Scss, and tools like Compass.
 
@@ -45,7 +45,7 @@ Because the stylesheet layer uses many different tools, it makes sense
 to call them stylesheets instead of CSS for the distinction of it being
 many tools of an ecosystem.
 
-## Stylesheet General Guidelines
+### Stylesheet General Guidelines
 
 Consistency is absolutely key with stylesheets. Because you don't have a
 framework available for testing, the only thing you can rely upon is
@@ -56,11 +56,11 @@ These problems are even worse when you work in a team that has multiple
 people that do work on the front-end layer. So, everyone should commit
 to a guideline like the following.
 
-## Stylesheet Format 
+### Stylesheet Format 
 
 A collection of best-practices recommended for formatting Css, Scss, and Compass.
 
-### Order
+#### Order
 
 ``` css
 .selector {
