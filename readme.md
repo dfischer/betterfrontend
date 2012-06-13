@@ -62,6 +62,41 @@ A collection of best-practices recommended for formatting Css, Scss, and Compass
 
 #### Selector Naming
 
+Todo.
+
+#### Selector Order 
+
+Alphabetizing your selectors is the recommended way to go. By doing this
+you create expectations and consistency. If you're worried about two
+things being at opposite ends of the file, then it's recommended to
+prefix the classes so this isn't an issue.
+
+``` css
+  .about {
+    background: black;
+  }
+
+  .explosion {
+    background: red;
+  }
+
+  .l-container {
+    width: 940px;
+  }
+
+  .l-header {
+    text-align: center;
+  }
+
+  .logo {
+    text-indent: -9999px;
+  }
+
+  .zoo {
+    display: inline-block;
+  }
+```
+
 #### Definition Order (A) *Recommended*
 
 Alphabetizing your definitions gives you consistency. It's recommended
