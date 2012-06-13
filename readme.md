@@ -1,5 +1,7 @@
 # #betterfrontend is a movement to improve Front-End Development
 
+Website coming soon for more information.
+
 This repository will serve as a style guide for tools and libraries that are
 used in front-end development.
 
