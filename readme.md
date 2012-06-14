@@ -50,6 +50,22 @@ Because the stylesheet layer uses many different tools, it makes sense
 to call them stylesheets instead of CSS for the distinction of it being
 many tools of an ecosystem.
 
+* Style General Guidelines
+* Stylesheet Format
+  * Selector Naming
+  * Selector Naming Avoid Markup
+  * Selector Order
+  * Definition Order
+* Architecture, Abstraction, Foresight
+  * Architecture
+  * Abstraction
+    * Abstraction Technique
+    * Using vendor libraries
+  * Foresight
+* Scss
+  * Scss Beginner
+  * Scss Advanced
+
 ### Stylesheet General Guidelines
 
 Consistency is absolutely key with stylesheets. Because you don't have a
@@ -60,6 +76,11 @@ root, it starts with how you lay out your code.
 These problems are even worse when you work in a team that has multiple
 people that do work on the front-end layer. So, everyone should commit
 to a guideline like the following.
+
+As a general rule, Scss is considered manditory for front-end
+development. It brings the power of programming to css, and it requires
+no additional understanding to get started. Just change your extensions
+to `.css.scss`
 
 ### Stylesheet Format 
 
@@ -244,11 +265,191 @@ it.
 }
 ```
 
+**Note** In Sass 3.2 they're introducing placeholder selectors. It
+brings this exact functionality without generating extra markup in your
+stylesheets during compile time. 
+https://gist.github.com/1562442
+
 
 #### Using vendor'd libraries
 
 Try to `@extend` vendor'd stylesheets into your main stylesheets for
 classes so you don't pollute the `Markup` layer with extraneous classes.
+
+### Scss
+
+#### Scss Beginner
+##### Variables
+
+Variables are easy.
+
+``` scss
+$color-black: #111;
+$common-width: 940px;
+
+body {
+  color: $color-black;
+  width: $common-width;
+}
+```
+
+Turns into this when compiled:
+
+```css
+body {
+  color: #111;
+  width: 940px;
+}
+```
+
+Simple!
+
+##### Nesting
+
+``` scss
+.products {
+  width: 100px;
+
+  .product {
+    background-color: #000;
+
+    a {
+      color: #fff;
+    }
+  }
+}
+```
+
+Turns into
+
+``` css
+.products {
+  width: 100px;
+}
+.products .product {
+  background-color: #000;
+}
+.products .product a{
+  color: #fff;
+}
+
+Easy!
+```
+
+##### Mixins
+
+Browser engines all have their different ways of implementing
+definitions (ugh, it's so annoying). So we have to do things like this
+usually:
+
+```css
+ .box {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -0-border-radius: 5px;
+  border-radius: 5px;
+ }
+```
+
+Sass let's us solve that by doing the following:
+
+``` scss
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -0-border-radius: $radius;
+  border-radius: $radius;
+}
+
+.box {
+  @include border-radius(5px);
+}
+```
+Side note: [Compass](http://compass-style.org) Provides a lot of these
+mixins. Check it out. Also considered manditory for projects.
+
+##### @extend
+
+Extend allows us to reuse portions of our code without duplicating it in
+the stylesheet. It just adds the current scope to the original selector.
+
+Take the following example:
+
+```scss
+.borders {
+  border: 1px solid red;
+  padding: 10px;
+}
+
+.products {
+  @extend .borders;
+
+  background-color: #000;
+}
+
+.box {
+  @extend .borders;
+
+  padding: 20px;
+}
+```
+
+Which turns into the following css
+
+``` css
+.borders, .products, .box {
+  border: 1px solid red;
+  padding: 10px;
+}
+
+.products {
+  background-color: #000;
+}
+
+.box {
+  padding: 20px;
+}
+```
+
+**Note** In Sass 3.2 they're introducing placeholder selectors. It
+brings this exact functionality without generating extra markup in your
+stylesheets during compile time. 
+https://gist.github.com/1562442
+
+##### Referencing parent selector &
+
+```scss
+.product {
+  background-color: #000;
+  &.old {
+    background-color: gray;
+  }
+}
+```
+
+Turns into 
+
+```css
+.product {
+  background-color: #000;
+}
+.product.old {
+  background-color: gray;
+}
+```
+
+#### Scss Advanced
+
+##### Logic
+
+**If**
+**Else**
+**Then**
+**For**
+**While**
+
 
 ## Markup Layer
 
