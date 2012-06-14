@@ -168,10 +168,82 @@ lack of consistency in projects and that reduces efficiency.
 }
 ```
 
-### Maintainability / Semantics
+### Maintainability, Semantics, Abstraction
 
 The expectation that anything style related is in the stylesheet is
 important. Some key things to be in mind of:
+
+#### Abstraction
+
+Abstraction allows your code to be more maintainable and understandable
+to you as a human.
+
+##### Abstraction Technique #1
+
+Let's say you have a bunch of classes like the following:
+
+``` css
+.icon-email {
+  @extend .icons-misc;
+
+  height: 16px;
+  text-indent: -9999px;
+  width: 17px;
+}
+.icon-facebook {
+  @extend .icons-fb;
+  
+  height: 16px;
+  text-indent: -9999px;
+  width: 17px;
+}
+.icon-tumblr {
+  @extend .icons-tumblr;
+
+  height: 16px;
+  text-indent: -9999px;
+  width: 17px;
+}
+.icon-twitter {
+  @extend .icons-twitter;
+
+  height: 16px;
+  text-indent: -9999px;
+  width: 17px;
+}
+
+```
+
+That's a lot of repetition that we can abstract out.
+
+Here's a solution, abstract it out into a common class and `@extend` from
+it.
+
+``` css
+.icon-common {
+  height: 16px;
+  text-indent: -9999px;
+  width: 17px;
+}
+
+.icon-email {
+  @extend .icon-common;
+  @extend .icons-misc;
+}
+.icon-facebook {
+  @extend .icon-common;
+  @extend .icons-fb;
+}
+.icon-tumblr {
+  @extend .icon-common;
+  @extend .icons-tumblr;
+}
+.icon-twitter {
+  @extend .icon-common;
+  @extend .icons-twitter;
+}
+```
+
 
 #### Using vendor'd libraries
 
