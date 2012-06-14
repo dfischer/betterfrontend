@@ -67,7 +67,36 @@ A collection of best-practices recommended for formatting Css, Scss, and Compass
 
 #### Selector Naming
 
-Todo.
+#### Avoid using Markup Elements in Naming Selectors
+
+It's considered best-practice to avoid using markup elements when naming
+your selectors.
+
+For example:
+
+``` css
+em.important {
+  font-style: italic;
+}
+```
+
+vs
+
+``` css
+.important {
+  font-style: italic;
+}
+```
+
+By using element names in your stylesheet you end up coupling markup
+with presentation. Fact is, markup is markup and it should only be made
+a concern on the markup layer. By creating this distinction we never
+have to worry about the element a class is associated with. This leads
+to more maintainability and less of a chance of breaking selectors. The
+markup layer is going to evolve as time goes by, that means more
+elements will be more semantic as the spec evolves. By decoupling
+classes from the markup layer we're able to upgrade our markup layer
+without worrying about breaking the stylesheet layer.
 
 #### Selector Order 
 
@@ -77,29 +106,29 @@ things being at opposite ends of the file, then it's recommended to
 prefix the classes so this isn't an issue.
 
 ``` css
-  .about {
-    background: black;
-  }
+.about {
+  background: black;
+}
 
-  .explosion {
-    background: red;
-  }
+.explosion {
+  background: red;
+}
 
-  .l-container {
-    width: 940px;
-  }
+.l-container {
+  width: 940px;
+}
 
-  .l-header {
-    text-align: center;
-  }
+.l-header {
+  text-align: center;
+}
 
-  .logo {
-    text-indent: -9999px;
-  }
+.logo {
+  text-indent: -9999px;
+}
 
-  .zoo {
-    display: inline-block;
-  }
+.zoo {
+  display: inline-block;
+}
 ```
 
 #### Definition Order (A) *Recommended*
@@ -139,6 +168,16 @@ lack of consistency in projects and that reduces efficiency.
 }
 ```
 
+### Maintainability / Semantics
+
+The expectation that anything style related is in the stylesheet is
+important. Some key things to be in mind of:
+
+#### Using vendor'd libraries
+
+Try to `@extend` vendor'd stylesheets into your main stylesheets for
+classes so you don't pollute the `Markup` layer with extraneous classes.
+
 ## Markup Layer
 
 The Markup layer deals with HTML, Haml, Mustache, and similar tools to
@@ -146,3 +185,47 @@ create markup.
 
 This layer acts as the semantic relationship to the content it serves.
 Stylistically, it should have no bearing.
+
+## Libraries
+
+Here are some libraries that are commonly used for front-end
+development. This is going to be opinionated. We can't recommend
+everything, we want to recommend something that fits the majority so we
+can see consistency across projects.
+
+### Sass *necessary*
+### Compass *necessary*
+### Blueprint *not recommended*
+### Bootstrap *complicated*
+
+Bootstrap is an amazing idea. However, it has some pitfalls that
+everyone should be aware of. First of all, as a number one, it
+completely violates semantics and modern HTML5 spec.
+
+Especially when using a grid system in a basic way, you expose yourself
+to habits that lead to unmaintainable sylesheets.
+
+The best way to solve this is to use `@extend` to keep your stylesheets
+semantic and maintainable. However, because of how Bootstrap uses it's
+CSS3 selectors you can't do this by just using `@import bootstrap` 
+
+The problem:
+
+I want to maintain a semantic stylesheet structure. So I put
+`bootstrap.css` into `vendor/stylesheets/bootstrap.css.scss` and then I
+`@import bootstrap` in `application.css.scss`
+
+From there I want a specific class to have a `.span4` e.g:
+
+```css
+  .header {
+    @extend .span4
+  }
+```
+
+In general this would work, however due to bootstrap using something
+like `[class*="span"]` it breaks this strategy to maintain a clean
+stylesheet. So basically, you're forced to having to put .span4, .rows
+all over your *Markup* layer and that goes against our #1 guideline of
+keeping a clear separation between your markup layer and presentation
+layer.
