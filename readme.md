@@ -582,6 +582,63 @@ create markup.
 This layer acts as the semantic relationship to the content it serves.
 Stylistically, it should have no bearing.
 
+### `<section>` and headings
+
+With HTML5 introducing section elements and changing the rules of `<h1>`
+a lot of people are confused on how to use this properly.
+
+Stubborn Nella breaks this down extremely well:
+
+http://www.stubbornella.org/content/2011/09/06/style-headings-using-html5-sections/
+
+To take a step further of semantics, we recommend doing the following
+technique to style the following headers.
+
+```html
+<h1 class="onthewebtitle">Me on the web...</h1>
+<section class="tweetfeed">
+  <h1>My Twitter Feed</h1>
+  <ul class="tweets">
+    <li>Mmmm, cornflakes.</li>
+    <li>Something inane...</li>
+  </ul>
+</section>
+<p><a href="more.html">More stuff on the web</a></p>
+```
+
+```scss
+@mixin h1 {
+  font-size: 28px;
+}
+
+@mixin h2 {
+  font-size: 24px;
+}
+
+.onthewebtitle {
+  @include h1;
+}
+
+.tweetfeed h1 {
+  @include h1;
+}
+```
+
+This gives us a bit more semantics. We could make the code explain
+itself a little bit more if we gave the `<h1>` a class and target it
+through there. Which may be more maintainable.
+
+E.g
+
+```scss
+.tweetfeedtitle {
+  @include h1;
+}
+```
+
+This may also be a good candidate for Sass 3.2's placeholder selectors
+mentioned earlier in this document.
+
 ## Libraries
 
 Here are some libraries that are commonly used for front-end
@@ -638,9 +695,11 @@ https://github.com/kneath/kss
 
 In no particular order: 
 
+* http://www.adobe.com/devnet/html5/articles/semantic-markup.html
 * http://yellowshoe.com.au/standards/
 * http://awardwinningfjords.com/2010/07/30/style-guides-using-sass-extend.html
 * https://github.com/styleguide/css
 * https://speakerdeck.com/u/bermonpainter/p/css-pre-processors-stylus-less-sass
 * http://smacss.com/
 * https://github.com/dennishall/CSS-Style-Guide
+* http://www.stubbornella.org/content/2011/09/06/style-headings-using-html5-sections/
