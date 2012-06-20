@@ -88,6 +88,25 @@ A collection of best-practices recommended for formatting Css, Scss, and Compass
 
 #### Selector Naming
 
+Use semantically appropriate names. If you aren't semantic with your
+naming then you end up with extremely brittle classes.
+
+For example:
+
+```css
+.redbox {
+  background-color: red;
+}
+```
+
+Instead, it would be better to do the following:
+
+```css
+.error {
+  background-color: red;
+}
+```
+
 #### Avoid using Markup Elements in Naming Selectors
 
 It's considered best-practice to avoid using markup elements when naming
@@ -152,6 +171,38 @@ prefix the classes so this isn't an issue.
 }
 ```
 
+#### Multiple Selector Style *Recommended*
+
+```css
+.about,
+.explosions,
+.hero {
+  background-color: #000;
+}
+```
+
+This allows you to quickly skim over what's being affected.
+
+#### Multiple Selector Style *Not recommended*
+
+```css
+.about, .explosions, .hero {
+  background-color: #000;
+}
+```
+
+This suffers readability.
+
+#### Selector Specifity
+
+Try to use the least specific selector as possible, the less code, the
+better you can maintain your stylesheet layer.
+
+
+#### Try to namespace everything
+
+By namespacing everything you avoid getting into cascade hell.
+
 #### Definition Order (A) *Recommended*
 
 Alphabetizing your definitions gives you consistency. It's recommended
@@ -189,6 +240,72 @@ lack of consistency in projects and that reduces efficiency.
 }
 ```
 
+#### Definition Order with SCSS
+
+Outside of the actual definition order, SCSS brings us more that can go
+inside of the selector, this is the preferred method of spacing.
+
+```scss
+.hero {
+  @extend .icons-heroplace;
+  @extend .callout;
+
+  @include +pie-clearfix;
+
+  height: 10px;
+  width: 10px;
+  &.active {
+    @extend .icons-heroplace_active;
+  }
+}
+```
+
+The guideline here is:
+
+* Put `@extend` at the top
+* Blank space between major different types of definitions (`@extend`,
+  `@include`, and `css definitions`).
+* If using `&` don't worry about a newline since the visual relationship
+  means it's referencing the parent selector.
+
+### Putting all the recommended styles together
+
+Here's the grand readability of all our recommendations put together:
+
+```scss
+.about {
+  color: $color-red;
+}
+
+.hero {
+  @extend .icons-heroplace;
+  @extend .callout;
+
+  @include +pie-clearfix;
+
+  height: 10px;
+  width: 10px;
+  &.active {
+    @extend .icons-heroplace_active;
+  }
+
+  .contact {
+    background-color: $color-black;
+  }
+}
+
+.hi, 
+.monkey,
+.there, {
+  @extend .big-box;
+
+  a {
+    color: $color-green;
+  }
+}
+
+```
+
 ### Maintainability, Semantics, Abstraction
 
 The expectation that anything style related is in the stylesheet is
@@ -211,6 +328,7 @@ Let's say you have a bunch of classes like the following:
   text-indent: -9999px;
   width: 17px;
 }
+
 .icon-facebook {
   @extend .icons-fb;
   
@@ -218,6 +336,7 @@ Let's say you have a bunch of classes like the following:
   text-indent: -9999px;
   width: 17px;
 }
+
 .icon-tumblr {
   @extend .icons-tumblr;
 
@@ -225,6 +344,7 @@ Let's say you have a bunch of classes like the following:
   text-indent: -9999px;
   width: 17px;
 }
+
 .icon-twitter {
   @extend .icons-twitter;
 
@@ -468,6 +588,11 @@ can see consistency across projects.
 
 ### Sass *necessary*
 ### Compass *necessary*
+
+#### Sprites
+
+Use sprites whenever possible.
+
 ### Blueprint *not recommended*
 ### Bootstrap *complicated*
 
@@ -502,3 +627,17 @@ stylesheet. So basically, you're forced to having to put .span4, .rows
 all over your *Markup* layer and that goes against our #1 guideline of
 keeping a clear separation between your markup layer and presentation
 layer.
+
+### KSS
+https://github.com/kneath/kss
+
+# Inspiration & References
+
+In no particular order: 
+
+* http://yellowshoe.com.au/standards/
+* http://awardwinningfjords.com/2010/07/30/style-guides-using-sass-extend.html
+* https://github.com/styleguide/css
+* https://speakerdeck.com/u/bermonpainter/p/css-pre-processors-stylus-less-sass
+* http://smacss.com/
+* https://github.com/dennishall/CSS-Style-Guide
