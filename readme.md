@@ -360,7 +360,7 @@ That's a lot of repetition that we can abstract out.
 Here's a solution, abstract it out into a common class and `@extend` from
 it.
 
-``` css
+```scss
 .icon-common {
   height: 16px;
   text-indent: -9999px;
@@ -371,14 +371,17 @@ it.
   @extend .icon-common;
   @extend .icons-misc;
 }
+
 .icon-facebook {
   @extend .icon-common;
   @extend .icons-fb;
 }
+
 .icon-tumblr {
   @extend .icon-common;
   @extend .icons-tumblr;
 }
+
 .icon-twitter {
   @extend .icon-common;
   @extend .icons-twitter;
@@ -442,7 +445,7 @@ Simple!
 
 Turns into
 
-``` css
+```css
 .products {
   width: 100px;
 }
@@ -474,7 +477,7 @@ usually:
 
 Sass let's us solve that by doing the following:
 
-``` scss
+```scss
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
@@ -518,7 +521,7 @@ Take the following example:
 
 Which turns into the following css
 
-``` css
+```css
 .borders, .products, .box {
   border: 1px solid red;
   padding: 10px;
@@ -616,9 +619,9 @@ I want to maintain a semantic stylesheet structure. So I put
 From there I want a specific class to have a `.span4` e.g:
 
 ```css
-  .header {
-    @extend .span4
-  }
+.header {
+  @extend .span4
+}
 ```
 
 In general this would work, however due to bootstrap using something
