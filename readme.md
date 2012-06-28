@@ -729,6 +729,13 @@ layer.
 ### KSS
 https://github.com/kneath/kss
 
+# Contributors
+
+In order of commit history:
+
+* Daniel Fischer - [web](http://www.danielfischer.com),
+  [twitter](http://www.twitter.com/dfischer)
+
 # Inspiration & References
 
 In no particular order: 
