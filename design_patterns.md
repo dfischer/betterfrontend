@@ -9,9 +9,11 @@ For example:
   %div.product
     %span.title Product Title
 
-  %form.product-new
+  %form.new
     %label.title
 ```
+
+*Don't like how the classes are named? [Take a look at our debates.](https://github.com/hybridgroup/betterfrontend/blob/master/debates.md)*
 
 ```scss
 div.products {
@@ -40,7 +42,29 @@ standards are implemented.
 For example taken from above
 
 ```haml
+%div.products
+  %div.product
+    %span.title Product Title
+
+  %form.new
+    %label.title
 ```
 
 ```scss
+.products {
+  .new {
+    .title {
+    }
+  }
+
+  .product {
+    .title {
+    }
+  }
+}
 ```
+
+This decouples stylesheets from the markup layer which brings us more
+maintainability. Great!
+
+If you disagree, [create an issue](https://github.com/hybridgroup/betterfrontend/issues/new).

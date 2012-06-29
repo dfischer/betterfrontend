@@ -25,7 +25,7 @@ many tools of an ecosystem.
   * Scss Beginner
   * Scss Advanced
 
-### Stylesheet General Guidelines
+## Stylesheet General Guidelines
 
 Consistency is absolutely key with stylesheets. Because you don't have a
 framework available for testing, the only thing you can rely upon is
