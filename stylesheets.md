@@ -533,7 +533,9 @@ Turns into
 **While**
 
 
-## Directory Structure **Debate** **Issue** **In-Development**
+## Directory Structure 
+
+**Debate** **Issue** **In-Development**
 
 https://github.com/hybridgroup/betterfrontend/issues/4
 
