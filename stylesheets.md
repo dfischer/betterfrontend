@@ -533,7 +533,9 @@ Turns into
 **While**
 
 
-## Directory Structure **Debate**
+## Directory Structure **Debate** **Issue** **In-Development**
+
+https://github.com/hybridgroup/betterfrontend/issues/4
 
 What is the most efficient directory structure that enables proper
 expectation and consistency?
