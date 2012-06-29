@@ -533,3 +533,22 @@ Turns into
 **While**
 
 
+## Directory Structure **Debate**
+
+What is the most efficient directory structure that enables proper
+expectation and consistency?
+
+```
+app/
+  assets/
+    stylesheets/
+      ui/
+      layouts/
+```
+
+### UI
+
+UI is anything related to a formatted structure of an interface consumed
+by a user.
+
+For example: The [Media Object](http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/)
