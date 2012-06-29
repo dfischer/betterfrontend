@@ -28,10 +28,11 @@ The following things will be defined:
 
 ## Table of Contents
 
-* What is Front-End Development?
-* Stylesheets
-* Markup
-* Design Patterns
+* [What is Front-End Development?](https://github.com/hybridgroup/betterfrontend#what-is-front-end-development)
+* [Stylesheets](https://github.com/hybridgroup/betterfrontend/blob/master/stylesheets.md)
+* [Markup](https://github.com/hybridgroup/betterfrontend/blob/master/markup.md)
+* [Design Patterns](https://github.com/hybridgroup/betterfrontend/blob/master/design_patterns.md)
+* [Debates](https://github.com/hybridgroup/betterfrontend/blob/master/debates.md)
 
 ## What is Front-End Development?
 
