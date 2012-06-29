@@ -26,6 +26,13 @@ The following things will be defined:
 * How to work on the front-end layer of a web-application framework
   effectively (Rails focused for now).
 
+**If you disagree with anything in this document. PLEASE file an issue
+so we can improve the community as a whole. This is a movement of
+collaboration and refinement.**
+
+**Our mission is to make front-end development better for you, your
+team, and everyone else**
+
 ## Table of Contents
 
 * [What is Front-End Development?](https://github.com/hybridgroup/betterfrontend#what-is-front-end-development)
