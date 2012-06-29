@@ -26,6 +26,13 @@ The following things will be defined:
 * How to work on the front-end layer of a web-application framework
   effectively (Rails focused for now).
 
+## Table of Contents
+
+* What is Front-End Development?
+* Stylesheets
+* Markup
+* Design Patterns
+
 ## What is Front-End Development?
 
 Front-End Development is programming the visual layer of a
