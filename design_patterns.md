@@ -68,3 +68,50 @@ This decouples stylesheets from the markup layer which brings us more
 maintainability. Great!
 
 If you disagree, [create an issue](https://github.com/hybridgroup/betterfrontend/issues/new).
+
+# Another decoupling example that adds semantics
+
+Take an example of a list of things. For example:
+
+```haml
+.products
+  %ul
+    %li= link_to 'product 1'
+    %li= link_to 'product 2'
+    %li= link_to 'product 3'
+    %li= link_to 'product 4'
+```
+
+Usually people will style the above like the following:
+
+```scss
+.products {
+  ul {
+    li {
+     // styles
+    }
+  }
+}
+```
+
+Instead of relying on the markup structure, do the following for a more
+maintainable stylesheet and markup layer:
+
+```haml
+%ul.products
+  %li.product= link_to 'product 1'
+  %li.product= link_to 'product 2'
+  %li.product= link_to 'product 3'
+  %li.product= link_to 'product 4'
+```
+
+```scss
+.products {
+  .product {
+   // styles
+  }
+}
+```
+
+This gives us better readability on the stylesheet layer and decouples
+the markup from the classes allowing for more maintainable stylesheets.

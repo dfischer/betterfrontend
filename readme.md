@@ -1,5 +1,8 @@
 # #betterfrontend is a movement to improve Front-End Development
 
+Front-end development sucks, and #betterfrontend is a movement by the
+community to make it better.
+
 Website coming soon for more information. (will be at
 http://www.betterfrontend.com)
 
