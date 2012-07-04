@@ -41,9 +41,28 @@ development. It brings the power of programming to css, and it requires
 no additional understanding to get started. Just change your extensions
 to `.css.scss`
 
+### Avoid using IDs to style content
+
+IDs sound like a great idea but they end up causing issues due to the
+evolution of the stylesheets, and the "css point value system."
+
+* IDs mess up selectors and definitions because they have a very high
+  point value compared to classes. So IDs get priority. (Very brittle
+  stylesheets).
+* Being unable to reuse them usually leads to frustration situations.
+
+Make your life easy and just use classes to style everything. You'll
+thank yourself later when you don't have to put `important!` somewhere
+in your stylesheets.
+
+IDs are still great for javascript hooks, put them in the HTML for
+Javascript but don't use it for the stylesheet layer.
+
 ### Stylesheet Format 
 
 A collection of best-practices recommended for formatting Css, Scss, and Compass.
+
+
 
 #### Selector Naming
 
@@ -65,6 +84,12 @@ Instead, it would be better to do the following:
   background-color: red;
 }
 ```
+
+Some tips for naming:
+
+* **Clarity** Expected behavior or style should be obvious.
+* **Semantic** Think of markup and classes like objects. What an object
+  is matters more than what it looks like.
 
 #### Avoid using Markup Elements in Naming Selectors
 
