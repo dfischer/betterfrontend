@@ -72,6 +72,11 @@ In order of commit history:
 
 # Inspiration & References
 
+Inspiration & references that have triggered the text. These are in no
+particular order and may or may not be in agreement with
+'#betterfrontend'. The point is that they have contributed to the idea one
+way or another.
+
 In no particular order: 
 
 * http://www.adobe.com/devnet/html5/articles/semantic-markup.html
@@ -82,3 +87,5 @@ In no particular order:
 * http://smacss.com/
 * https://github.com/dennishall/CSS-Style-Guide
 * http://www.stubbornella.org/content/2011/09/06/style-headings-using-html5-sections/
+* http://www.markdotto.com/2012/03/02/stop-the-cascade/
+* http://coding.smashingmagazine.com/2012/04/20/decoupling-html-from-css/
