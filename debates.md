@@ -109,9 +109,11 @@ sword.
 Pros:
 * Each class can exist out of the scope therefore helping inception
   rule.
+* Can easily find style with cmd+f
 * Verbosity?
 
 Cons:
+* Can't target common selectors if needed. E.g, all .title's on page.
 * Verbosity?
 
 Which is easier to maintain for the developer? They both have their own
