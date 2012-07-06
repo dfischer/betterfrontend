@@ -68,13 +68,13 @@ Architecture, Abstraction, and Foresight.
 
 
 
-## Architecture
+### Architecture
 Architecture is how all the pieces of the front-end layer fit together. It’s the grand scope of everything you are developing. It includes semantics, organization, abstraction, and foresight.
 
-## Abstraction
+### Abstraction
 Abstraction is making your code semantic and understandable to humans. A browser only really  cares about the definitions you give it. Like `:border-left`. The classes you put those definitions in are irrelevant to the browser. However, to you as a human, those classes mean everything. By abstracting concepts properly, you’re able to create a living world in your code that’s easy to understand. For example, .pacman, .comment, .post. That’s a simple level of abstraction and proper use of semantics. You could abstract things even further in CSS if you had variables, functions, expressions, and other traditional programming methods. When you follow this mentality you become efficient because the entire code base is easier to understand and read.
 
-## Foresight
+### Foresight
 Foresight is simply being mindful of the future and the growth of the application. The HTML & CSS layer does not have a toolkit for testing. That means you have to be mindful of repercussions when making any modifications to the code. This is absolutely critical and a unique problem for the front-end. With the back-end layer you can make changes to your code and have confidence that your tests will tell you when you break something. The front-end layer doesn’t have a tool for this. If you break the html or styling, you may never know until it’s too late. That’s a really bad situation. So the only way you can avoid that is with a good architecture in place that is mindful of foresight.
 
 
