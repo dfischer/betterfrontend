@@ -78,6 +78,23 @@ Abstraction is making your code semantic and understandable to humans. A browser
 Foresight is simply being mindful of the future and the growth of the application. The HTML & CSS layer does not have a toolkit for testing. That means you have to be mindful of repercussions when making any modifications to the code. This is absolutely critical and a unique problem for the front-end. With the back-end layer you can make changes to your code and have confidence that your tests will tell you when you break something. The front-end layer doesn’t have a tool for this. If you break the html or styling, you may never know until it’s too late. That’s a really bad situation. So the only way you can avoid that is with a good architecture in place that is mindful of foresight.
 
 
+## What we're solving
+
+The principles that [BEM](http://bem.github.com/bem-method/pages/beginning/beginning.en.html) mentions is great and no point rewriting it:
+
+### Fast-to-develop, long-lived projects
+> It should be possible to develop and launch the first version quickly with an architecture that helps maintain it in the long run.
+
+### Numerous people working on a project
+> We should be able to organize work efficiently in teams of 2 or more developers.
+
+### Team scalability
+> Adding new people to a product team should improve its productivity. We need to be able to assign new members to a team without a steep learning curve.
+> Code should be well-structured for a project to remain maintainable over time and team changes.
+
+### Code reuse
+> To maintain UI consistency and minimize development effort on typical interface components, those components have to be easily reusable.
+
 
 # Contributors
 
@@ -105,3 +122,4 @@ In no particular order:
 * http://www.stubbornella.org/content/2011/09/06/style-headings-using-html5-sections/
 * http://www.markdotto.com/2012/03/02/stop-the-cascade/
 * http://coding.smashingmagazine.com/2012/04/20/decoupling-html-from-css/
+* http://bem.github.com/bem-method/pages/beginning/beginning.en.html
