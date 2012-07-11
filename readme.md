@@ -49,6 +49,7 @@ team, and everyone else.**
 * [Libraries](https://github.com/hybridgroup/betterfrontend/blob/master/libraries.md)
 * [Rails](https://github.com/hybridgroup/betterfrontend/blob/master/rails.md)
 * [Debates](https://github.com/hybridgroup/betterfrontend/blob/master/debates.md)
+* [Tools](http://github.com/hybridgroup/betterfrontend/blob/master/tools.md)
 
 ## What is Front-End Development?
 
