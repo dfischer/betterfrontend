@@ -115,3 +115,19 @@ maintainable stylesheet and markup layer:
 
 This gives us better readability on the stylesheet layer and decouples
 the markup from the classes allowing for more maintainable stylesheets.
+
+# Making the box-model easy
+
+Isn't it annoying that width and padding are additional to the total
+width of the element? You know it's made layouts a pain every now and
+then. Luckily, there's a widely supported fix now.
+
+```scss
+/* apply a natural box layout model to all elements */
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+```
+
+It's extremely safe to use, and even though the `*` selector is used,
+performance isn't an issue. For more details check out the [Paul Irish's
+post](http://paulirish.com/2012/box-sizing-border-box-ftw/)
+
