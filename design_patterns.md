@@ -131,3 +131,15 @@ It's extremely safe to use, and even though the `*` selector is used,
 performance isn't an issue. For more details check out the [Paul Irish's
 post](http://paulirish.com/2012/box-sizing-border-box-ftw/)
 
+# Designing for Retina
+
+Since retina is going to become more of a standard, it's now time to
+seriously think about how it affects our displays. Retina (Apple
+branded) is effetively double the pixel density of a normal display.
+That means if you view a photo at double resolution it'll look pretty
+awful.
+
+We need to serve higher quality assets. However, does it make sense to
+serve higher quality assets to resolutions that can't tell the difference?
+
+The [Clear Eyes](https://github.com/superacidjax/clear_eyes?utm_source=rubyweekly&utm_medium=email) library aims to fix this problem.
