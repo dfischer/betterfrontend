@@ -1,0 +1,22 @@
+pre {
+  @include border-radius(4px);
+  @include box-shadow(#A89A7a 0px 1px 1px inset, white 0px 1px 0px);
+  background: #f8f8f8;
+  padding: .5em 1em;
+  margin: 1.5em 0;
+  overflow: auto;
+
+  code {
+    background: #f8f8f8;
+  }
+}
+
+.page-header {
+  @include outerRow();
+}
+.page-content {
+  @include outerRow();
+}
+.page-footer {
+  @include outerRow();
+}

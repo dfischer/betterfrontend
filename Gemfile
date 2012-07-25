@@ -1,14 +1,10 @@
 source :rubygems
 
-gem 'nanoc'
-gem 'kramdown'
-gem 'adsf'
-gem 'mime-types'
-gem 'sass'
+gem "middleman", "~>3.0.0"
+gem 'zurb-foundation'
 gem 'haml'
-gem 'compass'
-gem 'zurb-foundation', '~> 3.0.6'
-
-gem 'rack-contrib'
-gem 'heroku'
-gem 'thin'
+gem 'hpricot'
+gem 'erubis'
+gem 'ruby_parser'
+gem "sprockets", "~> 2.4.5"
+gem 'redcarpet'
