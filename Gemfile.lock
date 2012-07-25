@@ -12,6 +12,8 @@ GEM
       sass (~> 3.1)
     cri (2.3.0)
       colored (>= 1.2)
+    daemons (1.1.8)
+    eventmachine (0.12.10)
     excon (0.15.4)
     fssm (0.2.9)
     haml (3.1.6)
@@ -38,6 +40,10 @@ GEM
       mime-types (>= 1.16)
     rubyzip (0.9.9)
     sass (3.2.0.alpha.275)
+    thin (1.4.1)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
     zurb-foundation (3.0.6)
       compass (>= 0.12.2)
       rake
@@ -56,4 +62,5 @@ DEPENDENCIES
   nanoc
   rack-contrib
   sass
+  thin
   zurb-foundation (~> 3.0.6)
