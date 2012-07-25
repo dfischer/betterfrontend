@@ -1,3 +1,7 @@
+body {
+  position: relative;
+}
+
 pre {
   @include border-radius(4px);
   @include box-shadow(#A89A7a 0px 1px 1px inset, white 0px 1px 0px);
@@ -13,10 +17,82 @@ pre {
 
 .page-header {
   @include outerRow();
+  @include mobileRow();
+
+  margin-bottom: 60px;
+  margin-top: 40px;
+
+  .brand {
+    @include column(4);
+    @include mobileColumn(2);
+  }
 }
+
+.page-nav {
+  @include column(8);
+  @include mobileColumn(2);
+
+  .nav-links {
+    float: right;
+    margin-top: 10px;
+
+    a {
+      font-size: ms(2);
+    }
+  }
+}
+
 .page-content {
   @include outerRow();
+  @include mobileRow();
+
+  .post {
+    @include column(12);
+    @include mobileColumn(4);
+  }
 }
+
 .page-footer {
   @include outerRow();
+}
+
+.tout {
+  background: url("/images/tout-shadow.png") no-repeat center 170px;
+  margin: 0px auto 60px;
+  padding-bottom: 30px;
+  text-align: center;
+  width: 650px;
+
+  .tout-title {
+  }
+
+  .tout-subtitle {
+    color: $color-red;
+    font-weight: normal;
+  }
+}
+
+.whatis {
+  @include innerRow();
+
+  .intro {
+    @include column(6);
+  }
+
+  .intro-title, .events-title {
+    color: $color-red;
+    font-size: ms(4);
+  }
+
+  .events {
+    @include column(6);
+
+    .event-location {
+      font-size: ms(2);
+    }
+
+    .event-title {
+      font-size: ms(3);
+    }
+  }
 }

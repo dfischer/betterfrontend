@@ -31,10 +31,17 @@
       chromium.org/developers/how-tos/chrome-frame-getting-started
     /[if lt IE 7] <p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p>
     %header.page-header{:role => "banner"}
-      %a{:href => "", :class => "brand"} #betterfrontend 
+      = link_to(image_tag('logo.png'), 'http://www.betterfrontend.com', :class => 'brand')
+      %nav.page-nav
+        %ul.nav-links
+          %li.nav-link-item= link_to "Guides"
+          %li.nav-link-item= link_to "Events"
+          %li.nav-link-item= link_to "About", '/about.html'
     %div.page-content{:role => "main"}
-      = yield
+      %article.post
+        = yield
     %footer.page-footer{:role => "contentinfo"}
+    <a href="https://github.com/hybridgroup/betterfrontend" class='github-ribbon'><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
     / JavaScript at the bottom for fast page loading
     = javascript_include_tag  "application"
     / end scripts
