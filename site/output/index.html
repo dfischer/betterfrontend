@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Betterfrontend - betterfrontend
+    </title>
+    <link href='/stylesheets/application.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <h1 id="betterfrontend-is-a-movement-to-improve-front-end-development">#betterfrontend is a movement to improve Front-End Development</h1>
+
+<p>Front-end development sucks, and #betterfrontend is a movement by the
+community to make it better.</p>
+
+<p>Official twitter:
+<a href="https://www.twitter.com/betterfrontend">@betterfrontend</a> &amp;
+<a href="https://twitter.com/#!/search/%23betterfrontend">#betterfrontend</a></p>
+
+<p>This repository will serve as a style guide for tools and libraries that are
+used in front-end development.</p>
+
+<p>A major problem with front-end development is that it doesn’t have a
+clear definition of what it is in itself, and the skills that are used
+don’t have much documentation. As a result, the learning curve is <em>too
+damn high</em> and it’s diffilcult to find best practices on how to do
+things better. </p>
+
+<p>The goal of this repository is to help alievate the definition problems
+and provide style guides as well as general best practices.</p>
+
+<p>The following things will be defined:</p>
+
+<ul>
+  <li>Front-End Development</li>
+  <li>Tools used with Front-End Development</li>
+  <li>How to work on the Stylesheet layer effectively (CSS, Scss).</li>
+  <li>How to work on the HTML layer effectively (Html, Haml, erb, mustache).</li>
+  <li>How to work on the front-end layer of a web-application framework
+effectively (Rails focused for now).</li>
+</ul>
+
+<hr />
+
+<p><strong>If you disagree with anything in this document. PLEASE file an issue
+so we can improve the community as a whole. This is a movement of
+collaboration and refinement.</strong></p>
+
+<p><strong>Our mission is to make front-end development better for you, your
+team, and everyone else.</strong></p>
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
+<ul>
+  <li><a href="https://github.com/hybridgroup/betterfrontend#what-is-front-end-development">What is Front-End Development?</a></li>
+  <li><a href="https://github.com/hybridgroup/betterfrontend/blob/master/stylesheets.md">Stylesheets</a></li>
+  <li><a href="https://github.com/hybridgroup/betterfrontend/blob/master/markup.md">Markup</a></li>
+  <li><a href="https://github.com/hybridgroup/betterfrontend/blob/master/design_patterns.md">Design Patterns</a></li>
+  <li><a href="https://github.com/hybridgroup/betterfrontend/blob/master/libraries.md">Libraries</a></li>
+  <li><a href="https://github.com/hybridgroup/betterfrontend/blob/master/rails.md">Rails</a></li>
+  <li><a href="https://github.com/hybridgroup/betterfrontend/blob/master/debates.md">Debates</a></li>
+  <li><a href="http://github.com/hybridgroup/betterfrontend/blob/master/tools.md">Tools</a></li>
+</ul>
+
+<h2 id="what-is-front-end-development">What is Front-End Development?</h2>
+
+<p>Front-End Development is programming the visual layer of a
+web-application. Ruby apps like Hulu, Github, and Kanbanpad look the way
+they do <em>because</em> of front-end development. A front-end developer is
+just as nessecary as a back-end developer, despite this nessecity;
+front-end development has a severe lack of attention and care. This
+leads to huge problems for our community and we need to fix it.</p>
+
+<p>Front-end development requires <em>masterful</em> use of HTML &amp; CSS. This is
+due to the complexity of frameworks like Ruby on Rails. This repository
+shall serve as a guideline of how to reach that level of mastery.</p>
+
+<h2 id="front-end-development-depends-upon-3-core-concepts">Front-End Development depends upon 3 core concepts.</h2>
+
+<p>Architecture, Abstraction, and Foresight.</p>
+
+<h3 id="architecture">Architecture</h3>
+<blockquote>
+  <p>Architecture is how all the pieces of the front-end layer fit together. It’s the grand scope of everything you are developing. It includes semantics, organization, abstraction, and foresight.</p>
+</blockquote>
+
+<h3 id="abstraction">Abstraction</h3>
+<blockquote>
+  <p>Abstraction is making your code semantic and understandable to humans. A browser only really  cares about the definitions you give it. Like <code>:border-left</code>. The classes you put those definitions in are irrelevant to the browser. However, to you as a human, those classes mean everything. By abstracting concepts properly, you’re able to create a living world in your code that’s easy to understand. For example, .pacman, .comment, .post. That’s a simple level of abstraction and proper use of semantics. You could abstract things even further in CSS if you had variables, functions, expressions, and other traditional programming methods. When you follow this mentality you become efficient because the entire code base is easier to understand and read.</p>
+</blockquote>
+
+<h3 id="foresight">Foresight</h3>
+<blockquote>
+  <p>Foresight is simply being mindful of the future and the growth of the application. The HTML &amp; CSS layer does not have a toolkit for testing. That means you have to be mindful of repercussions when making any modifications to the code. This is absolutely critical and a unique problem for the front-end. With the back-end layer you can make changes to your code and have confidence that your tests will tell you when you break something. The front-end layer doesn’t have a tool for this. If you break the html or styling, you may never know until it’s too late. That’s a really bad situation. So the only way you can avoid that is with a good architecture in place that is mindful of foresight.</p>
+</blockquote>
+
+<h2 id="what-were-solving">What we’re solving</h2>
+
+<p>The principles that <a href="http://bem.github.com/bem-method/pages/beginning/beginning.en.html">BEM</a> mentions is great and no point rewriting it:</p>
+
+<h3 id="fast-to-develop-long-lived-projects">Fast-to-develop, long-lived projects</h3>
+<blockquote>
+  <p>It should be possible to develop and launch the first version quickly with an architecture that helps maintain it in the long run.</p>
+</blockquote>
+
+<h3 id="numerous-people-working-on-a-project">Numerous people working on a project</h3>
+<blockquote>
+  <p>We should be able to organize work efficiently in teams of 2 or more developers.</p>
+</blockquote>
+
+<h3 id="team-scalability">Team scalability</h3>
+<blockquote>
+  <p>Adding new people to a product team should improve its productivity. We need to be able to assign new members to a team without a steep learning curve.
+Code should be well-structured for a project to remain maintainable over time and team changes.</p>
+</blockquote>
+
+<h3 id="code-reuse">Code reuse</h3>
+<blockquote>
+  <p>To maintain UI consistency and minimize development effort on typical interface components, those components have to be easily reusable.</p>
+</blockquote>
+
+<h1 id="contributors">Contributors</h1>
+
+<p>In order of commit history:</p>
+
+<ul>
+  <li>Daniel Fischer - <a href="http://www.danielfischer.com">web</a>,
+<a href="http://www.twitter.com/dfischer">twitter</a></li>
+</ul>
+
+<h1 id="inspiration--references">Inspiration &amp; References</h1>
+
+<p>Inspiration &amp; references that have triggered the text. These are in no
+particular order and may or may not be in agreement with
+‘#betterfrontend’. The point is that they have contributed to the idea one
+way or another.</p>
+
+<p>In no particular order: </p>
+
+<ul>
+  <li>http://www.adobe.com/devnet/html5/articles/semantic-markup.html</li>
+  <li>http://yellowshoe.com.au/standards/</li>
+  <li>http://awardwinningfjords.com/2010/07/30/style-guides-using-sass-extend.html</li>
+  <li>https://github.com/styleguide/css</li>
+  <li>https://speakerdeck.com/u/bermonpainter/p/css-pre-processors-stylus-less-sass</li>
+  <li>http://smacss.com/</li>
+  <li>https://github.com/dennishall/CSS-Style-Guide</li>
+  <li>http://www.stubbornella.org/content/2011/09/06/style-headings-using-html5-sections/</li>
+  <li>http://www.markdotto.com/2012/03/02/stop-the-cascade/</li>
+  <li>http://coding.smashingmagazine.com/2012/04/20/decoupling-html-from-css/</li>
+  <li>http://bem.github.com/bem-method/pages/beginning/beginning.en.html</li>
+</ul>
+    </div>
+    <div id='sidebar'>
+      <h2>Documentation</h2>
+      <ul>
+        <li>
+          <a href='http://nanoc.stoneship.org/docs/' title='documentation'>Documentation</a>
+        </li>
+        <li>
+          <a href='http://nanoc.stoneship.org/docs/3-getting-started/' title='Getting started'>Getting Started</a>
+        </li>
+      </ul>
+      <h2>Community</h2>
+      <ul>
+        <li>
+          <a href='http://groups.google.com/group/nanoc/' title='Discussion Group'>Discussion Group</a>
+        </li>
+        <li>
+          <a href='irc://chat.freenode.net/#nanoc' title='IRC Channel'>IRC Channel</a>
+        </li>
+        <li>
+          <a href='http://projects.stoneship.org/trac/nanoc/' title='Wiki'>Wiki</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
