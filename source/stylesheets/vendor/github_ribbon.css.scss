@@ -1,0 +1,7 @@
+.github-ribbon {
+  position: absolute; top: -40px; display: block; right: 0px;
+
+  @include respondTo(smallScreen) {
+    display: none;
+  }
+}
