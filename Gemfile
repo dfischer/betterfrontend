@@ -11,3 +11,4 @@ gem 'zurb-foundation', '~> 3.0.6'
 
 gem 'rack-contrib'
 gem 'heroku'
+gem 'thin'
