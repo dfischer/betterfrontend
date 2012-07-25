@@ -3,7 +3,6 @@
 require 'bundler'
 Bundler.require
 
-use Rack::ETag
 module ::Rack
   class TryStatic < Static
 
