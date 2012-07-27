@@ -8,13 +8,23 @@
 
 require 'zurb-foundation'
 
-
-
 set :markdown_engine, :redcarpet
+
 set :markdown, :fenced_code_blocks => true,
-               :autolink => true,
+               :autolink => true, 
                :smartypants => true,
-               :gh_blockcode => true
+               :layout_engine => :haml
+
+
+require 'rack/codehighlighter'
+require "pygments"
+use Rack::Codehighlighter, 
+  :pygments,
+  :element => "pre>code",
+  :pattern => /\A:::([-_+\w]+)\s*\n/,
+  :markdown => true
+
+
 # Change Compass configuration
 # compass_config do |config|
 #   config.output_style = :compact
@@ -45,6 +55,7 @@ set :markdown, :fenced_code_blocks => true,
 ###
 # Helpers
 ###
+activate :directory_indexes
 
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes
@@ -56,8 +67,22 @@ set :markdown, :fenced_code_blocks => true,
 #   end
 # end
 helpers do
-  def highlight(code)
-    
+  def page_title
+    title = "#betterfrontend: "
+    if data.page.title
+      title << data.page.title
+    else
+      title << "Making Front-End Development Fun again"
+    end
+    title
+  end
+
+  def page_side_content
+    side_content = false
+    if data.page.side_content
+      side_content = data.page.side_content
+    end
+    side_content
   end
 end
 
@@ -70,16 +95,16 @@ set :images_dir, 'images'
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment
-  # activate :minify_css
+  activate :minify_css
   
   # Minify Javascript on build
-  # activate :minify_javascript
+  activate :minify_javascript
   
   # Enable cache buster
-  # activate :cache_buster
+  activate :cache_buster
   
   # Use relative URLs
-  # activate :relative_assets
+  activate :relative_assets
   
   # Compress PNGs after build
   # First: gem install middleman-smusher

@@ -143,3 +143,7 @@ We need to serve higher quality assets. However, does it make sense to
 serve higher quality assets to resolutions that can't tell the difference?
 
 The [Clear Eyes](https://github.com/superacidjax/clear_eyes?utm_source=rubyweekly&utm_medium=email) library aims to fix this problem.
+
+# Carousels
+
+Recommended plugins for carousels:

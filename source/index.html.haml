@@ -1,14 +1,37 @@
+.social-links
+  .social-twitter
+    <a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out #betterfrontend - Let's make front-end development consistent!" data-via="betterfrontend" data-related="dfischer" data-hashtags="betterfrontend">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  .social-github
+  <iframe src="http://markdotto.github.com/github-buttons/github-btn.html?user=hybridgroup&repo=betterfrontend&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"></iframe>
+
 .tout
-  %h1.tout-title Where do I go for front-end development best-practices?
+  %h1.tout-title Front-End Development lacks consistent best-practices.
   %h2.tout-subtitle We need #betterfrontend
+    
+.read-guide
+  = link_to "Read the Guides", '', :class => 'read-guide-link'
+  or
+  = link_to "read more about #betterfrontend", '', :class => 'read-more-link'
  
 %section.whatis
   .intro
     %h1.intro-title What is #betterfrontend?
     %p #betterfrontend is a movement to make front-end development easier for everyone. Front-End Development is hard to do properly because there isn't a standardized way of doing it. #betterfrontend aims to be a collaborative contribution through a community of developers to create best-practices for front-end development.
   .events
-    %h1.events-title Upcoming Events
+    %h1.events-title Events
+    None
     %article.event
-      %h1.event-title Dreamatoriium
-      %h2.event-location Dallas, TX
+      .event-date
+        .event-date-day 12 
+        .event-date-month Jul
+      .event-details
+        %h1.event-title LA Ruby
+        %h2.event-location Santa Monica, CA
+      .event-date
+        .event-date-day 6 
+        .event-date-month Jun
+      .event-details
+        %h1.event-title Magmarails
+        %h2.event-location Manzanillo, Mexico
 

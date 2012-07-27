@@ -1,0 +1,30 @@
+.footer-content
+  .followus
+    %h1.followus-title Don't forget to follow
+    .tweet
+      %h1.tweet-title 
+        <a href="https://twitter.com/betterfrontend" class="twitter-follow-button" data-show-count="false">Follow @betterfrontend</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        
+      %p.tweet-text#js-footer-tweet
+  .events
+    %h1.events-title Events
+    %strong No upcoming events. 
+    %br/
+    %br/
+    <a href="https://twitter.com/intent/tweet?screen_name=betterfrontend&text=Would%20like%20to%20book%20someone" class="twitter-mention-button" data-lang="en" data-related="dfischer">Book someone @betterfrontend</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    %h2.events-past-title Past Events
+    %article.event
+      .event-date
+        .event-date-day 12 
+        .event-date-month Jul
+      .event-details
+        %h1.event-title LA Ruby
+        %h2.event-location Santa Monica, CA
+      .event-date
+        .event-date-day 6 
+        .event-date-month Jun
+      .event-details
+        %h1.event-title Magmarails
+        %h2.event-location Manzanillo, Mexico

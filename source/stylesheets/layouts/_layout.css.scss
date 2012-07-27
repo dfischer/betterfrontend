@@ -53,7 +53,46 @@ pre {
 }
 
 .page-footer {
-  @include outerRow();
+  background: #232323;
+  color: #fff;
+  margin-top: 30px;
+  width: 100%;
+  &.sticky {
+    bottom: 0px;
+    position: fixed;
+  }
+
+  .footer-content {
+    @include outerRow();
+  }
+
+  .events {
+    float: right;
+
+    .events-title {
+      font-size: ms(3);
+    }
+
+    .events-past-title {
+      font-size: ms(2);
+    }
+  }
+
+  .followus {
+    @include column(4);
+  }
+
+  .followus-title {
+    font-size: ms(3);
+  }
+
+  .tweet-title {
+    font-size: ms(1);
+  }
+
+  .tweet-text {
+    font-size: ms(0);
+  }
 }
 
 .tout {
@@ -75,8 +114,10 @@ pre {
 .whatis {
   @include innerRow();
 
+  display: none;
+
   .intro {
-    @include column(6);
+    @include column(7);
   }
 
   .intro-title, .events-title {
@@ -84,15 +125,71 @@ pre {
     font-size: ms(4);
   }
 
-  .events {
-    @include column(6);
+}
 
-    .event-location {
-      font-size: ms(2);
-    }
+.events {
+  @include column(3);
+  @include offsetBy(2);
 
-    .event-title {
-      font-size: ms(3);
-    }
+  .event-date {
+    background-color: $color-red;
+    color: #fff;
+    float: left;
+    margin-right: 10px;
+    padding: 5px;
+    text-align: center;
   }
+
+  .event-date-day {
+    font-size: ms(3);
+    font-weight: bold;
+  }
+
+  .event-date-month {
+    font-size: ms(1);
+  }
+
+  .event-details {
+    float: left;
+  }
+
+  .event-location {
+    font-size: ms(1);
+    margin-top: 0px;
+  }
+
+  .event-title {
+    font-size: ms(2);
+    margin-bottom: 3px;
+    margin-top: 0px;
+  }
+}
+
+.social-links {
+  margin: 0px auto 60px;
+  width: 217px;
+
+  .social-twitter,
+  .social-github {
+    float: left;
+  }
+}
+
+.read-guide {
+  margin: 0px auto 50px;
+  width: 425px;
+
+  .read-more-link {
+    color: #888;
+  }
+
+  .read-guide-link {
+    @extend .button;
+    @extend .round;
+    @extend .large;
+  }
+}
+
+.highlight {
+  background: none;
 }

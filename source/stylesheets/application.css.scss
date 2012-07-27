@@ -1,12 +1,15 @@
+// Settings
+@import "settings/settings";
+
+// Libraries
 @import "compass";
-@import "settings";
 @import "foundation";
 
-//layout styles
+// Layout 
 @import "layouts/layouts";
 
-//ui styles
+// Ui styles
 @import "ui/ui";
 
-//vendor libraries
+// Vendor libraries
 @import "vendor/*";
