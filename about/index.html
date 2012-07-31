@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]--><!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]--><!--[if IE 8]> <html class="no-js lt-ie9" lang="en"> <![endif]--><!-- Consider adding a manifest.appcache: h5bp.com/d/Offline --><!--[if gt IE 8]> ><! <![endif]--><html class="no-js" lang="en">
+<!-- <![endif] --><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<title>#betterfrontend: About</title>
+<meta content="A community effort to standardize Front-End Development" name="description">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="../stylesheets/application.css?1343775333" media="screen" rel="stylesheet" type="text/css">
+<script src="../javascripts/top/modernizr.foundation.js?1343775326" type="text/javascript"></script>
+</head>
+<body class="about about_index">
+    <header class="page-header" role="banner"><a class="brand" href="/"><img src="../images/logo.png?1343775319"></a>
+      <nav class="page-nav"><ul class="nav-links">
+<li class="nav-link-item"><a href="/guides/">Guides</a></li>
+          <li class="nav-link-item"><a href="/guides/">Debates</a></li>
+          <li class="nav-link-item"><a href="/about/">About</a></li>
+        </ul></nav></header><div class="page-content" role="main">
+      <article class="post"><h1 id="toc_0">#betterfrontend is a movement to improve Front-End Development</h1>
+
+<p>Front-end development sucks, and #betterfrontend is a movement by the
+community to make it better.</p>
+
+<p>Official twitter:
+<a href="https://www.twitter.com/betterfrontend">@betterfrontend</a> &amp;
+<a href="https://twitter.com/#!/search/%23betterfrontend">#betterfrontend</a></p>
+
+<p>This repository will serve as a style guide for tools and libraries that are
+used in front-end development.</p>
+
+<p>A major problem with front-end development is that it doesn't have a
+clear definition of what it is in itself, and the skills that are used
+don't have much documentation. As a result, the learning curve is <em>too
+damn high</em> and it's diffilcult to find best practices on how to do
+things better. </p>
+
+<p>The goal of this repository is to help alievate the definition problems
+and provide style guides as well as general best practices.</p>
+
+<p>The following things will be defined:</p>
+
+<ul>
+<li>Front-End Development</li>
+<li>Tools used with Front-End Development</li>
+<li>How to work on the Stylesheet layer effectively (CSS, Scss).</li>
+<li>How to work on the HTML layer effectively (Html, Haml, erb, mustache).</li>
+<li>How to work on the front-end layer of a web-application framework
+effectively (Rails focused for now).</li>
+</ul>
+<hr>
+<p><strong>If you disagree with anything in this document. PLEASE file an issue
+so we can improve the community as a whole. This is a movement of
+collaboration and refinement.</strong></p>
+
+<p><strong>Our mission is to make front-end development better for you, your
+team, and everyone else.</strong></p>
+
+<h2 id="toc_1">Table of Contents</h2>
+
+<ul>
+<li><a href="https://github.com/hybridgroup/betterfrontend#what-is-front-end-development">What is Front-End Development?</a></li>
+<li><a href="https://github.com/hybridgroup/betterfrontend/blob/master/stylesheets.md">Stylesheets</a></li>
+<li><a href="https://github.com/hybridgroup/betterfrontend/blob/master/markup.md">Markup</a></li>
+<li><a href="https://github.com/hybridgroup/betterfrontend/blob/master/design_patterns.md">Design Patterns</a></li>
+<li><a href="https://github.com/hybridgroup/betterfrontend/blob/master/libraries.md">Libraries</a></li>
+<li><a href="https://github.com/hybridgroup/betterfrontend/blob/master/rails.md">Rails</a></li>
+<li><a href="https://github.com/hybridgroup/betterfrontend/blob/master/debates.md">Debates</a></li>
+<li><a href="http://github.com/hybridgroup/betterfrontend/blob/master/tools.md">Tools</a></li>
+</ul>
+<h2 id="toc_2">What is Front-End Development?</h2>
+
+<p>Front-End Development is programming the visual layer of a
+web-application. Ruby apps like Hulu, Github, and Kanbanpad look the way
+they do <em>because</em> of front-end development. A front-end developer is
+just as nessecary as a back-end developer, despite this nessecity;
+front-end development has a severe lack of attention and care. This
+leads to huge problems for our community and we need to fix it.</p>
+
+<p>Front-end development requires <em>masterful</em> use of HTML &amp; CSS. This is
+due to the complexity of frameworks like Ruby on Rails. This repository
+shall serve as a guideline of how to reach that level of mastery.</p>
+
+<h2 id="toc_3">Front-End Development depends upon 3 core concepts.</h2>
+
+<p>Architecture, Abstraction, and Foresight.</p>
+
+<h3 id="toc_4">Architecture</h3>
+
+<blockquote>
+<p>Architecture is how all the pieces of the front-end layer fit together. It’s the grand scope of everything you are developing. It includes semantics, organization, abstraction, and foresight.</p>
+</blockquote>
+
+<h3 id="toc_5">Abstraction</h3>
+
+<blockquote>
+<p>Abstraction is making your code semantic and understandable to humans. A browser only really  cares about the definitions you give it. Like <code>:border-left</code>. The classes you put those definitions in are irrelevant to the browser. However, to you as a human, those classes mean everything. By abstracting concepts properly, you’re able to create a living world in your code that’s easy to understand. For example, .pacman, .comment, .post. That’s a simple level of abstraction and proper use of semantics. You could abstract things even further in CSS if you had variables, functions, expressions, and other traditional programming methods. When you follow this mentality you become efficient because the entire code base is easier to understand and read.</p>
+</blockquote>
+
+<h3 id="toc_6">Foresight</h3>
+
+<blockquote>
+<p>Foresight is simply being mindful of the future and the growth of the application. The HTML &amp; CSS layer does not have a toolkit for testing. That means you have to be mindful of repercussions when making any modifications to the code. This is absolutely critical and a unique problem for the front-end. With the back-end layer you can make changes to your code and have confidence that your tests will tell you when you break something. The front-end layer doesn’t have a tool for this. If you break the html or styling, you may never know until it’s too late. That’s a really bad situation. So the only way you can avoid that is with a good architecture in place that is mindful of foresight.</p>
+</blockquote>
+
+<h2 id="toc_7">What we're solving</h2>
+
+<p>The principles that <a href="http://bem.github.com/bem-method/pages/beginning/beginning.en.html">BEM</a> mentions is great and no point rewriting it:</p>
+
+<h3 id="toc_8">Fast-to-develop, long-lived projects</h3>
+
+<blockquote>
+<p>It should be possible to develop and launch the first version quickly with an architecture that helps maintain it in the long run.</p>
+</blockquote>
+
+<h3 id="toc_9">Numerous people working on a project</h3>
+
+<blockquote>
+<p>We should be able to organize work efficiently in teams of 2 or more developers.</p>
+</blockquote>
+
+<h3 id="toc_10">Team scalability</h3>
+
+<blockquote>
+<p>Adding new people to a product team should improve its productivity. We need to be able to assign new members to a team without a steep learning curve.
+Code should be well-structured for a project to remain maintainable over time and team changes.</p>
+</blockquote>
+
+<h3 id="toc_11">Code reuse</h3>
+
+<blockquote>
+<p>To maintain UI consistency and minimize development effort on typical interface components, those components have to be easily reusable.</p>
+</blockquote>
+
+<h1 id="toc_12">Contributors</h1>
+
+<p>In order of commit history:</p>
+
+<ul>
+<li>Daniel Fischer - <a href="http://www.danielfischer.com">web</a>,
+<a href="http://www.twitter.com/dfischer">twitter</a>
+</li>
+</ul>
+<h1 id="toc_13">Inspiration &amp; References</h1>
+
+<p>Inspiration &amp; references that have triggered the text. These are in no
+particular order and may or may not be in agreement with
+'#betterfrontend'. The point is that they have contributed to the idea one
+way or another.</p>
+
+<p>In no particular order: </p>
+
+<ul>
+<li><a href="http://www.adobe.com/devnet/html5/articles/semantic-markup.html">http://www.adobe.com/devnet/html5/articles/semantic-markup.html</a></li>
+<li><a href="http://yellowshoe.com.au/standards/">http://yellowshoe.com.au/standards/</a></li>
+<li><a href="http://awardwinningfjords.com/2010/07/30/style-guides-using-sass-extend.html">http://awardwinningfjords.com/2010/07/30/style-guides-using-sass-extend.html</a></li>
+<li><a href="https://github.com/styleguide/css">https://github.com/styleguide/css</a></li>
+<li><a href="https://speakerdeck.com/u/bermonpainter/p/css-pre-processors-stylus-less-sass">https://speakerdeck.com/u/bermonpainter/p/css-pre-processors-stylus-less-sass</a></li>
+<li><a href="http://smacss.com/">http://smacss.com/</a></li>
+<li><a href="https://github.com/dennishall/CSS-Style-Guide">https://github.com/dennishall/CSS-Style-Guide</a></li>
+<li><a href="http://www.stubbornella.org/content/2011/09/06/style-headings-using-html5-sections/">http://www.stubbornella.org/content/2011/09/06/style-headings-using-html5-sections/</a></li>
+<li><a href="http://www.markdotto.com/2012/03/02/stop-the-cascade/">http://www.markdotto.com/2012/03/02/stop-the-cascade/</a></li>
+<li><a href="http://coding.smashingmagazine.com/2012/04/20/decoupling-html-from-css/">http://coding.smashingmagazine.com/2012/04/20/decoupling-html-from-css/</a></li>
+<li><a href="http://bem.github.com/bem-method/pages/beginning/beginning.en.html">http://bem.github.com/bem-method/pages/beginning/beginning.en.html</a></li>
+</ul></article>
+</div>
+    <footer class="page-footer" role="contentinfo"><div class="footer-content">
+        <div class="followus">
+          <h1 class="followus-title">Don't forget to follow</h1>
+          <div class="tweet">
+            <h1 class="tweet-title">
+              <a href="https://twitter.com/betterfrontend" class="twitter-follow-button" data-show-count="false">Follow @betterfrontend</a>
+              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</h1>
+            <p class="tweet-text" id="js-footer-tweet"></p>
+          </div>
+        </div>
+        <div class="events">
+          <h1 class="events-title">Events</h1>
+          <strong>No upcoming events.</strong>
+          <br><br><a href="https://twitter.com/intent/tweet?screen_name=betterfrontend&amp;text=Would%20like%20to%20book%20someone" class="twitter-mention-button" data-lang="en" data-related="dfischer">Book someone @betterfrontend</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script><h2 class="events-past-title">Past Events</h2>
+          <article class="event"><div class="event-date">
+              <div class="event-date-day">12</div>
+              <div class="event-date-month">Jul</div>
+            </div>
+            <div class="event-details">
+              <h1 class="event-title">LA Ruby</h1>
+              <h2 class="event-location">Santa Monica, CA</h2>
+            </div>
+            <div class="event-date">
+              <div class="event-date-day">6</div>
+              <div class="event-date-month">Jun</div>
+            </div>
+            <div class="event-details">
+              <h1 class="event-title">Magmarails</h1>
+              <h2 class="event-location">Manzanillo, Mexico</h2>
+            </div>
+          </article>
+</div>
+      </div>
+    </footer><a href="https://github.com/hybridgroup/betterfrontend" class="github-ribbon"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <!-- JavaScript at the bottom for fast page loading -->
+    <script src="../javascripts/application.js?1343775326" type="text/javascript"></script><!-- end scripts --><!--
+      Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
+      mathiasbynens.be/notes/async-analytics-snippet
+    --><script type="text/javascript">
+      //<![CDATA[
+        var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+      //]]>
+    </script>
+</body>
+</html>

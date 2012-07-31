@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]--><!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]--><!--[if IE 8]> <html class="no-js lt-ie9" lang="en"> <![endif]--><!-- Consider adding a manifest.appcache: h5bp.com/d/Offline --><!--[if gt IE 8]> ><! <![endif]--><html class="no-js" lang="en">
+<!-- <![endif] --><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<title>#betterfrontend: Design patterns</title>
+<meta content="A community effort to standardize Front-End Development" name="description">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="../../stylesheets/application.css?1343775333" media="screen" rel="stylesheet" type="text/css">
+<script src="../../javascripts/top/modernizr.foundation.js?1343775326" type="text/javascript"></script>
+</head>
+<body class="guides guides_design_patterns guides_design_patterns_index">
+    <header class="page-header" role="banner"><a class="brand" href="/"><img src="../../images/logo.png?1343775319"></a>
+      <nav class="page-nav"><ul class="nav-links">
+<li class="nav-link-item"><a href="/guides/">Guides</a></li>
+          <li class="nav-link-item"><a href="/guides/">Debates</a></li>
+          <li class="nav-link-item"><a href="/about/">About</a></li>
+        </ul></nav></header><div class="page-content" role="main">
+      <article class="post"><div class="alert-box">
+  This guide needs help with formatting.
+</div>
+<div class="alert-box">
+  Table of Contents is not organized and maybe needs to be split into different
+  files.
+</div>
+
+<h1 id="toc_0">Decoupling Markup from Stylesheets</h1>
+
+<p>It's very common to see people coupling elements with their stylesheets.</p>
+
+<p>For example:</p>
+
+<pre>%div.products
+  %div.product
+    %span.title Product Title
+
+  %form.new
+    %label.title
+</pre>
+
+<p><em>Don't like how the classes are named? <a href="https://github.com/hybridgroup/betterfrontend/blob/master/debates.md">Take a look at our debates.</a></em></p>
+
+<pre>div.products {
+
+  div.product {
+    span.title {
+    }
+  }
+
+  form {
+    label {
+    }
+  }
+}
+</pre>
+
+<p>When you do this, you force yourself to update at least 2 files to make
+one change. This coupling is bad for maintainability. </p>
+
+<p>We recommend using <em>only</em> classes in stylesheets. This allows you to
+evolve the markup layer as it makes sense. The only exception to this
+rule is when the markup provided is absolutely semantically accurate. As
+a side note, this means we're able to evolve our markup layer as more
+standards are implemented.</p>
+
+<p>For example taken from above</p>
+
+<pre>%div.products
+  %div.product
+    %span.title Product Title
+
+  %form.new
+    %label.title
+</pre>
+
+<pre>.products {
+  .new {
+    .title {
+    }
+  }
+
+  .product {
+    .title {
+    }
+  }
+}
+</pre>
+
+<p>This decouples stylesheets from the markup layer which brings us more
+maintainability. Great!</p>
+
+<p>If you disagree, <a href="https://github.com/hybridgroup/betterfrontend/issues/new">create an issue</a>.</p>
+
+<h1 id="toc_1">Another decoupling example that adds semantics</h1>
+
+<p>Take an example of a list of things. For example:</p>
+
+<pre>.products
+  %ul
+    %li= link_to 'product 1'
+    %li= link_to 'product 2'
+    %li= link_to 'product 3'
+    %li= link_to 'product 4'
+</pre>
+
+<p>Usually people will style the above like the following:</p>
+
+<pre>.products {
+  ul {
+    li {
+     // styles
+    }
+  }
+}
+</pre>
+
+<p>Instead of relying on the markup structure, do the following for a more
+maintainable stylesheet and markup layer:</p>
+
+<pre>%ul.products
+  %li.product= link_to 'product 1'
+  %li.product= link_to 'product 2'
+  %li.product= link_to 'product 3'
+  %li.product= link_to 'product 4'
+</pre>
+
+<pre>.products {
+  .product {
+   // styles
+  }
+}
+</pre>
+
+<p>This gives us better readability on the stylesheet layer and decouples
+the markup from the classes allowing for more maintainable stylesheets.</p>
+
+<h1 id="toc_2">Making the box-model easy</h1>
+
+<p>Isn't it annoying that width and padding are additional to the total
+width of the element? You know it's made layouts a pain every now and
+then. Luckily, there's a widely supported fix now.</p>
+
+<pre>/* apply a natural box layout model to all elements */
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+</pre>
+
+<p>It's extremely safe to use, and even though the <code>*</code> selector is used,
+performance isn't an issue. For more details check out the <a href="http://paulirish.com/2012/box-sizing-border-box-ftw/">Paul Irish's
+post</a></p>
+
+<h1 id="toc_3">Designing for Retina</h1>
+
+<p>Since retina is going to become more of a standard, it's now time to
+seriously think about how it affects our displays. Retina (Apple
+branded) is effetively double the pixel density of a normal display.
+That means if you view a photo at double resolution it'll look pretty
+awful.</p>
+
+<p>We need to serve higher quality assets. However, does it make sense to
+serve higher quality assets to resolutions that can't tell the difference?</p>
+
+<p>The <a href="https://github.com/superacidjax/clear_eyes?utm_source=rubyweekly&amp;utm_medium=email">Clear Eyes</a> library aims to fix this problem.</p>
+
+<h1 id="toc_4">Carousels</h1>
+
+<p>Recommended plugins for carousels:</p>
+      </article><aside class="secondary"><a href="https://github.com/hybridgroup/betterfrontend/issues" class="create-issue" target="_blank">Create an issue →</a> <h1><a href="#toc_0">Design Patterns</a></h1></aside>
+</div>
+    <footer class="page-footer" role="contentinfo"><div class="footer-content">
+        <div class="followus">
+          <h1 class="followus-title">Don't forget to follow</h1>
+          <div class="tweet">
+            <h1 class="tweet-title">
+              <a href="https://twitter.com/betterfrontend" class="twitter-follow-button" data-show-count="false">Follow @betterfrontend</a>
+              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</h1>
+            <p class="tweet-text" id="js-footer-tweet"></p>
+          </div>
+        </div>
+        <div class="events">
+          <h1 class="events-title">Events</h1>
+          <strong>No upcoming events.</strong>
+          <br><br><a href="https://twitter.com/intent/tweet?screen_name=betterfrontend&amp;text=Would%20like%20to%20book%20someone" class="twitter-mention-button" data-lang="en" data-related="dfischer">Book someone @betterfrontend</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script><h2 class="events-past-title">Past Events</h2>
+          <article class="event"><div class="event-date">
+              <div class="event-date-day">12</div>
+              <div class="event-date-month">Jul</div>
+            </div>
+            <div class="event-details">
+              <h1 class="event-title">LA Ruby</h1>
+              <h2 class="event-location">Santa Monica, CA</h2>
+            </div>
+            <div class="event-date">
+              <div class="event-date-day">6</div>
+              <div class="event-date-month">Jun</div>
+            </div>
+            <div class="event-details">
+              <h1 class="event-title">Magmarails</h1>
+              <h2 class="event-location">Manzanillo, Mexico</h2>
+            </div>
+          </article>
+</div>
+      </div>
+    </footer><a href="https://github.com/hybridgroup/betterfrontend" class="github-ribbon"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <!-- JavaScript at the bottom for fast page loading -->
+    <script src="../../javascripts/application.js?1343775326" type="text/javascript"></script><!-- end scripts --><!--
+      Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
+      mathiasbynens.be/notes/async-analytics-snippet
+    --><script type="text/javascript">
+      //<![CDATA[
+        var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+      //]]>
+    </script>
+</body>
+</html>

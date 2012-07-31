@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]--><!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]--><!--[if IE 8]> <html class="no-js lt-ie9" lang="en"> <![endif]--><!-- Consider adding a manifest.appcache: h5bp.com/d/Offline --><!--[if gt IE 8]> ><! <![endif]--><html class="no-js" lang="en">
+<!-- <![endif] --><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<title>#betterfrontend: Boilerplate</title>
+<meta content="A community effort to standardize Front-End Development" name="description">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="../../../stylesheets/application.css?1343775333" media="screen" rel="stylesheet" type="text/css">
+<script src="../../../javascripts/top/modernizr.foundation.js?1343775326" type="text/javascript"></script>
+</head>
+<body class="guides guides_boilerplates guides_boilerplates_layouts guides_boilerplates_layouts_index">
+    <header class="page-header" role="banner"><a class="brand" href="/"><img src="../../../images/logo.png?1343775319"></a>
+      <nav class="page-nav"><ul class="nav-links">
+<li class="nav-link-item"><a href="/guides/">Guides</a></li>
+          <li class="nav-link-item"><a href="/guides/">Debates</a></li>
+          <li class="nav-link-item"><a href="/about/">About</a></li>
+        </ul></nav></header><div class="page-content" role="main">
+      <article class="post"><h1 id="toc_0">Main application layout</h1>
+
+<p>The main layout of an application should be called,
+<code>application.html.haml</code></p>
+
+<p>We don't recommend using any other name for the “main” layout due to
+consistency. Frameworks like Ruby on Rails already default to using
+“application” for anything top-level, we should respect the same
+convention on the front-end layer. Now this may be biased to Ruby on
+Rails but what real alternatives do we have? <code>site.css.scss?</code> It seems
+that it's better to just bend towards consistency sake and always follow
+the convention of <code>application.html.haml</code> and thusly
+<code>application.css.scss</code>.</p>
+
+<h2 id="toc_1">application.html.haml</h2>
+
+<div class="highlight">
+<pre><span class="nn">!!! 5</span>
+<span class="c">/ paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/</span>
+<span class="c">/</span><span class="cs">[if lt IE 7]</span><span class="c"> &lt;html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"&gt;</span>
+<span class="c">/</span><span class="cs">[if IE 7]</span><span class="c"> &lt;html class="no-js lt-ie9 lt-ie8" lang="en"&gt;</span>
+<span class="c">/</span><span class="cs">[if IE 8]</span><span class="c"> &lt;html class="no-js lt-ie9" lang="en"&gt;</span>
+<span class="c">/ Consider adding a manifest.appcache: h5bp.com/d/Offline</span>
+<span class="c">/ [if gt IE 8]&gt;&lt;!</span>
+<span class="nt">%html</span><span class="nc">.no-js</span><span class="p">{</span><span class="ss">:lang</span> <span class="o">=&gt;</span> <span class="s2">"en"</span><span class="p">}</span>
+  <span class="c">/ &lt;![endif]</span>
+  <span class="nt">%head</span>
+    <span class="nt">%meta</span><span class="p">{</span><span class="ss">:charset</span> <span class="o">=&gt;</span> <span class="s2">"utf-8"</span><span class="p">}/</span>
+    <span class="nt">%meta</span><span class="p">{</span><span class="ss">:content</span> <span class="o">=&gt;</span> <span class="s2">"IE=edge,chrome=1"</span><span class="p">,</span> <span class="s2">"http-equiv"</span> <span class="o">=&gt;</span> <span class="s2">"X-UA-Compatible"</span><span class="p">}/</span>
+    <span class="c">// page_title should be a method for creating a page title</span>
+    <span class="nt">%title</span><span class="p">=</span> <span class="n">page_title</span> <span class="o">||</span> <span class="s2">"Betterfrontend Application Layout"</span>
+    <span class="nt">%meta</span><span class="p">{</span><span class="ss">:content</span> <span class="o">=&gt;</span> <span class="s2">""</span><span class="p">,</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">"description"</span><span class="p">}/</span>
+    <span class="c">/ Mobile viewport optimized: h5bp.com/viewport</span>
+    <span class="nt">%meta</span><span class="p">{</span><span class="ss">:content</span> <span class="o">=&gt;</span> <span class="s2">"width=device-width, initial-scale=1.0"</span><span class="p">,</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">"viewport"</span><span class="p">}/</span>
+    <span class="c">/ Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons</span>
+    <span class="p">=</span> <span class="n">stylesheet_link_tag</span> <span class="s2">"application"</span>
+    <span class="c">/ More ideas for your &lt;head&gt; here: h5bp.com/d/head-Tips</span>
+    <span class="c">/</span>
+      <span class="c">All JavaScript at the bottom, except this Modernizr build.</span>
+      <span class="c">Modernizr enables HTML5 elements &amp;amp; feature detects for optimal performance.</span>
+      <span class="c">Create your own custom Modernizr build: www.modernizr.com/download/</span>
+    <span class="p">=</span> <span class="n">javascript_include_tag</span> <span class="s1">'top/modernizr.foundation'</span>
+  <span class="c">/</span>
+    <span class="c">Page classes should be a method that outputs logical classes</span>
+    <span class="c">for the current page to hook into</span>
+  <span class="nt">%body</span><span class="p">{</span><span class="ss">:class</span> <span class="o">=&gt;</span> <span class="n">page_classes</span><span class="p">}</span>
+    <span class="c">/</span>
+      <span class="c">Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.</span>
+      <span class="c">chromium.org/developers/how-tos/chrome-frame-getting-started</span>
+    <span class="c">/</span><span class="cs">[if lt IE 7]</span><span class="c"> &lt;p class=chromeframe&gt;Your browser is &lt;em&gt;ancient!&lt;/em&gt; &lt;a href="http://browsehappy.com/"&gt;Upgrade to a different browser&lt;/a&gt; or &lt;a href="http://www.google.com/chromeframe/?redirect=true"&gt;install Google Chrome Frame&lt;/a&gt; to experience this site.&lt;/p&gt;</span>
+    <span class="nt">%header</span><span class="nc">.page-header</span><span class="p">{</span><span class="ss">:role</span> <span class="o">=&gt;</span> <span class="s2">"banner"</span><span class="p">}</span>
+    <span class="nt">%div</span><span class="nc">.page-content</span><span class="p">{</span><span class="ss">:role</span> <span class="o">=&gt;</span> <span class="s2">"main"</span><span class="p">}</span>
+      <span class="p">=</span> <span class="k">yield</span>
+    <span class="nt">%footer</span><span class="nc">.page-footer</span><span class="p">{</span><span class="ss">:role</span> <span class="o">=&gt;</span> <span class="s2">"contentinfo"</span><span class="p">}</span>
+    <span class="c">/ JavaScript at the bottom for fast page loading</span>
+    <span class="p">=</span> <span class="n">javascript_include_tag</span>  <span class="s2">"application"</span>
+    <span class="c">/ end scripts</span>
+    <span class="c">/</span>
+      <span class="c">Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.</span>
+      <span class="c">mathiasbynens.be/notes/async-analytics-snippet</span>
+    <span class="nd">:javascript</span>
+      <span class="nd">var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];</span>
+      <span class="nd">(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];</span>
+      <span class="nd">g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';</span>
+      <span class="nd">s.parentNode.insertBefore(g,s)}(document,'script'));</span>
+</pre>
+</div>
+
+
+<h3 id="toc_2">Refactored for brevity &amp; partials</h3>
+
+<p>With the power of partials we can factor this out a bit more. The
+following example is using Haml and a partial helper.</p>
+
+<h4 id="toc_3"><code>application.html.haml</code></h4>
+
+<div class="highlight">
+<pre><span class="nn">!!! 5</span>
+<span class="c">/</span><span class="cs">[if lt IE 7]</span><span class="c"> &lt;html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"&gt;</span>
+<span class="c">/</span><span class="cs">[if IE 7]</span><span class="c"> &lt;html class="no-js lt-ie9 lt-ie8" lang="en"&gt;</span>
+<span class="c">/</span><span class="cs">[if IE 8]</span><span class="c"> &lt;html class="no-js lt-ie9" lang="en"&gt;</span>
+<span class="c">/ [if gt IE 8]&gt;&lt;!</span>
+<span class="nt">%html</span><span class="nc">.no-js</span><span class="p">{</span><span class="ss">:lang</span> <span class="o">=&gt;</span> <span class="s2">"en"</span><span class="p">}</span>
+  <span class="c">/ &lt;![endif]</span>
+  <span class="p">=</span> <span class="n">partial</span> <span class="s1">'layouts/head'</span>
+
+  <span class="nt">%body</span><span class="p">{</span><span class="ss">:class</span> <span class="o">=&gt;</span> <span class="n">page_classes</span><span class="p">}</span>
+    <span class="nt">%header</span><span class="nc">.page-header</span><span class="p">{</span><span class="ss">:role</span> <span class="o">=&gt;</span> <span class="s2">"banner"</span><span class="p">}</span>
+
+    <span class="nt">%div</span><span class="nc">.page-content</span><span class="p">{</span><span class="ss">:role</span> <span class="o">=&gt;</span> <span class="s2">"main"</span><span class="p">}</span>
+      <span class="nt">%article</span><span class="nc">.post</span>
+        <span class="p">=</span> <span class="k">yield</span>
+
+    <span class="nt">%footer</span><span class="nc">.page-footer</span><span class="p">{</span><span class="ss">:role</span> <span class="o">=&gt;</span> <span class="s2">"contentinfo"</span><span class="p">}</span>
+      <span class="p">=</span> <span class="n">partial</span> <span class="s2">"layouts/footer"</span>
+</pre>
+</div>
+
+
+<h4 id="toc_4"><code>layouts/_head.html.haml</code></h4>
+
+<div class="highlight">
+<pre><span class="nt">%head</span>
+  <span class="nt">%meta</span><span class="p">{</span><span class="ss">:charset</span> <span class="o">=&gt;</span> <span class="s2">"utf-8"</span><span class="p">}/</span>
+  <span class="nt">%meta</span><span class="p">{</span><span class="ss">:content</span> <span class="o">=&gt;</span> <span class="s2">"IE=edge,chrome=1"</span><span class="p">,</span> <span class="s2">"http-equiv"</span> <span class="o">=&gt;</span> <span class="s2">"X-UA-Compatible"</span><span class="p">}/</span>
+  <span class="nt">%title</span><span class="p">=</span> <span class="n">page_title</span>
+  <span class="nt">%meta</span><span class="p">{</span><span class="ss">:content</span> <span class="o">=&gt;</span> <span class="s2">"A community effort to standardize Front-End Development."</span><span class="p">,</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">"description"</span><span class="p">}/</span>
+  <span class="nt">%meta</span><span class="p">{</span><span class="ss">:content</span> <span class="o">=&gt;</span> <span class="s2">"width=device-width, initial-scale=1.0"</span><span class="p">,</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">"viewport"</span><span class="p">}/</span>
+  <span class="p">=</span> <span class="n">stylesheet_link_tag</span> <span class="s2">"application"</span>
+  <span class="p">=</span> <span class="n">javascript_include_tag</span> <span class="s1">'top/modernizr.foundation'</span>
+</pre>
+</div>
+
+
+<h4 id="toc_5"><code>layouts/_footer.html.haml</code></h4>
+
+<div class="highlight">
+<pre><span class="nc">.footer-content</span>
+  <span class="c">// footer content here</span>
+
+<span class="c">/ JavaScript at the bottom for fast page loading</span>
+<span class="p">=</span> <span class="n">javascript_include_tag</span>  <span class="s2">"application"</span>
+<span class="c">/ end scripts</span>
+<span class="nd">:javascript</span>
+  <span class="nd">hljs.initHighlightingOnLoad();</span>
+<span class="c">/</span>
+  <span class="c">Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.</span>
+  <span class="c">mathiasbynens.be/notes/async-analytics-snippet</span>
+<span class="nd">:javascript</span>
+  <span class="nd">var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];</span>
+  <span class="nd">(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];</span>
+  <span class="nd">g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';</span>
+  <span class="nd">s.parentNode.insertBefore(g,s)}(document,'script'));</span>
+</pre>
+</div>
+
+      </article>
+</div>
+    <footer class="page-footer" role="contentinfo"><div class="footer-content">
+        <div class="followus">
+          <h1 class="followus-title">Don't forget to follow</h1>
+          <div class="tweet">
+            <h1 class="tweet-title">
+              <a href="https://twitter.com/betterfrontend" class="twitter-follow-button" data-show-count="false">Follow @betterfrontend</a>
+              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</h1>
+            <p class="tweet-text" id="js-footer-tweet"></p>
+          </div>
+        </div>
+        <div class="events">
+          <h1 class="events-title">Events</h1>
+          <strong>No upcoming events.</strong>
+          <br><br><a href="https://twitter.com/intent/tweet?screen_name=betterfrontend&amp;text=Would%20like%20to%20book%20someone" class="twitter-mention-button" data-lang="en" data-related="dfischer">Book someone @betterfrontend</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script><h2 class="events-past-title">Past Events</h2>
+          <article class="event"><div class="event-date">
+              <div class="event-date-day">12</div>
+              <div class="event-date-month">Jul</div>
+            </div>
+            <div class="event-details">
+              <h1 class="event-title">LA Ruby</h1>
+              <h2 class="event-location">Santa Monica, CA</h2>
+            </div>
+            <div class="event-date">
+              <div class="event-date-day">6</div>
+              <div class="event-date-month">Jun</div>
+            </div>
+            <div class="event-details">
+              <h1 class="event-title">Magmarails</h1>
+              <h2 class="event-location">Manzanillo, Mexico</h2>
+            </div>
+          </article>
+</div>
+      </div>
+    </footer><a href="https://github.com/hybridgroup/betterfrontend" class="github-ribbon"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <!-- JavaScript at the bottom for fast page loading -->
+    <script src="../../../javascripts/application.js?1343775326" type="text/javascript"></script><!-- end scripts --><!--
+      Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
+      mathiasbynens.be/notes/async-analytics-snippet
+    --><script type="text/javascript">
+      //<![CDATA[
+        var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+      //]]>
+    </script>
+</body>
+</html>
