@@ -1,3 +1,20 @@
+---
+title: Design patterns
+side_content: >
+  <a href="https://github.com/hybridgroup/betterfrontend/issues"
+  class="create-issue" target="_blank">Create
+  an issue →</a>
+  <h1><a href="#toc_0">Design Patterns</a></h1>
+---
+
+<div class="alert-box">
+  This guide needs help with formatting.
+</div>
+<div class="alert-box">
+  Table of Contents is not organized and maybe needs to be split into different
+  files.
+</div>
+
 # Decoupling Markup from Stylesheets
 
 It's very common to see people coupling elements with their stylesheets.
