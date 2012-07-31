@@ -41,6 +41,14 @@ collaboration and refinement.**
 **Our mission is to make front-end development better for you, your
 team, and everyone else.**
 
+## Contributing
+
+## Deploy Strategy
+
+We use Middleman to use a nice front-end development stack for static
+sites. We then deploy to Github pages in a separate folder that points
+to the gh-pages branch.
+
 ## Table of Contents
 
 * [What is Front-End Development?](https://github.com/hybridgroup/betterfrontend#what-is-front-end-development)

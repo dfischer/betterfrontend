@@ -20,7 +20,7 @@ set :markdown, :fenced_code_blocks => true,
 ## We put it in another folder for easy building.
 ## Thanks Susy for the tips
 ## https://help.github.com/articles/creating-project-pages-manually
-set :build_dir, "../../betterfrontend-pages/"
+set :build_dir, "../betterfrontend-pages/"
 
 
 require 'rack/codehighlighter'
