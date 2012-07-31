@@ -47,8 +47,46 @@ pre {
   @include mobileRow();
 
   .post {
-    @include column(12);
+    @include column(9);
     @include mobileColumn(4);
+  }
+
+  .secondary {
+    @include column(3);
+    @include mobileColumn(4);
+
+    background: $color-red;
+    color: #fff;
+
+    a {
+      color: #fff;
+      font-weight: bold;
+    }
+
+    h1 {
+      background-color: $color-black;
+      font-size: ms(3);
+      margin-left: -$columnGutter / 2;
+      margin-right: -$columnGutter / 2;
+      padding: 5px 0px;
+      padding-left: $columnGutter / 2;
+      padding-right: $columnGutter / 2;
+    }
+
+    h2 {
+      font-size: ms(2);
+    }
+
+    li {
+      list-style: none;
+      margin-bottom: 5px;
+    }
+
+    .create-issue {
+      display: block;
+      font-weight: bold;
+      margin: 10px 0px;
+    }
   }
 }
 

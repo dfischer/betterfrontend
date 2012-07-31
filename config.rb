@@ -13,7 +13,8 @@ set :markdown_engine, :redcarpet
 set :markdown, :fenced_code_blocks => true,
                :autolink => true, 
                :smartypants => true,
-               :layout_engine => :haml
+               :layout_engine => :haml,
+               :with_toc_data => true
 
 
 require 'rack/codehighlighter'

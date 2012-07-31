@@ -13,13 +13,16 @@
       = link_to(image_tag('logo.png'), '/', :class => 'brand')
       %nav.page-nav
         %ul.nav-links
-          %li.nav-link-item= link_to "Guides"
-          %li.nav-link-item= link_to "Events"
-          %li.nav-link-item= link_to "About", '/about.html'
+          %li.nav-link-item= link_to "Guides", '/guides/'
+          %li.nav-link-item= link_to "Debates", '/guides/'
+          %li.nav-link-item= link_to "About", '/about/'
 
     %div.page-content{:role => "main"}
       %article.post
         = yield
+      - if page_side_content
+        %aside.secondary= page_side_content
+        
 
     %footer.page-footer{:role => "contentinfo"}
       = partial "layouts/footer"
