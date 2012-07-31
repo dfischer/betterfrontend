@@ -16,6 +16,12 @@ set :markdown, :fenced_code_blocks => true,
                :layout_engine => :haml,
                :with_toc_data => true
 
+## Build directory has to be an "orphaned" repo
+## We put it in another folder for easy building.
+## Thanks Susy for the tips
+## https://help.github.com/articles/creating-project-pages-manually
+set :build_dir, "../../betterfrontend-pages/"
+
 
 require 'rack/codehighlighter'
 require "pygments"
