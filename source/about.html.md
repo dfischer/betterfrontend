@@ -1,15 +1,28 @@
 ---
-title: About #betterfrontend
+title: About Betterfrontend
+side_content: >
+  <a href="https://github.com/hybridgroup.com/betterfrontend"
+  class='github-repo'>Github
+  Repo →</a>
+  <a href="https://twitter.com/betterfrontend" class="twitter-follow-button" data-show-count="false">Follow @betterfrontend</a>
+  <h1>Contributors</h1>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  <ul>
+    <li>
+      <a href="http://www.github.com/dfischer">@dfischer</a>
+      <iframe style="border: 0; margin: 5px 0 0 0; padding: 0;"
+              src="https://www.gittip.com/dfischer/widget.html" 
+              width="48pt" height="20pt"></iframe>
+    </li>
 ---
 
-# #betterfrontend is a movement to improve Front-End Development
+# Betterfrontend is a movement to improve Front-End Development
 
 Front-end development sucks, and #betterfrontend is a movement by the
 community to make it better.
 
 Official twitter:
-[@betterfrontend](https://www.twitter.com/betterfrontend) &
-[#betterfrontend](https://twitter.com/#!/search/%23betterfrontend)
+[@betterfrontend](https://www.twitter.com/betterfrontend) 
 
 This repository will serve as a style guide for tools and libraries that are
 used in front-end development.

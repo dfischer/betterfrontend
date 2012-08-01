@@ -75,11 +75,11 @@ activate :directory_indexes
 # end
 helpers do
   def page_title
-    title = "#betterfrontend: "
+    title = "Betterfrontend: "
     if data.page.title
       title << data.page.title
     else
-      title << "Making Front-End Development Fun again"
+      title << "Making Front-End Development Better"
     end
     title
   end
