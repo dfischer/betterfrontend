@@ -8,23 +8,24 @@
   = partial 'layouts/head'
 
   %body{:class => page_classes}
-    %header.page-header{:role => "banner"}
-      = link_to(image_tag('logo.png'), '/', :class => 'brand')
-      %nav.page-nav
-        %ul.nav-links
-          %li.nav-link-item= link_to "Guides", '/guides/'
-          %li.nav-link-item= link_to "Debates", '/debates/'
-          %li.nav-link-item= link_to "Events", '/events/'
-          %li.nav-link-item= link_to "About", '/about/'
+    .page-wrapper
+      %header.page-header{:role => "banner"}
+        = link_to(image_tag('logo.png'), '/', :class => 'brand')
+        %nav.page-nav
+          %ul.nav-links
+            %li.nav-link-item= link_to "Guides", '/guides/'
+            %li.nav-link-item= link_to "Debates", '/debates/'
+            %li.nav-link-item= link_to "Events", '/events/'
+            %li.nav-link-item= link_to "About", '/about/'
 
-    %div.page-content{:role => "main"}
-      %article.post
-        = yield
-      - if page_side_content
-        %aside.secondary= page_side_content
-        
-      %section.comments
-        #disqus_thread
+      %div.page-content{:role => "main"}
+        %article.post
+          = yield
+        - if page_side_content
+          %aside.secondary= page_side_content
+          
+        %section.comments
+          #disqus_thread
 
     %footer.page-footer{:role => "contentinfo"}
       = partial "layouts/footer"

@@ -16,23 +16,24 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
 function stickyFooter() {
   var documentHeight = $(document.body).height();
   var viewportHeight = $(window).height();
+  var wrapperHeight = $('.page-wrapper').height();
+  var headerMargin = parseInt($('.page-header').css('margin-top'));
+  var footerHeight = $('.page-footer').height();
+  var totalWrapperHeight = wrapperHeight + headerMargin + footerHeight;
 
-  if ((viewportHeight - 339) < (documentHeight + 0)) {
-    console.info("less");
-    $(".page-footer").removeClass("sticky");
+  if (viewportHeight > documentHeight + 0) {
+    $(".page-footer").addClass("sticky");
   }
 
-  if ((viewportHeight - 0) > (documentHeight + 0)) {
-    console.info("more");
-    $(".page-footer").addClass("sticky");
+  if (viewportHeight < totalWrapperHeight) {
+    $(".page-footer").removeClass("sticky");
   }
 }
 
+$(window).off('resize');
+$(window).resize(function () { stickyFooter(); });
 
 jQuery(document).ready(function ($) {
-    
-    stickyFooter();
-
     // set your twitter id
     var user = 'betterfrontend';
       
@@ -176,13 +177,4 @@ jQuery(document).ready(function ($) {
 
   /* CUSTOM FORMS */
   $.foundation.customForms.appendCustomMarkup();
-});
-
-$(window).load(function() {
-  stickyFooter();
-});
-
-
-$(window).resize(function() {
-  stickyFooter();
 });
