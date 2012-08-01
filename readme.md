@@ -1,14 +1,16 @@
-# Betterfrontend
+# [Betterfrontend](http://www.betterfrontend.com)
 
-Front-End Development lacks consistency. @betterfrontend is a
+Front-End Development lacks consistency. Betterfrontend is a
 community-driven project to bring best-practices and consistency to
 Front-End Development.
 
-Secondarily, @betterfrontend will be a repository of tutorials to reduce
+Secondarily, Betterfrontend will be a repository of tutorials to reduce
 the learning curve of becoming a front-end developer.
 
 The guides are viewable at
 [www.betterfrontend.com](http://www.betterfrontend.com).
+
+You can also [follow @betterfrontend on Twitter](https://twitter.com/betterfrontend).
 
 The entire web-development community is encouraged to contribute to
 these guides. It's easy to contribute.
