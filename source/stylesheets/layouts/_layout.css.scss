@@ -1,6 +1,10 @@
 body {
   position: relative;
   &.index {
+    .comments {
+      display: none;
+    }
+
     .page-content .post {
       @include column(12);
     }
@@ -93,6 +97,13 @@ pre {
       margin: 10px 0px;
     }
   }
+
+  .comments {
+    @include column(12);
+    @include mobileColumn(12);
+
+    margin: 50px 0px;
+  }
 }
 
 .page-footer {
@@ -119,6 +130,19 @@ pre {
     .events-past-title {
       font-size: ms(2);
     }
+  }
+
+  .buzz {
+    @include column(4);
+
+    .twtr-hd,
+    .twtr-ft {
+      display: none;
+    }
+  }
+
+  .buzz-title {
+    font-size: ms(3);
   }
 
   .followus {
@@ -172,7 +196,6 @@ pre {
 
 .events {
   @include column(3);
-  @include offsetBy(2);
 
   .event-date {
     background-color: $color-red;
