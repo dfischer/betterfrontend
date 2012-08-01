@@ -13,8 +13,26 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
 
 // place any jQuery/helper plugins in here, instead of separate, slower script files.
 
+function stickyFooter() {
+  var documentHeight = $(document.body).height();
+  var viewportHeight = $(window).height();
+
+  if ((viewportHeight - 280) < (documentHeight - 0)) {
+    console.info("less");
+    $(".page-footer").removeClass("sticky");
+  }
+
+  if ((viewportHeight - 0) > (documentHeight + 0)) {
+    console.info("more");
+    $(".page-footer").addClass("sticky");
+  }
+}
+
 
 jQuery(document).ready(function ($) {
+    
+    stickyFooter();
+
     // set your twitter id
     var user = 'betterfrontend';
       
@@ -158,23 +176,13 @@ jQuery(document).ready(function ($) {
 
   /* CUSTOM FORMS */
   $.foundation.customForms.appendCustomMarkup();
+});
 
+$(window).load(function() {
+  stickyFooter();
 });
 
 
-var viewportWidth = $(window).width();
-var viewportHeight = $(window).height();
-
 $(window).resize(function() {
-  var viewportWidth = $(window).width();
-  var viewportHeight = $(window).height();
-  if (viewportHeight < 850) {
-    console.info("less");
-    $(".page-footer").removeClass("sticky");
-  }
-
-  if (viewportHeight > 850) {
-    console.info("greater");
-    $(".page-footer").addClass("sticky");
-  }
+  stickyFooter();
 });
