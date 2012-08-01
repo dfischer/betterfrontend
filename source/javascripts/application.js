@@ -17,7 +17,7 @@ function stickyFooter() {
   var documentHeight = $(document.body).height();
   var viewportHeight = $(window).height();
 
-  if ((viewportHeight - 280) < (documentHeight - 0)) {
+  if ((viewportHeight - 339) < (documentHeight + 0)) {
     console.info("less");
     $(".page-footer").removeClass("sticky");
   }
