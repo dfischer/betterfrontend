@@ -9,7 +9,17 @@ body {
       @include column(12);
     }
   }
+
+  // Make main navigation items active if current
+  @each $section in guides, debates, events, about {
+    &.#{$section} .page-nav .nav-link-item.#{$section} {
+      a {
+        color: #000;
+      }
+    }
+  }
 }
+
 
 pre {
   @include border-radius(4px);
@@ -47,6 +57,7 @@ pre {
 
     a {
       font-size: ms(2);
+      font-weight: bold;
     }
   }
 }
@@ -58,6 +69,40 @@ pre {
   .post {
     @include column(9);
     @include mobileColumn(4);
+
+    img {
+      border: 3px solid #ccc;
+    }
+
+    h1, 
+    h2, 
+    h3, 
+    h4, 
+    h5, 
+    h6 {
+      a {
+        color: $color-black;
+        &:hover {
+          $background-spacing: 35px;
+
+          background: url("/images/iconic/raster/gray_dark/link_24x24.png") no-repeat 0px center;
+          padding-left: $background-spacing;
+          margin-left: -$background-spacing;
+        }
+      }
+    }
+
+    .alert-box {
+      a {
+        color: #333;
+        text-shadow: none;
+      }
+    }
+
+    .highlight {
+      background: none;
+      border: none;
+    }
   }
 
   .secondary {

@@ -1,9 +1,6 @@
 ---
 title: Getting Started with #betterfrontend
 side_content: >
-  <a href="https://github.com/hybridgroup/betterfrontend/issues"
-  class="create-issue" target="_blank">Create
-  an issue →</a>
   <h1>Guides</h1>
   <ul>
     <li><a href="/guides/stylesheets">Stylesheets</a></li>

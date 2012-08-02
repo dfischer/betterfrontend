@@ -13,16 +13,20 @@
         = link_to(image_tag('logo.png'), '/', :class => 'brand')
         %nav.page-nav
           %ul.nav-links
-            %li.nav-link-item= link_to "Guides", '/guides/'
-            %li.nav-link-item= link_to "Debates", '/debates/'
-            %li.nav-link-item= link_to "Events", '/events/'
-            %li.nav-link-item= link_to "About", '/about/'
+            %li.nav-link-item.guides= link_to "Guides", '/guides/'
+            %li.nav-link-item.debates= link_to "Debates", '/debates/'
+            %li.nav-link-item.events= link_to "Events", '/events/'
+            %li.nav-link-item.about= link_to "About", '/about/'
 
       %div.page-content{:role => "main"}
         %article.post
           = yield
         - if page_side_content
-          %aside.secondary= page_side_content
+          %aside.secondary
+            = link_to 'Create an issue →', 'https://github.com/hybridgroup/betterfrontend/issues', :class => 'create-issue', :target => "_blank"
+            = link_to 'Github repo →', 'https://github.com/hybridgroup.com/betterfrontend', :class => 'github-repo', :target => "_blank"
+            = partial 'shared/follow_twitter'
+            = page_side_content
           
         %section.comments
           #disqus_thread
