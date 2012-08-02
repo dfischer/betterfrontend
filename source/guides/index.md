@@ -6,6 +6,7 @@ side_content: >
     <li><a href="/guides/stylesheets">Stylesheets</a></li>
     <li><a href="/guides/markup">Markup</a></li>
     <li><a href="/guides/design_patterns">Design Patterns</a></li>
+    <li><a href="/guides/anti_patterns">Anti Patterns</a></li>
     <li><a href="/guides/rails">Ruby on Rails</a></li>
     <li><a href="/guides/boilerplates">Boilerplates</a></li>
     <li><a href="/guides/libraries">Libraries</a></li>
