@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]--><!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]--><!--[if IE 8]> <html class="no-js lt-ie9" lang="en"> <![endif]--><!--[if gt IE 8]> ><! <![endif]--><html class="no-js" lang="en">
+<!-- <![endif] --><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<title>Betterfrontend: Anti-Patterns</title>
+<meta content="A community effort to standardize Front-End Development" name="description">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link type="text/css" rel="stylesheet" media="screen" href="../../stylesheets/application.css?1343872736">
+<script src="../../javascripts/top/modernizr.foundation.js?1343775326" type="text/javascript"></script>
+</head>
+<body class="guides guides_anti_patterns guides_anti_patterns_index">
+    <div class="page-wrapper">
+      <header class="page-header" role="banner"><a class="brand" href="/"><img src="../../images/logo.png?1343775319"></a>
+        <nav class="page-nav"><ul class="nav-links">
+<li class="nav-link-item guides"><a href="/guides/">Guides</a></li>
+            <li class="nav-link-item debates"><a href="/debates/">Debates</a></li>
+            <li class="nav-link-item events"><a href="/events/">Events</a></li>
+            <li class="nav-link-item about"><a href="/about/">About</a></li>
+          </ul></nav></header><div class="page-content" role="main">
+        <article class="post"><h1 id="toc_0">Anti-Patterns</h1>
+
+<p>Examples of things to NOT do and be aware of.</p>
+
+<h2 id="toc_1"><a href="#toc_3">Decoupling Markup from Stylesheets</a></h2>
+
+<p>It's very common to see people coupling elements with their stylesheets.</p>
+
+<p>For example:</p>
+
+<div class="highlight">
+<pre><span class="nt">%div</span><span class="nc">.products</span>
+  <span class="nt">%div</span><span class="nc">.product</span>
+    <span class="nt">%span</span><span class="nc">.title</span> Product Title
+
+  <span class="nt">%form</span><span class="nc">.new</span>
+    <span class="nt">%label</span><span class="nc">.title</span>
+</pre>
+</div>
+
+
+<p><em>Don't like how the classes are named? <a href="https://github.com/hybridgroup/betterfrontend/blob/master/debates.md">Take a look at our debates.</a></em></p>
+
+<div class="highlight">
+<pre><span class="nt">div</span><span class="nc">.products</span> <span class="p">{</span>
+
+  <span class="nt">div</span><span class="nc">.product</span> <span class="p">{</span>
+    <span class="nt">span</span><span class="nc">.title</span> <span class="p">{</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nt">form</span> <span class="p">{</span>
+    <span class="nt">label</span> <span class="p">{</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<p>When you do this, you force yourself to update at least 2 files to make
+one change. This coupling is bad for maintainability. </p>
+
+<p>We recommend using <em>only</em> classes in stylesheets. This allows you to
+evolve the markup layer as it makes sense. The only exception to this
+rule is when the markup provided is absolutely semantically accurate. As
+a side note, this means we're able to evolve our markup layer as more
+standards are implemented.</p>
+
+<p>For example taken from above</p>
+
+<div class="highlight">
+<pre><span class="nt">%div</span><span class="nc">.products</span>
+  <span class="nt">%div</span><span class="nc">.product</span>
+    <span class="nt">%span</span><span class="nc">.title</span> Product Title
+
+  <span class="nt">%form</span><span class="nc">.new</span>
+    <span class="nt">%label</span><span class="nc">.title</span>
+</pre>
+</div>
+
+
+<div class="highlight">
+<pre><span class="nc">.products</span> <span class="p">{</span>
+  <span class="nc">.new</span> <span class="p">{</span>
+    <span class="nc">.title</span> <span class="p">{</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nc">.product</span> <span class="p">{</span>
+    <span class="nc">.title</span> <span class="p">{</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<p>This decouples stylesheets from the markup layer which brings us more
+maintainability. Great!</p>
+
+<p>If you disagree, <a href="https://github.com/hybridgroup/betterfrontend/issues/new">create an issue</a>.</p>
+
+<h3 id="toc_2">Another decoupling example that adds semantics</h3>
+
+<p>Take an example of a list of things. For example:</p>
+
+<div class="highlight">
+<pre><span class="nc">.products</span>
+  <span class="nt">%ul</span>
+    <span class="nt">%li</span><span class="p">=</span> <span class="n">link_to</span> <span class="s1">'product 1'</span>
+    <span class="nt">%li</span><span class="p">=</span> <span class="n">link_to</span> <span class="s1">'product 2'</span>
+    <span class="nt">%li</span><span class="p">=</span> <span class="n">link_to</span> <span class="s1">'product 3'</span>
+    <span class="nt">%li</span><span class="p">=</span> <span class="n">link_to</span> <span class="s1">'product 4'</span>
+</pre>
+</div>
+
+
+<p>Usually people will style the above like the following:</p>
+
+<div class="highlight">
+<pre><span class="nc">.products</span> <span class="p">{</span>
+  <span class="nt">ul</span> <span class="p">{</span>
+    <span class="nt">li</span> <span class="p">{</span>
+     <span class="c1">// styles</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<p>Instead of relying on the markup structure, do the following for a more
+maintainable stylesheet and markup layer:</p>
+
+<div class="highlight">
+<pre><span class="nt">%ul</span><span class="nc">.products</span>
+  <span class="nt">%li</span><span class="nc">.product</span><span class="p">=</span> <span class="n">link_to</span> <span class="s1">'product 1'</span>
+  <span class="nt">%li</span><span class="nc">.product</span><span class="p">=</span> <span class="n">link_to</span> <span class="s1">'product 2'</span>
+  <span class="nt">%li</span><span class="nc">.product</span><span class="p">=</span> <span class="n">link_to</span> <span class="s1">'product 3'</span>
+  <span class="nt">%li</span><span class="nc">.product</span><span class="p">=</span> <span class="n">link_to</span> <span class="s1">'product 4'</span>
+</pre>
+</div>
+
+
+<div class="highlight">
+<pre><span class="nc">.products</span> <span class="p">{</span>
+  <span class="nc">.product</span> <span class="p">{</span>
+   <span class="c1">// styles</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<p>This gives us better readability on the stylesheet layer and decouples
+the markup from the classes allowing for more maintainable stylesheets.</p>
+        </article><aside class="secondary"><a class="create-issue" target="_blank" href="https://github.com/hybridgroup/betterfrontend/issues">Create an issue →</a>
+          <a class="github-repo" target="_blank" href="https://github.com/hybridgroup.com/betterfrontend">Github repo →</a>
+          <a href="https://twitter.com/betterfrontend" class="twitter-follow-button" data-show-count="false">Follow @betterfrontend</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script><h1><a href="#toc_0">Anti Patterns</a></h1> <ul>
+<li><a href="#toc_1">Decoupling Markup</a></li>
+        </ul></aside><section class="comments"><div id="disqus_thread"></div>
+        </section>
+</div>
+    </div>
+    <footer class="page-footer" role="contentinfo"><div class="footer-content">
+        <div class="followus">
+          <h1 class="followus-title">Don't forget to follow</h1>
+          <div class="tweet">
+            <h1 class="tweet-title">
+              <a href="https://twitter.com/betterfrontend" class="twitter-follow-button" data-show-count="false">Follow @betterfrontend</a>
+              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</h1>
+            <p class="tweet-text" id="js-footer-tweet"></p>
+          </div>
+        </div>
+        <div class="buzz">
+          <h1 class="buzz-title">Buzz</h1>
+          <script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script><script type="text/javascript">
+            //<![CDATA[
+              new TWTR.Widget({
+                version: 2,
+                type: 'search',
+                search: 'betterfrontend',
+                interval: 30000,
+                title: 'betterfrontend buzz',
+                subject: '',
+                width: 'auto',
+                height: 200,
+                theme: {
+                  shell: {
+                    background: '#232323',
+                    color: '#ffffff'
+                  },
+                  tweets: {
+                    background: '#232323',
+                    color: '#fff',
+                    links: '#2BA6CB'
+                  }
+                },
+                features: {
+                  scrollbar: false,
+                  loop: true,
+                  live: true,
+                  behavior: 'default'
+                }
+              }).render().start();
+            //]]>
+          </script>
+</div>
+        <div class="events">
+          <h1 class="events-title">Events</h1>
+          <strong>No upcoming events.</strong>
+          <br><br><a href="https://twitter.com/intent/tweet?screen_name=betterfrontend&amp;text=Would%20like%20to%20book%20someone" class="twitter-mention-button" data-lang="en" data-related="dfischer">Book someone @betterfrontend</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script><h2 class="events-past-title">Past Events</h2>
+          <article class="event"><div class="event-date">
+              <div class="event-date-day">12</div>
+              <div class="event-date-month">Jul</div>
+            </div>
+            <div class="event-details">
+              <h1 class="event-title">LA Ruby</h1>
+              <h2 class="event-location">Santa Monica, CA</h2>
+            </div>
+            <div class="event-date">
+              <div class="event-date-day">6</div>
+              <div class="event-date-month">Jun</div>
+            </div>
+            <div class="event-details">
+              <h1 class="event-title">Magmarails</h1>
+              <h2 class="event-location">Manzanillo, Mexico</h2>
+            </div>
+          </article>
+</div>
+      </div>
+    </footer><a href="https://github.com/hybridgroup/betterfrontend" class="github-ribbon"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <!-- JavaScript at the bottom for fast page loading -->
+    <script src="../../javascripts/application.js?1343872724" type="text/javascript"></script><!-- end scripts --><!--
+      Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
+      mathiasbynens.be/notes/async-analytics-snippet
+    --><script type="text/javascript">
+      //<![CDATA[
+        var _gaq=[['_setAccount','UA-287153-13'],['_trackPageview']];
+        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+      //]]>
+    </script><script type="text/javascript">
+      //<![CDATA[
+        stickyFooter();
+      //]]>
+    </script><script type="text/javascript">
+      //<![CDATA[
+          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+          var disqus_shortname = 'betterfrontend'; // required: replace example with your forum shortname
+        
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+      //]]>
+    </script>
+</body>
+</html>

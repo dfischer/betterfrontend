@@ -7,18 +7,19 @@
 <title>Betterfrontend: Design patterns</title>
 <meta content="A community effort to standardize Front-End Development" name="description">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<link href="../../stylesheets/application.css?1343784257" media="screen" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../stylesheets/application.css?1343872736">
 <script src="../../javascripts/top/modernizr.foundation.js?1343775326" type="text/javascript"></script>
 </head>
 <body class="guides guides_design_patterns guides_design_patterns_index">
-    <header class="page-header" role="banner"><a class="brand" href="/"><img src="../../images/logo.png?1343775319"></a>
-      <nav class="page-nav"><ul class="nav-links">
-<li class="nav-link-item"><a href="/guides/">Guides</a></li>
-          <li class="nav-link-item"><a href="/debates/">Debates</a></li>
-          <li class="nav-link-item"><a href="/events/">Events</a></li>
-          <li class="nav-link-item"><a href="/about/">About</a></li>
-        </ul></nav></header><div class="page-content" role="main">
-      <article class="post"><div class="alert-box">
+    <div class="page-wrapper">
+      <header class="page-header" role="banner"><a class="brand" href="/"><img src="../../images/logo.png?1343775319"></a>
+        <nav class="page-nav"><ul class="nav-links">
+<li class="nav-link-item guides"><a href="/guides/">Guides</a></li>
+            <li class="nav-link-item debates"><a href="/debates/">Debates</a></li>
+            <li class="nav-link-item events"><a href="/events/">Events</a></li>
+            <li class="nav-link-item about"><a href="/about/">About</a></li>
+          </ul></nav></header><div class="page-content" role="main">
+        <article class="post"><div class="alert-box">
   This guide needs help with formatting.
 </div>
 <div class="alert-box">
@@ -26,131 +27,107 @@
   files.
 </div>
 
-<h1 id="toc_0">Decoupling Markup from Stylesheets</h1>
+<h1 id="toc_0"><a href="#toc_0">Design Patterns</a></h1>
 
-<p>It's very common to see people coupling elements with their stylesheets.</p>
+<p>Design patterns in front-end development are common strategies used to
+solve certain problems. </p>
+
+<h2 id="toc_1"><a href="#toc_1">Active Navigation Item</a></h2>
+
+<p>It's common to highlight the currently active link in a series of
+navigation links.</p>
 
 <p>For example:</p>
 
-<pre>%div.products
-  %div.product
-    %span.title Product Title
+<p><img src="/images/screenshots/active-navigation.jpg" alt="Active Navigation Example Screenshot"></p>
 
-  %form.new
-    %label.title
+<p>There's two main ways to implement this.</p>
+
+<ul>
+<li>Use pure CSS.</li>
+<li>Use a helper method provided by a language to mark current page.</li>
+</ul>
+<p>Using a helper method is possibly easier and more standard, however it
+depends upon a programming language. </p>
+
+<p>However, using a pure CSS method can be just as fine.</p>
+
+<h3 id="toc_2">CSS Method</h3>
+
+<p>If you browse the <a href="http://www.betterfrontend.com">www.betterfrontend.com</a> source could, you'll see that
+it uses the CSS method.</p>
+
+<p>In the example we use <code>page_classes</code> to automatically put a contextual
+class on the <code>body</code> element based on the current page's name. E.g,
+<code>guides</code>.</p>
+
+<p>Here's the implementation:</p>
+
+<p>DOM structure</p>
+
+<div class="highlight">
+<pre><span class="nt">%body</span><span class="p">{</span><span class="ss">:class</span> <span class="o">=&gt;</span> <span class="n">page_classes</span><span class="p">}</span>
+  <span class="nc">.page-wrapper</span>
+    <span class="nt">%header</span><span class="nc">.page-header</span><span class="p">{</span><span class="ss">:role</span> <span class="o">=&gt;</span> <span class="s2">"banner"</span><span class="p">}</span>
+      <span class="p">=</span> <span class="n">link_to</span><span class="p">(</span><span class="n">image_tag</span><span class="p">(</span><span class="s1">'logo.png'</span><span class="p">),</span> <span class="s1">'/'</span><span class="p">,</span> <span class="ss">:class</span> <span class="o">=&gt;</span> <span class="s1">'brand'</span><span class="p">)</span>
+      <span class="nt">%nav</span><span class="nc">.page-nav</span>
+        <span class="nt">%ul</span><span class="nc">.nav-links</span>
+          <span class="nt">%li</span><span class="nc">.nav-link-item.guides</span><span class="p">=</span> <span class="n">link_to</span> <span class="s2">"Guides"</span><span class="p">,</span> <span class="s1">'/guides/'</span>
+          <span class="nt">%li</span><span class="nc">.nav-link-item.debates</span><span class="p">=</span> <span class="n">link_to</span> <span class="s2">"Debates"</span><span class="p">,</span> <span class="s1">'/debates/'</span>
+          <span class="nt">%li</span><span class="nc">.nav-link-item.events</span><span class="p">=</span> <span class="n">link_to</span> <span class="s2">"Events"</span><span class="p">,</span> <span class="s1">'/events/'</span>
+          <span class="nt">%li</span><span class="nc">.nav-link-item.about</span><span class="p">=</span> <span class="n">link_to</span> <span class="s2">"About"</span><span class="p">,</span> <span class="s1">'/about/'</span>
 </pre>
+</div>
 
-<p><em>Don't like how the classes are named? <a href="https://github.com/hybridgroup/betterfrontend/blob/master/debates.md">Take a look at our debates.</a></em></p>
 
-<pre>div.products {
-
-  div.product {
-    span.title {
-    }
-  }
-
-  form {
-    label {
-    }
-  }
-}
+<div class="highlight">
+<pre><span class="nt">body</span> <span class="p">{</span>
+  <span class="c1">// Make main navigation items active if current</span>
+  <span class="k">@each</span> <span class="err">$</span><span class="nt">section</span> <span class="nt">in</span> <span class="nt">guides</span><span class="o">,</span> <span class="nt">debates</span><span class="o">,</span> <span class="nt">events</span><span class="o">,</span> <span class="nt">about</span> <span class="p">{</span>
+    <span class="k">&amp;</span><span class="nc">.</span><span class="si">#{</span><span class="nv">$section</span><span class="si">}</span> <span class="nc">.page-nav</span> <span class="nc">.nav-link-item.</span><span class="si">#{</span><span class="nv">$section</span><span class="si">}</span> <span class="p">{</span>
+      <span class="nt">a</span> <span class="p">{</span>
+        <span class="na">color</span><span class="o">:</span> <span class="mh">#000</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </pre>
+</div>
 
-<p>When you do this, you force yourself to update at least 2 files to make
-one change. This coupling is bad for maintainability. </p>
 
-<p>We recommend using <em>only</em> classes in stylesheets. This allows you to
-evolve the markup layer as it makes sense. The only exception to this
-rule is when the markup provided is absolutely semantically accurate. As
-a side note, this means we're able to evolve our markup layer as more
-standards are implemented.</p>
+<h3 id="toc_3">Helper Method</h3>
 
-<p>For example taken from above</p>
+<p>Using a helper method to set an element's active class based on current
+path is another way to do it. </p>
 
-<pre>%div.products
-  %div.product
-    %span.title Product Title
+<div class="alert-box">
+  Need an example of a helper method based on path.
+</div>
 
-  %form.new
-    %label.title
-</pre>
+<h2 id="toc_4"><a href="#toc_2">Sprites</a></h2>
 
-<pre>.products {
-  .new {
-    .title {
-    }
-  }
+<div class="alert-box">
+  This is a planned design pattern. <a href="https://github.com/hybridgroup/betterfrontend#contributing">Learn how to contribute</a>.
+</div>
 
-  .product {
-    .title {
-    }
-  }
-}
-</pre>
-
-<p>This decouples stylesheets from the markup layer which brings us more
-maintainability. Great!</p>
-
-<p>If you disagree, <a href="https://github.com/hybridgroup/betterfrontend/issues/new">create an issue</a>.</p>
-
-<h1 id="toc_1">Another decoupling example that adds semantics</h1>
-
-<p>Take an example of a list of things. For example:</p>
-
-<pre>.products
-  %ul
-    %li= link_to 'product 1'
-    %li= link_to 'product 2'
-    %li= link_to 'product 3'
-    %li= link_to 'product 4'
-</pre>
-
-<p>Usually people will style the above like the following:</p>
-
-<pre>.products {
-  ul {
-    li {
-     // styles
-    }
-  }
-}
-</pre>
-
-<p>Instead of relying on the markup structure, do the following for a more
-maintainable stylesheet and markup layer:</p>
-
-<pre>%ul.products
-  %li.product= link_to 'product 1'
-  %li.product= link_to 'product 2'
-  %li.product= link_to 'product 3'
-  %li.product= link_to 'product 4'
-</pre>
-
-<pre>.products {
-  .product {
-   // styles
-  }
-}
-</pre>
-
-<p>This gives us better readability on the stylesheet layer and decouples
-the markup from the classes allowing for more maintainable stylesheets.</p>
-
-<h1 id="toc_2">Making the box-model easy</h1>
+<h2 id="toc_5"><a href="#toc_4">Making the box-model easy</a></h2>
 
 <p>Isn't it annoying that width and padding are additional to the total
 width of the element? You know it's made layouts a pain every now and
 then. Luckily, there's a widely supported fix now.</p>
 
-<pre>/* apply a natural box layout model to all elements */
-* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+<div class="highlight">
+<pre><span class="cm">/* apply a natural box layout model to all elements */</span>
+<span class="o">*</span> <span class="p">{</span> <span class="na">-moz-box-sizing</span><span class="o">:</span> <span class="no">border</span><span class="o">-</span><span class="n">box</span><span class="p">;</span> <span class="na">-webkit-box-sizing</span><span class="o">:</span> <span class="no">border</span><span class="o">-</span><span class="n">box</span><span class="p">;</span> <span class="na">box-sizing</span><span class="o">:</span> <span class="no">border</span><span class="o">-</span><span class="n">box</span><span class="p">;</span> <span class="p">}</span>
 </pre>
+</div>
+
 
 <p>It's extremely safe to use, and even though the <code>*</code> selector is used,
 performance isn't an issue. For more details check out the <a href="http://paulirish.com/2012/box-sizing-border-box-ftw/">Paul Irish's
-post</a></p>
+post</a>.</p>
 
-<h1 id="toc_3">Designing for Retina</h1>
+<h2 id="toc_6"><a href="#toc_5">Designing for Retina</a></h2>
 
 <p>Since retina is going to become more of a standard, it's now time to
 seriously think about how it affects our displays. Retina (Apple
@@ -161,14 +138,61 @@ awful.</p>
 <p>We need to serve higher quality assets. However, does it make sense to
 serve higher quality assets to resolutions that can't tell the difference?</p>
 
-<p>The <a href="https://github.com/superacidjax/clear_eyes?utm_source=rubyweekly&amp;utm_medium=email">Clear Eyes</a> library aims to fix this problem.</p>
+<p>The <a href="https://github.com/superacidjax/clear_eyes">Clear Eyes</a> library aims to fix this problem.</p>
 
-<h1 id="toc_4">Carousels</h1>
+<h2 id="toc_7"><a href="#toc_6">Carousels</a></h2>
 
 <p>Recommended plugins for carousels:</p>
-      </article><aside class="secondary"><a href="https://github.com/hybridgroup/betterfrontend/issues" class="create-issue" target="_blank">Create an issue →</a> <h1><a href="#toc_0">Design Patterns</a></h1></aside><section class="comments"><div id="disqus_thread"></div>
-      </section>
+
+<div class="alert-box">
+  This is a planned design pattern. <a href="https://github.com/hybridgroup/betterfrontend#contributing">Learn how to contribute</a>.
 </div>
+
+<h2 id="toc_8"><a href="#toc_6">Breadcrumbs</a></h2>
+
+<p>Breadcrumbs are an easy way to show a path to the current page in linear
+structure.</p>
+
+<p>Here's a method of implementing it in Ruby and Haml.</p>
+
+<div class="highlight">
+<pre><span class="k">def</span> <span class="nf">bread_crumbs</span>
+  <span class="vi">@bread_crumbs</span> <span class="o">||=</span> <span class="o">[]</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">add_crumb</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">caption</span><span class="p">)</span>
+  <span class="n">bread_crumbs</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="ss">:url</span> <span class="o">=&gt;</span> <span class="n">url</span><span class="p">,</span> <span class="ss">:caption</span> <span class="o">=&gt;</span> <span class="n">caption</span><span class="p">}</span>
+<span class="k">end</span>
+</pre>
+</div>
+
+
+<div class="highlight">
+<pre><span class="err">%</span><span class="nt">ul</span><span class="nc">.breadcrumb</span>
+  <span class="err">%</span><span class="nt">li</span><span class="nc">.crumb</span>
+    <span class="o">=</span> <span class="nt">link_to</span> <span class="s1">'</span><span class="s2">Home'</span><span class="o">,</span> <span class="nt">root_path</span>
+    <span class="err">%</span><span class="nt">span</span><span class="nc">.crumb-divider</span> <span class="o">/</span>
+  <span class="nt">-</span> <span class="nt">bread_crumbs</span><span class="nc">.each</span> <span class="nt">do</span> <span class="o">|</span><span class="nt">crumb</span><span class="o">|</span>
+    <span class="err">%</span><span class="nt">li</span><span class="nc">.crumb</span>
+      <span class="err">%</span><span class="nt">a</span><span class="p">{</span><span class="nd">:href</span> <span class="o">=&gt;</span> <span class="nt">crumb</span><span class="o">[</span><span class="nd">:url</span><span class="o">]</span><span class="p">}</span><span class="o">=</span> <span class="nt">crumb</span><span class="o">[</span><span class="nd">:caption</span><span class="o">]</span>
+      <span class="err">%</span><span class="nt">span</span><span class="nc">.crumb-divider</span> <span class="o">/</span>
+</pre>
+</div>
+
+        </article><aside class="secondary"><a class="create-issue" target="_blank" href="https://github.com/hybridgroup/betterfrontend/issues">Create an issue →</a>
+          <a class="github-repo" target="_blank" href="https://github.com/hybridgroup.com/betterfrontend">Github repo →</a>
+          <a href="https://twitter.com/betterfrontend" class="twitter-follow-button" data-show-count="false">Follow @betterfrontend</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script><h1><a href="#toc_0">Design Patterns</a></h1> <ul>
+<li><a href="#toc_1">Active Navigation Item</a></li>
+            <li><a href="#toc_4">Sprites</a></li>
+            <li><a href="#toc_5">Making the box-model Easy</a></li>
+            <li><a href="#toc_6">Designing for Retina</a></li>
+            <li><a href="#toc_7">Carousels</a></li>
+            <li><a href="#toc_8">Breadcrumbs</a></li>
+          </ul></aside><section class="comments"><div id="disqus_thread"></div>
+        </section>
+</div>
+    </div>
     <footer class="page-footer" role="contentinfo"><div class="footer-content">
         <div class="followus">
           <h1 class="followus-title">Don't forget to follow</h1>
@@ -240,7 +264,7 @@ serve higher quality assets to resolutions that can't tell the difference?</p>
       </div>
     </footer><a href="https://github.com/hybridgroup/betterfrontend" class="github-ribbon"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
     <!-- JavaScript at the bottom for fast page loading -->
-    <script src="../../javascripts/application.js?1343788858" type="text/javascript"></script><!-- end scripts --><!--
+    <script src="../../javascripts/application.js?1343872724" type="text/javascript"></script><!-- end scripts --><!--
       Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
       mathiasbynens.be/notes/async-analytics-snippet
     --><script type="text/javascript">
