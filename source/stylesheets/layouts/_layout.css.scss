@@ -161,7 +161,7 @@ pre {
 
   .comments {
     @include column(12);
-    @include mobileColumn(12);
+    @include mobileColumn(4);
 
     margin: 50px 0px;
   }
