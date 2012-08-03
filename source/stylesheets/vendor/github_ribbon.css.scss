@@ -4,4 +4,8 @@
   @include respondTo(smallScreen) {
     display: none;
   }
+
+  @include respondTo(mediumScreen) {
+    display: none;
+  }
 }

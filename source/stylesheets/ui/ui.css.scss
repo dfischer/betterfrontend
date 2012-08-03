@@ -5,5 +5,8 @@
   .nav-link-item {
     float: left;
     margin-left: 20px;
+    &:first-child {
+      margin-left: 0px;
+    }
   }
 }

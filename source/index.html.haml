@@ -11,27 +11,8 @@
     
 .read-guide
   = link_to "Read the Guides", '/guides/', :class => 'read-guide-link'
-  or
-  = link_to "read more about #betterfrontend", '/about/', :class => 'read-more-link'
- 
-%section.whatis
-  .intro
-    %h1.intro-title What is #betterfrontend?
-    %p #betterfrontend is a movement to make front-end development easier for everyone. Front-End Development is hard to do properly because there isn't a standardized way of doing it. #betterfrontend aims to be a collaborative contribution through a community of developers to create best-practices for front-end development.
-  .events
-    %h1.events-title Events
-    None
-    %article.event
-      .event-date
-        .event-date-day 12 
-        .event-date-month Jul
-      .event-details
-        %h1.event-title LA Ruby
-        %h2.event-location Santa Monica, CA
-      .event-date
-        .event-date-day 6 
-        .event-date-month Jun
-      .event-details
-        %h1.event-title Magmarails
-        %h2.event-location Manzanillo, Mexico
-
+  .read-more
+    or
+    = link_to "read more about #betterfrontend", '/about/', :class => 'read-more-link'
+  .read-more-mobile
+    = link_to "read more about #betterfrontend", '/about/', :class => 'read-more-link'

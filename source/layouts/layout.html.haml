@@ -22,7 +22,7 @@
         %article.post
           = yield
         - if page_side_content
-          %aside.secondary
+          %aside.secondary.sidebar
             = link_to 'Create an issue →', 'https://github.com/hybridgroup/betterfrontend/issues', :class => 'create-issue', :target => "_blank"
             = link_to 'Github repo →', 'https://github.com/hybridgroup.com/betterfrontend', :class => 'github-repo', :target => "_blank"
             = partial 'shared/follow_twitter'

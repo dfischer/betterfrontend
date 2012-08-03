@@ -47,17 +47,23 @@ pre {
 
   .brand {
     @include column(4);
-    @include mobileColumn(2);
+    @include mobileColumn(4);
   }
 }
 
 .page-nav {
   @include column(8);
-  @include mobileColumn(2);
+  @include mobileColumn(4);
 
   .nav-links {
+    @include pie-clearfix;
+
     float: right;
     margin-top: 10px;
+
+    @include respondTo(smallScreen) {
+      float: none;
+    }
 
     a {
       font-size: ms(2);
@@ -114,7 +120,7 @@ pre {
     }
   }
 
-  .secondary {
+  .sidebar {
     @include column(3);
     @include mobileColumn(4);
 
@@ -172,12 +178,18 @@ pre {
 
   .footer-content {
     @include outerRow();
+    @include mobileRow();
   }
 
   .events {
     @include column(3);
+    @include mobileColumn(4);
 
     float: right;
+
+    @include respondTo(smallScreen) {
+      float: none;
+    }
 
     .events-title {
       font-size: ms(3);
@@ -185,6 +197,10 @@ pre {
 
     .events-past-title {
       font-size: ms(2);
+    }
+
+    .event {
+      @include mobileColumn(4);
     }
 
     .event-date {
@@ -223,6 +239,7 @@ pre {
 
   .buzz {
     @include column(4);
+    @include mobileColumn(4);
 
     .twtr-hd,
     .twtr-ft {
@@ -236,6 +253,7 @@ pre {
 
   .followus {
     @include column(4);
+    @include mobileColumn(4);
   }
 
   .followus-title {
@@ -258,6 +276,10 @@ pre {
   text-align: center;
   width: 650px;
 
+  @include respondTo(smallScreen) {
+    width: auto;
+  }
+
   .tout-title {
   }
 
@@ -266,23 +288,6 @@ pre {
     font-weight: normal;
   }
 }
-
-.whatis {
-  @include innerRow();
-
-  display: none;
-
-  .intro {
-    @include column(7);
-  }
-
-  .intro-title, .events-title {
-    color: $color-red;
-    font-size: ms(4);
-  }
-
-}
-
 
 .social-links {
   margin: 0px auto 60px;
@@ -298,8 +303,34 @@ pre {
   margin: 0px auto 50px;
   width: 425px;
 
+  @include respondTo(smallScreen) {
+    width: auto;
+  }
+
+  .read-more {
+    display: inline;
+
+    @include respondTo(smallScreen) {
+      display: none;
+    }
+  }
+
   .read-more-link {
     color: #888;
+  }
+
+  .read-more-mobile {
+    display: none;
+    margin-top: 5px;
+    .read-more-link {
+      @extend .button;
+      @extend .round;
+      @extend .large;
+      @extend .secondary;
+    }
+    @include respondTo(smallScreen) {
+      display: block;
+    }
   }
 
   .read-guide-link {
