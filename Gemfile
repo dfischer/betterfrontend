@@ -7,3 +7,4 @@ gem "redcarpet"
 gem "rack-codehighlighter", :git => "git://github.com/wbzyl/rack-codehighlighter.git"
 gem "pygments.rb"
 gem 'zurb-foundation'
+gem "middleman-favicon-maker", :git => "git://github.com/follmann/middleman-favicon-maker.git"
