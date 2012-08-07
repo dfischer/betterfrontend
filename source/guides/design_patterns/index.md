@@ -10,12 +10,12 @@ title: Design patterns
   files.
 </div>
 
-# [Design Patterns](#toc_0)
+# Design Patterns
 
 Design patterns in front-end development are common strategies used to
 solve certain problems. 
 
-## [Active Navigation Item](#toc_1)
+## Active Navigation Item
 
 It's common to highlight the currently active link in a series of
 navigation links.
@@ -86,14 +86,14 @@ path is another way to do it.
 </div>
 
 
-## [Sprites](#toc_2)
+## Sprites
 
 <div class="alert-box">
   This is a planned design pattern. <a href="https://github.com/hybridgroup/betterfrontend#contributing">Learn how to contribute</a>.
 </div>
 
 
-## [Making the box-model easy](#toc_4)
+## Making the box-model easy
 
 Isn't it annoying that width and padding are additional to the total
 width of the element? You know it's made layouts a pain every now and
@@ -109,7 +109,7 @@ It's extremely safe to use, and even though the `*` selector is used,
 performance isn't an issue. For more details check out the [Paul Irish's
 post](http://paulirish.com/2012/box-sizing-border-box-ftw/).
 
-## [Designing for Retina](#toc_5)
+## Designing for Retina
 
 Since retina is going to become more of a standard, it's now time to
 seriously think about how it affects our displays. Retina (Apple
@@ -122,7 +122,7 @@ serve higher quality assets to resolutions that can't tell the difference?
 
 The [Clear Eyes](https://github.com/superacidjax/clear_eyes) library aims to fix this problem.
 
-## [Carousels](#toc_6)
+## Carousels
 
 Recommended plugins for carousels:
 
@@ -131,7 +131,7 @@ Recommended plugins for carousels:
 </div>
 
 
-## [Breadcrumbs](#toc_6)
+## Breadcrumbs
 
 Breadcrumbs are an easy way to show a path to the current page in linear
 structure.
@@ -160,3 +160,65 @@ end
       %a{:href => crumb[:url]}= crumb[:caption]
       %span.crumb-divider /
 ```
+
+## Dynamic Table of Contents
+
+We use a dynamic table of contents on the site. Since a Table of
+Contents is essentially presentational as opposed to content we're able
+to leverage Javascript to implement our Table of Contents.
+
+Our DOM structure is as follows:
+
+```
+:::haml
+#js-toc.toc
+  %h1#js-toc-heading.toc-heading
+    Guides
+  %ul#js-toc-items
+```
+
+Pretty simple. As a best practice we add **javascript only** hooks to
+avoid unexpected changes on the Stylesheet layer and to also have optial
+performance on the Javascript layer.
+
+We then implement the following jQuery to get it done.
+
+```
+:::javascript
+$("article.post").each(function() {
+  var article = $(this);
+  var toc = $("#js-toc");
+  var toc_items = $("#js-toc-items");
+  var toc_heading_link = $("#js-toc-heading-link");
+
+  article.find('h1').each(function() {
+    var current_id = $(this).attr('id');
+    var content = $(this).html();
+    var anchor = '<a href="#' + current_id + '"> '+ content +' </a>';
+
+    $(this).html(anchor);
+  });
+
+  article.find('h2').each(function() {
+    var current_id = $(this).attr('id');
+    var content = $(this).html();
+    var anchor = '<a href="#' + current_id + '"> '+ content +' </a>';
+
+    $(this).html(anchor);
+
+    toc_items.append('<li><a href="#' + current_id + '">' + content + '</a></li>');
+  });
+
+  $("#js-toc").append(toc_items);
+});
+```
+
+What we get here is an automatically generated table of contents that is
+inserted into the `#js-toc-items` container. For each `<h2>` on the site
+we append a `<li>` with the proper contents.
+
+We've also done something a bit extra. If you noticed, we also set a
+link for every `<h2>` in the **Article** pointing to that `<h2>`'s name.
+That way every `<h2>` on the site can act as a link to itself. We have
+extra styling in place to make that show an anchor icon. Hover over a
+`<h2>` to see what we're talking about.

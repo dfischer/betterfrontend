@@ -35,22 +35,26 @@ $(window).resize(function () { stickyFooter(); });
 
 jQuery(document).ready(function ($) {
 
-
   $("article.post").each(function() {
     var article = $(this);
     var toc = $("#js-toc");
     var toc_items = $("#js-toc-items");
     var toc_heading_link = $("#js-toc-heading-link");
 
-    //article.find('h1').each(function() {
-      //var content = $(this).html();
+    article.find('h1').each(function() {
+      var current_id = $(this).attr('id');
+      var content = $(this).html();
+      var anchor = '<a href="#' + current_id + '"> '+ content +' </a>';
 
-      //toc_heading_link.html(content);
-    //});
+      $(this).html(anchor);
+    });
 
     article.find('h2').each(function() {
       var current_id = $(this).attr('id');
       var content = $(this).html();
+      var anchor = '<a href="#' + current_id + '"> '+ content +' </a>';
+
+      $(this).html(anchor);
 
       toc_items.append('<li><a href="#' + current_id + '">' + content + '</a></li>');
     });
