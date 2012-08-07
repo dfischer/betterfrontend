@@ -7,7 +7,7 @@
 <title>Betterfrontend: Design patterns</title>
 <meta content="A community effort to standardize Front-End Development" name="description">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<link type="text/css" rel="stylesheet" media="screen" href="../../stylesheets/application.css?1344033711">
+<link type="text/css" rel="stylesheet" media="screen" href="../../stylesheets/application.css?1344378569">
 <script src="../../javascripts/top/modernizr.foundation.js?1343775326" type="text/javascript"></script>
 </head>
 <body class="guides guides_design_patterns guides_design_patterns_index">
@@ -27,12 +27,12 @@
   files.
 </div>
 
-<h1 id="toc_0"><a href="#toc_0">Design Patterns</a></h1>
+<h1 id="toc_0">Design Patterns</h1>
 
 <p>Design patterns in front-end development are common strategies used to
 solve certain problems. </p>
 
-<h2 id="toc_1"><a href="#toc_1">Active Navigation Item</a></h2>
+<h2 id="toc_1">Active Navigation Item</h2>
 
 <p>It's common to highlight the currently active link in a series of
 navigation links.</p>
@@ -104,13 +104,13 @@ path is another way to do it. </p>
   Need an example of a helper method based on path.
 </div>
 
-<h2 id="toc_4"><a href="#toc_2">Sprites</a></h2>
+<h2 id="toc_4">Sprites</h2>
 
 <div class="alert-box">
   This is a planned design pattern. <a href="https://github.com/hybridgroup/betterfrontend#contributing">Learn how to contribute</a>.
 </div>
 
-<h2 id="toc_5"><a href="#toc_4">Making the box-model easy</a></h2>
+<h2 id="toc_5">Making the box-model easy</h2>
 
 <p>Isn't it annoying that width and padding are additional to the total
 width of the element? You know it's made layouts a pain every now and
@@ -127,7 +127,7 @@ then. Luckily, there's a widely supported fix now.</p>
 performance isn't an issue. For more details check out the <a href="http://paulirish.com/2012/box-sizing-border-box-ftw/">Paul Irish's
 post</a>.</p>
 
-<h2 id="toc_6"><a href="#toc_5">Designing for Retina</a></h2>
+<h2 id="toc_6">Designing for Retina</h2>
 
 <p>Since retina is going to become more of a standard, it's now time to
 seriously think about how it affects our displays. Retina (Apple
@@ -140,7 +140,7 @@ serve higher quality assets to resolutions that can't tell the difference?</p>
 
 <p>The <a href="https://github.com/superacidjax/clear_eyes">Clear Eyes</a> library aims to fix this problem.</p>
 
-<h2 id="toc_7"><a href="#toc_6">Carousels</a></h2>
+<h2 id="toc_7">Carousels</h2>
 
 <p>Recommended plugins for carousels:</p>
 
@@ -148,7 +148,7 @@ serve higher quality assets to resolutions that can't tell the difference?</p>
   This is a planned design pattern. <a href="https://github.com/hybridgroup/betterfrontend#contributing">Learn how to contribute</a>.
 </div>
 
-<h2 id="toc_8"><a href="#toc_6">Breadcrumbs</a></h2>
+<h2 id="toc_8">Breadcrumbs</h2>
 
 <p>Breadcrumbs are an easy way to show a path to the current page in linear
 structure.</p>
@@ -179,17 +179,92 @@ structure.</p>
 </pre>
 </div>
 
+
+<h2 id="toc_9">Dynamic Table of Contents</h2>
+
+<p>We use a dynamic table of contents on the site. Since a Table of
+Contents is essentially presentational as opposed to content we're able
+to leverage Javascript to implement our Table of Contents.</p>
+
+<p>Our DOM structure is as follows:</p>
+
+<div class="highlight">
+<pre><span class="nf">#js-toc</span><span class="nc">.toc</span>
+  <span class="nt">%h1</span><span class="nf">#js-toc-heading</span><span class="nc">.toc-heading</span>
+    Guides
+  <span class="nt">%ul</span><span class="nf">#js-toc-items</span>
+</pre>
+</div>
+
+
+<p>Pretty simple. As a best practice we add <strong>javascript only</strong> hooks to
+avoid unexpected changes on the Stylesheet layer and to also have optial
+performance on the Javascript layer.</p>
+
+<p>We then implement the following jQuery to get it done.</p>
+
+<div class="highlight">
+<pre><span class="nx">$</span><span class="p">(</span><span class="s2">"article.post"</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">article</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">toc</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">"#js-toc"</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">toc_items</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">"#js-toc-items"</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">toc_heading_link</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">"#js-toc-heading-link"</span><span class="p">);</span>
+
+  <span class="nx">article</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'h1'</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">current_id</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'id'</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">html</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">anchor</span> <span class="o">=</span> <span class="s1">'&lt;a href="#'</span> <span class="o">+</span> <span class="nx">current_id</span> <span class="o">+</span> <span class="s1">'"&gt; '</span><span class="o">+</span> <span class="nx">content</span> <span class="o">+</span><span class="s1">' &lt;/a&gt;'</span><span class="p">;</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">anchor</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="nx">article</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'h2'</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">current_id</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'id'</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">html</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">anchor</span> <span class="o">=</span> <span class="s1">'&lt;a href="#'</span> <span class="o">+</span> <span class="nx">current_id</span> <span class="o">+</span> <span class="s1">'"&gt; '</span><span class="o">+</span> <span class="nx">content</span> <span class="o">+</span><span class="s1">' &lt;/a&gt;'</span><span class="p">;</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">anchor</span><span class="p">);</span>
+
+    <span class="nx">toc_items</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'&lt;li&gt;&lt;a href="#'</span> <span class="o">+</span> <span class="nx">current_id</span> <span class="o">+</span> <span class="s1">'"&gt;'</span> <span class="o">+</span> <span class="nx">content</span> <span class="o">+</span> <span class="s1">'&lt;/a&gt;&lt;/li&gt;'</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="nx">$</span><span class="p">(</span><span class="s2">"#js-toc"</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">toc_items</span><span class="p">);</span>
+<span class="p">});</span>
+</pre>
+</div>
+
+
+<p>What we get here is an automatically generated table of contents that is
+inserted into the <code>#js-toc-items</code> container. For each <code>&lt;h2&gt;</code> on the site
+we append a <code>&lt;li&gt;</code> with the proper contents.</p>
+
+<p>We've also done something a bit extra. If you noticed, we also set a
+link for every <code>&lt;h2&gt;</code> in the <strong>Article</strong> pointing to that <code>&lt;h2&gt;</code>'s name.
+That way every <code>&lt;h2&gt;</code> on the site can act as a link to itself. We have
+extra styling in place to make that show an anchor icon. Hover over a
+<code>&lt;h2&gt;</code> to see what we're talking about.</p>
         </article><aside class="secondary sidebar"><a class="create-issue" target="_blank" href="https://github.com/hybridgroup/betterfrontend/issues">Create an issue →</a>
           <a class="github-repo" target="_blank" href="https://github.com/hybridgroup.com/betterfrontend">Github repo →</a>
           <a href="https://twitter.com/betterfrontend" class="twitter-follow-button" data-show-count="false">Follow @betterfrontend</a>
-          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script><h1><a href="#toc_0">Design Patterns</a></h1> <ul>
-<li><a href="#toc_1">Active Navigation Item</a></li>
-            <li><a href="#toc_4">Sprites</a></li>
-            <li><a href="#toc_5">Making the box-model Easy</a></li>
-            <li><a href="#toc_6">Designing for Retina</a></li>
-            <li><a href="#toc_7">Carousels</a></li>
-            <li><a href="#toc_8">Breadcrumbs</a></li>
-          </ul></aside><section class="comments"><div id="disqus_thread"></div>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script><div class="toc" id="js-toc">
+            <h1 class="toc-heading" id="js-toc-heading">
+              Guides
+              <a class="toc-sections-expand" id="js-toc-sections-expand">Expand Sections</a>
+            </h1>
+            <ul class="toc-sections" id="js-sections-flyout">
+<li class="toc-section getting_started"><a href="/guides/">Getting Started</a></li>
+              <li class="toc-section stylesheets"><a href="/guides/stylesheets">Stylesheets</a></li>
+              <li class="toc-section markup"><a href="/guides/markup">Markup</a></li>
+              <li class="toc-section design_patterns"><a href="/guides/design_patterns">Design Patterns</a></li>
+              <li class="toc-section anti_patterns"><a href="/guides/anti_patterns">Anti Patterns</a></li>
+              <li class="toc-section ruby_on_rails"><a href="/guides/rails">Ruby on Rails</a></li>
+              <li class="toc-section boilerplates"><a href="/guides/boilerplates">Boilerplates</a></li>
+              <li class="toc-section libraries"><a href="/guides/libraries">Libraries</a></li>
+              <li class="toc-section tools"><a href="/guides/tools">Tools</a></li>
+            </ul>
+<ul id="js-toc-items"></ul>
+</div>
+        </aside><section class="comments"><div id="disqus_thread"></div>
         </section>
 </div>
     </div>
@@ -264,7 +339,7 @@ structure.</p>
       </div>
     </footer><a href="https://github.com/hybridgroup/betterfrontend" class="github-ribbon"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
     <!-- JavaScript at the bottom for fast page loading -->
-    <script src="../../javascripts/application.js?1343872724" type="text/javascript"></script><!-- end scripts --><!--
+    <script src="../../javascripts/application.js?1344379659" type="text/javascript"></script><!-- end scripts --><!--
       Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
       mathiasbynens.be/notes/async-analytics-snippet
     --><script type="text/javascript">
