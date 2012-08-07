@@ -3,14 +3,19 @@
 This file contains debates that are going on within the community that
 argue for a specific best-practice.
 
-## Nesting, Decoupling, & Cascading -  *Need more pro/cons*
+## Nesting, Decoupling, & Cascading
+
+<div class="alert-box">
+  Need more pro's & con's
+</div>
 
 Our ultimate focus is maintainability. Given the following, which is
 easier to maintain?
 
 Taking the following Markup:
 
-```haml
+```
+:::haml
 .products
   %article.product
     %h1.title
@@ -22,7 +27,8 @@ Taking the following Markup:
     %input.title
 ```
 
-```scss
+```
+:::scss
 .products {
   .new {
     .title {
@@ -67,7 +73,8 @@ Cons:
 
 vs.
 
-```haml
+```
+:::haml
 .products
   %article.product
     %h1.product-title
@@ -79,7 +86,8 @@ vs.
     %input.product-title
 ```
 
-```scss
+```
+:::scss
 .products {
   .product {
     .product-add {
