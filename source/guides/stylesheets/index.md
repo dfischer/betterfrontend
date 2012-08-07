@@ -12,22 +12,28 @@ title: Stylesheets
 
 # Stylesheets 
 
-The stylesheet layer deals with CSS, Scss, and tools like Compass.
+The stylesheet layer deals with CSS, Scss, and tools like
+[Compass](http://www.compass-style.org).
 
-It deals with the visual code required to make web-apps look the way
+Stylesheets deal with the visual code required to make web-apps look the way
 they do.
 
 Because the stylesheet layer uses many different tools, it makes sense
 to call them stylesheets instead of CSS for the distinction of it being
 many tools of an ecosystem.
 
+<div style="display:none;">
 * Style General Guidelines
 * Stylesheet Format
   * Selector Naming
   * Selector Naming Avoid Markup
   * Selector Order
+  * Multiple Selector Style
+  * Selector Specifity
+  * Namespacing
   * Definition Order
-* Architecture, Abstraction, Foresight
+  * Putting it all together
+* Maintainability, Semantics, Abstraction
   * Architecture
   * Abstraction
     * Abstraction Technique
@@ -36,6 +42,8 @@ many tools of an ecosystem.
 * Scss
   * Scss Beginner
   * Scss Advanced
+* UI
+</div>
 
 ## Stylesheet General Guidelines
 
@@ -70,20 +78,24 @@ in your stylesheets.
 IDs are still great for javascript hooks, put them in the HTML for
 Javascript but don't use it for the stylesheet layer.
 
-### Stylesheet Format 
+## Stylesheet Format
 
 A collection of best-practices recommended for formatting Css, Scss, and Compass.
 
+### Selector Naming
 
+Please use *semantically appropriate* names. If you aren't semantic with your
+naming then you end up with extremely brittle classes and you create a
+domain that is hard to understand as a human.
 
-#### Selector Naming
-
-Use semantically appropriate names. If you aren't semantic with your
-naming then you end up with extremely brittle classes.
+When creating a semantic class, it's important to not couple it to a
+style unless it explicitly, semantically, is that style. Try to name
+classes related to what an *object* is. 
 
 For example:
 
-```css
+```
+:::css
 .redbox {
   background-color: red;
 }
@@ -91,7 +103,8 @@ For example:
 
 Instead, it would be better to do the following:
 
-```css
+```
+:::css
 .error {
   background-color: red;
 }
@@ -103,14 +116,15 @@ Some tips for naming:
 * **Semantic** Think of markup and classes like objects. What an object
   is matters more than what it looks like.
 
-#### Avoid using Markup Elements in Naming Selectors
+### Avoid using Markup Elements in Naming Selectors
 
 It's considered best-practice to avoid using markup elements when naming
 your selectors.
 
 For example:
 
-``` css
+```
+:::css
 em.important {
   font-style: italic;
 }
@@ -118,7 +132,8 @@ em.important {
 
 vs
 
-``` css
+```
+:::css
 .important {
   font-style: italic;
 }
@@ -134,14 +149,15 @@ elements will be more semantic as the spec evolves. By decoupling
 classes from the markup layer we're able to upgrade our markup layer
 without worrying about breaking the stylesheet layer.
 
-#### Selector Order 
+### Selector Order 
 
 Alphabetizing your selectors is the recommended way to go. By doing this
 you create expectations and consistency. If you're worried about two
 things being at opposite ends of the file, then it's recommended to
 prefix the classes so this isn't an issue.
 
-``` css
+```
+:::css
 .about {
   background: black;
 }
@@ -167,9 +183,10 @@ prefix the classes so this isn't an issue.
 }
 ```
 
-#### Multiple Selector Style *Recommended*
+### Multiple Selector Style *Recommended*
 
-```css
+```
+:::css
 .about,
 .explosions,
 .hero {
@@ -179,9 +196,10 @@ prefix the classes so this isn't an issue.
 
 This allows you to quickly skim over what's being affected.
 
-#### Multiple Selector Style *Not recommended*
+### Multiple Selector Style *Not recommended*
 
-```css
+```
+:::css
 .about, .explosions, .hero {
   background-color: #000;
 }
@@ -189,22 +207,26 @@ This allows you to quickly skim over what's being affected.
 
 This suffers readability.
 
-#### Selector Specifity
+### Selector Specifity
 
 Try to use the least specific selector as possible, the less code, the
 better you can maintain your stylesheet layer.
 
-
-#### Try to namespace everything
+### Better to namespace than not
 
 By namespacing everything you avoid getting into cascade hell.
 
-#### Definition Order (A) *Recommended*
+<div class="alert-box">
+  This needs examples.
+</div>
+
+### Definition Order (A) *Recommended*
 
 Alphabetizing your definitions gives you consistency. It's recommended
 that you do this so you always know where to expect definitions.
 
-``` css
+```
+:::css
 .selector {
   background: none;
   display: inline-block;
@@ -217,13 +239,14 @@ that you do this so you always know where to expect definitions.
 }
 ```
 
-#### Definition Order (B) *Not recommended*
+### Definition Order (B) *Not recommended*
 
 Put together definitions that are related in terms of what they do.
 Because this is subjective, this is not recommended. This can lead to
 lack of consistency in projects and that reduces efficiency.
 
-``` css
+```
+:::css
 .selector {
   background: none;
   display: inline-block;
@@ -235,18 +258,18 @@ lack of consistency in projects and that reduces efficiency.
   z-index: 2;
 }
 ```
-
-#### Definition Order with SCSS
+### Definition Order with SCSS
 
 Outside of the actual definition order, SCSS brings us more that can go
 inside of the selector, this is the preferred method of spacing.
 
-```scss
+```
+:::scss
 .hero {
   @extend .icons-heroplace;
   @extend .callout;
 
-  @include +pie-clearfix;
+  @include pie-clearfix;
 
   height: 10px;
   width: 10px;
@@ -268,7 +291,8 @@ The guideline here is:
 
 Here's the grand readability of all our recommendations put together:
 
-```scss
+```
+:::scss
 .about {
   color: $color-red;
 }
@@ -277,7 +301,7 @@ Here's the grand readability of all our recommendations put together:
   @extend .icons-heroplace;
   @extend .callout;
 
-  @include +pie-clearfix;
+  @include pie-clearfix;
 
   height: 10px;
   width: 10px;
@@ -302,21 +326,28 @@ Here's the grand readability of all our recommendations put together:
 
 ```
 
-### Maintainability, Semantics, Abstraction
+## Maintainability, Semantics, Abstraction
 
 The expectation that anything style related is in the stylesheet is
 important. Some key things to be in mind of:
 
-#### Abstraction
+### Architecture
+
+<div class="alert-box">
+  Needs content.
+</div>
+
+### Abstraction
 
 Abstraction allows your code to be more maintainable and understandable
 to you as a human.
 
-##### Abstraction Technique #1
+#### Abstraction Technique #1
 
 Let's say you have a bunch of classes like the following:
 
-``` css
+```
+:::css
 .icon-email {
   @extend .icons-misc;
 
@@ -356,7 +387,8 @@ That's a lot of repetition that we can abstract out.
 Here's a solution, abstract it out into a common class and `@extend` from
 it.
 
-```scss
+```
+:::scss
 .icon-common {
   height: 16px;
   text-indent: -9999px;
@@ -395,14 +427,23 @@ https://gist.github.com/1562442
 Try to `@extend` vendor'd stylesheets into your main stylesheets for
 classes so you don't pollute the `Markup` layer with extraneous classes.
 
-### Scss
+### Foresight
 
-#### Scss Beginner
-##### Variables
+<div class="alert-box">
+  Needs content.
+</div>
+
+Simple!
+
+## Scss
+
+### Scss Beginner
+#### Variables
 
 Variables are easy.
 
-``` scss
+```
+:::scss
 $color-black: #111;
 $common-width: 940px;
 
@@ -414,18 +455,18 @@ body {
 
 Turns into this when compiled:
 
-```css
+```
+:::css
 body {
   color: #111;
   width: 940px;
 }
 ```
 
-Simple!
+#### Nesting
 
-##### Nesting
-
-``` scss
+```
+:::scss
 .products {
   width: 100px;
 
@@ -441,7 +482,8 @@ Simple!
 
 Turns into
 
-```css
+```
+:::css
 .products {
   width: 100px;
 }
@@ -455,13 +497,14 @@ Turns into
 Easy!
 ```
 
-##### Mixins
+#### Mixins
 
 Browser engines all have their different ways of implementing
 definitions (ugh, it's so annoying). So we have to do things like this
 usually:
 
-```css
+```
+:::css
  .box {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -473,7 +516,8 @@ usually:
 
 Sass let's us solve that by doing the following:
 
-```scss
+```
+:::scss
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
@@ -489,14 +533,15 @@ Sass let's us solve that by doing the following:
 Side note: [Compass](http://compass-style.org) Provides a lot of these
 mixins. Check it out. Also considered manditory for projects.
 
-##### @extend
+#### @extend
 
 Extend allows us to reuse portions of our code without duplicating it in
 the stylesheet. It just adds the current scope to the original selector.
 
 Take the following example:
 
-```scss
+```
+:::scss
 .borders {
   border: 1px solid red;
   padding: 10px;
@@ -517,7 +562,8 @@ Take the following example:
 
 Which turns into the following css
 
-```css
+```
+:::css
 .borders, .products, .box {
   border: 1px solid red;
   padding: 10px;
@@ -539,7 +585,8 @@ https://gist.github.com/1562442
 
 ##### Referencing parent selector &
 
-```scss
+```
+:::scss
 .product {
   background-color: #000;
   &.old {
@@ -550,7 +597,8 @@ https://gist.github.com/1562442
 
 Turns into 
 
-```css
+```
+:::css
 .product {
   background-color: #000;
 }
@@ -559,9 +607,9 @@ Turns into
 }
 ```
 
-#### Scss Advanced
+### Scss Advanced
 
-##### Logic
+#### Logic
 
 **If**
 **Else**
@@ -587,7 +635,7 @@ app/
       layouts/
 ```
 
-### UI
+## UI
 
 UI is anything related to a formatted structure of an interface consumed
 by a user.
