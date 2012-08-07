@@ -1,3 +1,6 @@
+// Mixins
+@import "mixins/*";
+
 // Settings
 @import "settings/settings";
 
@@ -13,3 +16,10 @@
 
 // Vendor libraries
 @import "vendor/*";
+
+// Pages
+@import "pages/*";
+
+// Sprites
+@import "ui/*.png";
+@include all-ui-sprites(true);

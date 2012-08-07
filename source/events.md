@@ -2,7 +2,7 @@
 Title: Events related to Betterfrontend
 ---
 
-# Events Related to Betterfrontend
+# Events 
 
 Everyone is encouraged to speak about Betterfrontend. If you're speaking
 at an event related to improving front-end development then please list

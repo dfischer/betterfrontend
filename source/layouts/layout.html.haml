@@ -21,12 +21,27 @@
       %div.page-content{:role => "main"}
         %article.post
           = yield
-        - if page_side_content
-          %aside.secondary.sidebar
-            = link_to 'Create an issue →', 'https://github.com/hybridgroup/betterfrontend/issues', :class => 'create-issue', :target => "_blank"
-            = link_to 'Github repo →', 'https://github.com/hybridgroup.com/betterfrontend', :class => 'github-repo', :target => "_blank"
-            = partial 'shared/follow_twitter'
+        %aside.secondary.sidebar
+          = link_to 'Create an issue →', 'https://github.com/hybridgroup/betterfrontend/issues', :class => 'create-issue', :target => "_blank"
+          = link_to 'Github repo →', 'https://github.com/hybridgroup.com/betterfrontend', :class => 'github-repo', :target => "_blank"
+          = partial 'shared/follow_twitter'
+          - if page_side_content
             = page_side_content
+          #js-toc.toc
+            %h1#js-toc-heading.toc-heading
+              %a#js-toc-heading-link{:href => ""}
+              %a#js-toc-sections-expand.toc-sections-expand Expand Sections
+            %ul#js-sections-flyout.toc-sections
+              <li class='toc-section'><a href="/guides/">Getting Started</a></li>
+              <li class='toc-section'><a href="/guides/stylesheets">Stylesheets</a></li>
+              <li class='toc-section'><a href="/guides/markup">Markup</a></li>
+              <li class='toc-section'><a href="/guides/design_patterns">Design Patterns</a></li>
+              <li class='toc-section'><a href="/guides/anti_patterns">Anti Patterns</a></li>
+              <li class='toc-section'><a href="/guides/rails">Ruby on Rails</a></li>
+              <li class='toc-section'><a href="/guides/boilerplates">Boilerplates</a></li>
+              <li class='toc-section'><a href="/guides/libraries">Libraries</a></li>
+              <li class='toc-section'><a href="/guides/tools">Tools</a></li>
+            %ul#js-toc-items
           
         %section.comments
           #disqus_thread

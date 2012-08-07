@@ -8,3 +8,4 @@ gem "rack-codehighlighter", :git => "git://github.com/wbzyl/rack-codehighlighter
 gem "pygments.rb"
 gem 'zurb-foundation'
 gem "middleman-favicon-maker", :git => "git://github.com/follmann/middleman-favicon-maker.git"
+gem 'oily_png'

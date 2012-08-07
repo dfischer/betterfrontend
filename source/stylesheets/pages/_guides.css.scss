@@ -1,0 +1,7 @@
+body.guides {
+  @include show-js-toc;
+}
+
+body.guides_index {
+  @include hide-js-toc;
+}

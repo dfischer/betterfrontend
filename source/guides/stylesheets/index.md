@@ -1,13 +1,5 @@
 ---
 title: Stylesheets
-side_content: >
-  <a href="https://github.com/hybridgroup/betterfrontend/issues"
-  class="create-issue" target="_blank">Create
-  an issue →</a>
-  <h1><a href="#toc_0">Stylesheets</a></h1>
-  <ul>
-    <li><a href="">General Guidelines</a></li>
-  </ul>
 ---
 
 <div class="alert-box">

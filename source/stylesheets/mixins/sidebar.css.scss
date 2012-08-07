@@ -1,0 +1,23 @@
+@mixin hide-sidebar {
+  .sidebar {
+    display: none;
+  }
+}
+
+@mixin show-sidebar {
+  .sidebar {
+    display: block;
+  }
+}
+
+@mixin hide-js-toc {
+  #js-toc {
+    display: none;
+  }
+}
+
+@mixin show-js-toc {
+  #js-toc {
+    display: block;
+  }
+}

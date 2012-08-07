@@ -34,25 +34,57 @@ $(window).off('resize');
 $(window).resize(function () { stickyFooter(); });
 
 jQuery(document).ready(function ($) {
-    // set your twitter id
-    var user = 'betterfrontend';
-      
-    // using jquery built in get json method with twitter api, return only one result
-    $.getJSON('http://twitter.com/statuses/user_timeline.json?screen_name=' + user + '&count=1&callback=?', function(data)      {
-          
-        // result returned
-        var tweet = data[0].text;
-      
-        // process links and reply
-        tweet = tweet.replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig, function(url) {
-            return '<a href="'+url+'">'+url+'</a>';
-        }).replace(/B@([_a-z0-9]+)/ig, function(reply) {
-            return  reply.charAt(0)+'<a href="http://twitter.com/'+reply.substring(1)+'">'+reply.substring(1)+'</a>';
-        });
-      
-        // output the result
-        $("#js-footer-tweet").html(tweet);
-    }); 
+
+
+  $("article.post").each(function() {
+    var article = $(this);
+    var toc = $("#js-toc");
+    var toc_items = $("#js-toc-items");
+    var toc_heading_link = $("#js-toc-heading-link");
+
+    article.find('h1').each(function() {
+      var content = $(this).html();
+
+      toc_heading_link.html(content);
+    });
+
+    article.find('h2').each(function() {
+      var current_id = $(this).attr('id');
+      var content = $(this).html();
+
+      toc_items.append('<li><a href="#' + current_id + '">' + content + '</a></li>');
+    });
+
+    $("#js-toc").append(toc_items);
+  });
+
+  $("#js-toc-sections-expand").click(function(e) {
+    e.preventDefault();
+
+    $(this).toggleClass("active");
+    $("#js-sections-flyout").slideToggle("fast");
+  });
+  
+
+  // set your twitter id
+  var user = 'betterfrontend';
+    
+  // using jquery built in get json method with twitter api, return only one result
+  $.getJSON('http://twitter.com/statuses/user_timeline.json?screen_name=' + user + '&count=1&callback=?', function(data)      {
+        
+      // result returned
+      var tweet = data[0].text;
+    
+      // process links and reply
+      tweet = tweet.replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig, function(url) {
+          return '<a href="'+url+'">'+url+'</a>';
+      }).replace(/B@([_a-z0-9]+)/ig, function(reply) {
+          return  reply.charAt(0)+'<a href="http://twitter.com/'+reply.substring(1)+'">'+reply.substring(1)+'</a>';
+      });
+    
+      // output the result
+      $("#js-footer-tweet").html(tweet);
+  }); 
       
   
 

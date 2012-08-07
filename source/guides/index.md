@@ -11,6 +11,7 @@ side_content: >
     <li><a href="/guides/boilerplates">Boilerplates</a></li>
     <li><a href="/guides/libraries">Libraries</a></li>
     <li><a href="/guides/tools">Tools</a></li>
+  </ul>
 ---
 
 # Getting Started
