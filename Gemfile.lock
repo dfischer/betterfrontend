@@ -82,6 +82,8 @@ GEM
       compass (>= 0.11.5)
     multi_json (1.3.6)
     nokogiri (1.5.5)
+    oily_png (1.0.2)
+      chunky_png (~> 1.2.1)
     padrino-core (0.10.7)
       activesupport (~> 3.2.0)
       http_router (~> 0.10.2)
@@ -145,6 +147,7 @@ DEPENDENCIES
   middleman (~> 3.0.0)
   middleman-favicon-maker!
   modular-scale (~> 0.0.5)
+  oily_png
   pygments.rb
   rack-codehighlighter!
   redcarpet

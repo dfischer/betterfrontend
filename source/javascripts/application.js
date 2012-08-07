@@ -42,11 +42,11 @@ jQuery(document).ready(function ($) {
     var toc_items = $("#js-toc-items");
     var toc_heading_link = $("#js-toc-heading-link");
 
-    article.find('h1').each(function() {
-      var content = $(this).html();
+    //article.find('h1').each(function() {
+      //var content = $(this).html();
 
-      toc_heading_link.html(content);
-    });
+      //toc_heading_link.html(content);
+    //});
 
     article.find('h2').each(function() {
       var current_id = $(this).attr('id');

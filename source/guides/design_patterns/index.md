@@ -1,15 +1,5 @@
 ---
 title: Design patterns
-side_content: >
-  <h1><a href="#toc_0">Design Patterns</a></h1>
-  <ul>
-    <li><a href="#toc_1">Active Navigation Item</a></li>
-    <li><a href="#toc_4">Sprites</a></li>
-    <li><a href="#toc_5">Making the box-model Easy</a></li>
-    <li><a href="#toc_6">Designing for Retina</a></li>
-    <li><a href="#toc_7">Carousels</a></li>
-    <li><a href="#toc_8">Breadcrumbs</a></li>
-  </ul>
 ---
 
 <div class="alert-box">

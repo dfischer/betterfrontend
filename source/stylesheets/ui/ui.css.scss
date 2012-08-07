@@ -1,3 +1,5 @@
+$toc-margin-escape: 15px;
+
 .nav-links {
   list-style: none;
   margin: 0px;
@@ -12,14 +14,12 @@
 }
 
 .toc {
-  $margin-escape: 15px;
   .toc-sections {
-
     background-color: lighten($color-black, 5%);
-    margin-left: -$margin-escape;
-    margin-right: -$margin-escape;
-    margin-top: -$margin-escape;
-    padding: $margin-escape;
+    margin-left: -$toc-margin-escape;
+    margin-right: -$toc-margin-escape;
+    margin-top: -$toc-margin-escape;
+    padding: $toc-margin-escape;
   }
 
   .toc-heading {
@@ -50,14 +50,28 @@
   .toc-section {
     &:hover {
       background-color: $color-black;
-      margin-left: -$margin-escape;
-      margin-right: -$margin-escape;
-      padding-left: $margin-escape;
-      padding-right: $margin-escape;
+      margin-left: -$toc-margin-escape;
+      margin-right: -$toc-margin-escape;
+      padding-left: $toc-margin-escape;
+      padding-right: $toc-margin-escape;
     }
 
     a {
       font-size: ms(1);
+    }
+  }
+}
+
+@each $section in getting_started, stylesheets, markup,
+design_patterns, anti_patterns, ruby_on_rails, boilerplates,
+libraries, tools {
+  body.guides_#{$section} {
+    .toc-section.#{$section} {
+      background-color: #000;
+      margin-left: -$toc-margin-escape;
+      margin-right: -$toc-margin-escape;
+      padding-left: $toc-margin-escape;
+      padding-right: $toc-margin-escape;
     }
   }
 }
