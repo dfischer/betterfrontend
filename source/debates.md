@@ -1,4 +1,4 @@
-# Debates. "Battle Royale"
+# Debates
 
 This file contains debates that are going on within the community that
 argue for a specific best-practice.
