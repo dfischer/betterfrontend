@@ -7,7 +7,7 @@
 <title>Betterfrontend: Making Front-End Development Better</title>
 <meta content="A community effort to standardize Front-End Development" name="description">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<link type="text/css" rel="stylesheet" media="screen" href="../stylesheets/application.css?1344378569">
+<link type="text/css" rel="stylesheet" media="screen" href="../stylesheets/application.css?1344385051">
 <script src="../javascripts/top/modernizr.foundation.js?1343775326" type="text/javascript"></script>
 </head>
 <body class="debates debates_index">
@@ -19,51 +19,60 @@
             <li class="nav-link-item events"><a href="/events/">Events</a></li>
             <li class="nav-link-item about"><a href="/about/">About</a></li>
           </ul></nav></header><div class="page-content" role="main">
-        <article class="post"><h1 id="toc_0">Debates. “Battle Royale”</h1>
+        <article class="post"><h1 id="toc_0">Debates</h1>
 
 <p>This file contains debates that are going on within the community that
 argue for a specific best-practice.</p>
 
-<h2 id="toc_1">Nesting, Decoupling, &amp; Cascading -  <em>Need more pro/cons</em>
-</h2>
+<h2 id="toc_1">Nesting, Decoupling, &amp; Cascading</h2>
+
+<div class="alert-box">
+  Need more pro’s &amp; con’s
+</div>
 
 <p>Our ultimate focus is maintainability. Given the following, which is
 easier to maintain?</p>
 
 <p>Taking the following Markup:</p>
 
-<pre>.products
-  %article.product
-    %h1.title
-    %p.description
-    %span.price
-    %a.add
+<div class="highlight">
+<pre><span class="nc">.products</span>
+  <span class="nt">%article</span><span class="nc">.product</span>
+    <span class="nt">%h1</span><span class="nc">.title</span>
+    <span class="nt">%p</span><span class="nc">.description</span>
+    <span class="nt">%span</span><span class="nc">.price</span>
+    <span class="nt">%a</span><span class="nc">.add</span>
 
-  %form.new
-    %input.title
+  <span class="nt">%form</span><span class="nc">.new</span>
+    <span class="nt">%input</span><span class="nc">.title</span>
 </pre>
+</div>
 
-<pre>.products {
-  .new {
-    .title {
-    }
-  }
 
-  .product {
-    .add {
-    }
+<div class="highlight">
+<pre><span class="nc">.products</span> <span class="p">{</span>
+  <span class="nc">.new</span> <span class="p">{</span>
+    <span class="nc">.title</span> <span class="p">{</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 
-    .description {
-    }
+  <span class="nc">.product</span> <span class="p">{</span>
+    <span class="nc">.add</span> <span class="p">{</span>
+    <span class="p">}</span>
 
-    .price {
-    }
+    <span class="nc">.description</span> <span class="p">{</span>
+    <span class="p">}</span>
 
-    .title {
-    }
-  }
-}
+    <span class="nc">.price</span> <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="nc">.title</span> <span class="p">{</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </pre>
+</div>
+
 
 <p>This version exhibits one-word semantics scoped to a noun. Overall very
 easy to read. It also offers interesting/advanced selector ability
@@ -89,38 +98,44 @@ may be more than one <code>.new</code> in <code>products.css.scss</code> </li>
 </ul>
 <p>vs.</p>
 
-<pre>.products
-  %article.product
-    %h1.product-title
-    %p.product-description
-    %span.product-price
-    %a.product-add
+<div class="highlight">
+<pre><span class="nc">.products</span>
+  <span class="nt">%article</span><span class="nc">.product</span>
+    <span class="nt">%h1</span><span class="nc">.product-title</span>
+    <span class="nt">%p</span><span class="nc">.product-description</span>
+    <span class="nt">%span</span><span class="nc">.product-price</span>
+    <span class="nt">%a</span><span class="nc">.product-add</span>
 
-  %form.product-new
-    %input.product-title
+  <span class="nt">%form</span><span class="nc">.product-new</span>
+    <span class="nt">%input</span><span class="nc">.product-title</span>
 </pre>
+</div>
 
-<pre>.products {
-  .product {
-    .product-add {
-    }
 
-    .product-description {
-    }
+<div class="highlight">
+<pre><span class="nc">.products</span> <span class="p">{</span>
+  <span class="nc">.product</span> <span class="p">{</span>
+    <span class="nc">.product-add</span> <span class="p">{</span>
+    <span class="p">}</span>
 
-    .product-price {
-    }
+    <span class="nc">.product-description</span> <span class="p">{</span>
+    <span class="p">}</span>
 
-    .product-title {
-    }
-  }
+    <span class="nc">.product-price</span> <span class="p">{</span>
+    <span class="p">}</span>
 
-  .product-new {
-    .product-new-title {
-    }
-  }
-}
+    <span class="nc">.product-title</span> <span class="p">{</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nc">.product-new</span> <span class="p">{</span>
+    <span class="nc">.product-new-title</span> <span class="p">{</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </pre>
+</div>
+
 
 <p>This version exhibits extreme verbosity. This can be nice on one hand,
 but on the other, it can be really annoying. This is a double edged

@@ -7,7 +7,7 @@
 <title>Betterfrontend: Stylesheets</title>
 <meta content="A community effort to standardize Front-End Development" name="description">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<link type="text/css" rel="stylesheet" media="screen" href="../../stylesheets/application.css?1344378569">
+<link type="text/css" rel="stylesheet" media="screen" href="../../stylesheets/application.css?1344385051">
 <script src="../../javascripts/top/modernizr.foundation.js?1343775326" type="text/javascript"></script>
 </head>
 <body class="guides guides_stylesheets guides_stylesheets_index">
@@ -29,44 +29,39 @@
 
 <h1 id="toc_0">Stylesheets</h1>
 
-<p>The stylesheet layer deals with CSS, Scss, and tools like Compass.</p>
+<p>The stylesheet layer deals with CSS, Scss, and tools like
+<a href="http://www.compass-style.org">Compass</a>.</p>
 
-<p>It deals with the visual code required to make web-apps look the way
+<p>Stylesheets deal with the visual code required to make web-apps look the way
 they do.</p>
 
 <p>Because the stylesheet layer uses many different tools, it makes sense
 to call them stylesheets instead of CSS for the distinction of it being
 many tools of an ecosystem.</p>
 
-<ul>
-<li>Style General Guidelines</li>
-<li>Stylesheet Format
+<div style="display:none;">
+* Style General Guidelines
+* Stylesheet Format
+  * Selector Naming
+  * Selector Naming Avoid Markup
+  * Selector Order
+  * Multiple Selector Style
+  * Selector Specifity
+  * Namespacing
+  * Definition Order
+  * Putting it all together
+* Maintainability, Semantics, Abstraction
+  * Architecture
+  * Abstraction
+    * Abstraction Technique
+    * Using vendor libraries
+  * Foresight
+* Scss
+  * Scss Beginner
+  * Scss Advanced
+* UI
+</div>
 
-<ul>
-<li>Selector Naming</li>
-<li>Selector Naming Avoid Markup</li>
-<li>Selector Order</li>
-<li>Definition Order</li>
-</ul>
-</li>
-<li>Architecture, Abstraction, Foresight
-
-<ul>
-<li>Architecture</li>
-<li>Abstraction</li>
-<li>Abstraction Technique</li>
-<li>Using vendor libraries</li>
-<li>Foresight</li>
-</ul>
-</li>
-<li>Scss
-
-<ul>
-<li>Scss Beginner</li>
-<li>Scss Advanced</li>
-</ul>
-</li>
-</ul>
 <h2 id="toc_1">Stylesheet General Guidelines</h2>
 
 <p>Consistency is absolutely key with stylesheets. Because you don't have a
@@ -101,28 +96,39 @@ in your stylesheets.</p>
 <p>IDs are still great for javascript hooks, put them in the HTML for
 Javascript but don't use it for the stylesheet layer.</p>
 
-<h3 id="toc_3">Stylesheet Format</h3>
+<h2 id="toc_3">Stylesheet Format</h2>
 
 <p>A collection of best-practices recommended for formatting Css, Scss, and Compass.</p>
 
-<h4 id="toc_4">Selector Naming</h4>
+<h3 id="toc_4">Selector Naming</h3>
 
-<p>Use semantically appropriate names. If you aren't semantic with your
-naming then you end up with extremely brittle classes.</p>
+<p>Please use <em>semantically appropriate</em> names. If you aren't semantic with your
+naming then you end up with extremely brittle classes and you create a
+domain that is hard to understand as a human.</p>
+
+<p>When creating a semantic class, it's important to not couple it to a
+style unless it explicitly, semantically, is that style. Try to name
+classes related to what an <em>object</em> is. </p>
 
 <p>For example:</p>
 
-<pre>.redbox {
-  background-color: red;
-}
+<div class="highlight">
+<pre><span class="nc">.redbox</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+<span class="p">}</span>
 </pre>
+</div>
+
 
 <p>Instead, it would be better to do the following:</p>
 
-<pre>.error {
-  background-color: red;
-}
+<div class="highlight">
+<pre><span class="nc">.error</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+<span class="p">}</span>
 </pre>
+</div>
+
 
 <p>Some tips for naming:</p>
 
@@ -133,24 +139,30 @@ naming then you end up with extremely brittle classes.</p>
 <strong>Semantic</strong> Think of markup and classes like objects. What an object
 is matters more than what it looks like.</li>
 </ul>
-<h4 id="toc_5">Avoid using Markup Elements in Naming Selectors</h4>
+<h3 id="toc_5">Avoid using Markup Elements in Naming Selectors</h3>
 
 <p>It's considered best-practice to avoid using markup elements when naming
 your selectors.</p>
 
 <p>For example:</p>
 
-<pre>em.important {
-  font-style: italic;
-}
+<div class="highlight">
+<pre><span class="nt">em</span><span class="nc">.important</span> <span class="p">{</span>
+  <span class="k">font-style</span><span class="o">:</span> <span class="k">italic</span><span class="p">;</span>
+<span class="p">}</span>
 </pre>
+</div>
+
 
 <p>vs</p>
 
-<pre>.important {
-  font-style: italic;
-}
+<div class="highlight">
+<pre><span class="nc">.important</span> <span class="p">{</span>
+  <span class="k">font-style</span><span class="o">:</span> <span class="k">italic</span><span class="p">;</span>
+<span class="p">}</span>
 </pre>
+</div>
+
 
 <p>By using element names in your stylesheet you end up coupling markup
 with presentation. Fact is, markup is markup and it should only be made
@@ -162,124 +174,146 @@ elements will be more semantic as the spec evolves. By decoupling
 classes from the markup layer we're able to upgrade our markup layer
 without worrying about breaking the stylesheet layer.</p>
 
-<h4 id="toc_6">Selector Order</h4>
+<h3 id="toc_6">Selector Order</h3>
 
 <p>Alphabetizing your selectors is the recommended way to go. By doing this
 you create expectations and consistency. If you're worried about two
 things being at opposite ends of the file, then it's recommended to
 prefix the classes so this isn't an issue.</p>
 
-<pre>.about {
-  background: black;
-}
+<div class="highlight">
+<pre><span class="nc">.about</span> <span class="p">{</span>
+  <span class="k">background</span><span class="o">:</span> <span class="nb">black</span><span class="p">;</span>
+<span class="p">}</span>
 
-.explosion {
-  background: red;
-}
+<span class="nc">.explosion</span> <span class="p">{</span>
+  <span class="k">background</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+<span class="p">}</span>
 
-.l-container {
-  width: 940px;
-}
+<span class="nc">.l-container</span> <span class="p">{</span>
+  <span class="k">width</span><span class="o">:</span> <span class="m">940px</span><span class="p">;</span>
+<span class="p">}</span>
 
-.l-header {
-  text-align: center;
-}
+<span class="nc">.l-header</span> <span class="p">{</span>
+  <span class="k">text-align</span><span class="o">:</span> <span class="k">center</span><span class="p">;</span>
+<span class="p">}</span>
 
-.logo {
-  text-indent: -9999px;
-}
+<span class="nc">.logo</span> <span class="p">{</span>
+  <span class="k">text-indent</span><span class="o">:</span> <span class="m">-9999px</span><span class="p">;</span>
+<span class="p">}</span>
 
-.zoo {
-  display: inline-block;
-}
+<span class="nc">.zoo</span> <span class="p">{</span>
+  <span class="k">display</span><span class="o">:</span> <span class="k">inline</span><span class="o">-</span><span class="k">block</span><span class="p">;</span>
+<span class="p">}</span>
 </pre>
+</div>
 
-<h4 id="toc_7">Multiple Selector Style <em>Recommended</em>
-</h4>
 
-<pre>.about,
-.explosions,
-.hero {
-  background-color: #000;
-}
+<h3 id="toc_7">Multiple Selector Style <em>Recommended</em>
+</h3>
+
+<div class="highlight">
+<pre><span class="nc">.about</span><span class="o">,</span>
+<span class="nc">.explosions</span><span class="o">,</span>
+<span class="nc">.hero</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="m">#000</span><span class="p">;</span>
+<span class="p">}</span>
 </pre>
+</div>
+
 
 <p>This allows you to quickly skim over what's being affected.</p>
 
-<h4 id="toc_8">Multiple Selector Style <em>Not recommended</em>
-</h4>
+<h3 id="toc_8">Multiple Selector Style <em>Not recommended</em>
+</h3>
 
-<pre>.about, .explosions, .hero {
-  background-color: #000;
-}
+<div class="highlight">
+<pre><span class="nc">.about</span><span class="o">,</span> <span class="nc">.explosions</span><span class="o">,</span> <span class="nc">.hero</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="m">#000</span><span class="p">;</span>
+<span class="p">}</span>
 </pre>
+</div>
+
 
 <p>This suffers readability.</p>
 
-<h4 id="toc_9">Selector Specifity</h4>
+<h3 id="toc_9">Selector Specifity</h3>
 
 <p>Try to use the least specific selector as possible, the less code, the
 better you can maintain your stylesheet layer.</p>
 
-<h4 id="toc_10">Try to namespace everything</h4>
+<h3 id="toc_10">Better to namespace than not</h3>
 
 <p>By namespacing everything you avoid getting into cascade hell.</p>
 
-<h4 id="toc_11">Definition Order (A) <em>Recommended</em>
-</h4>
+<div class="alert-box">
+  This needs examples.
+</div>
+
+<h3 id="toc_11">Definition Order (A) <em>Recommended</em>
+</h3>
 
 <p>Alphabetizing your definitions gives you consistency. It's recommended
 that you do this so you always know where to expect definitions.</p>
 
-<pre>.selector {
-  background: none;
-  display: inline-block;
-  height: 30px;
-  margin: 10px;
-  padding: 10px;
-  position: relative;
-  width: 30px;
-  z-index: 2;
-}
+<div class="highlight">
+<pre><span class="nc">.selector</span> <span class="p">{</span>
+  <span class="k">background</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+  <span class="k">display</span><span class="o">:</span> <span class="k">inline</span><span class="o">-</span><span class="k">block</span><span class="p">;</span>
+  <span class="k">height</span><span class="o">:</span> <span class="m">30px</span><span class="p">;</span>
+  <span class="k">margin</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span>
+  <span class="k">padding</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span>
+  <span class="k">position</span><span class="o">:</span> <span class="k">relative</span><span class="p">;</span>
+  <span class="k">width</span><span class="o">:</span> <span class="m">30px</span><span class="p">;</span>
+  <span class="k">z-index</span><span class="o">:</span> <span class="m">2</span><span class="p">;</span>
+<span class="p">}</span>
 </pre>
+</div>
 
-<h4 id="toc_12">Definition Order (B) <em>Not recommended</em>
-</h4>
+
+<h3 id="toc_12">Definition Order (B) <em>Not recommended</em>
+</h3>
 
 <p>Put together definitions that are related in terms of what they do.
 Because this is subjective, this is not recommended. This can lead to
 lack of consistency in projects and that reduces efficiency.</p>
 
-<pre>.selector {
-  background: none;
-  display: inline-block;
-  height: 30px;
-  width: 30px;
-  padding: 10px;
-  margin: 0px;
-  position: relative;
-  z-index: 2;
-}
+<div class="highlight">
+<pre><span class="nc">.selector</span> <span class="p">{</span>
+  <span class="k">background</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+  <span class="k">display</span><span class="o">:</span> <span class="k">inline</span><span class="o">-</span><span class="k">block</span><span class="p">;</span>
+  <span class="k">height</span><span class="o">:</span> <span class="m">30px</span><span class="p">;</span>
+  <span class="k">width</span><span class="o">:</span> <span class="m">30px</span><span class="p">;</span>
+  <span class="k">padding</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span>
+  <span class="k">margin</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span>
+  <span class="k">position</span><span class="o">:</span> <span class="k">relative</span><span class="p">;</span>
+  <span class="k">z-index</span><span class="o">:</span> <span class="m">2</span><span class="p">;</span>
+<span class="p">}</span>
 </pre>
+</div>
 
-<h4 id="toc_13">Definition Order with SCSS</h4>
+
+<h3 id="toc_13">Definition Order with SCSS</h3>
 
 <p>Outside of the actual definition order, SCSS brings us more that can go
 inside of the selector, this is the preferred method of spacing.</p>
 
-<pre>.hero {
-  @extend .icons-heroplace;
-  @extend .callout;
+<div class="highlight">
+<pre><span class="nc">.hero</span> <span class="p">{</span>
+  <span class="k">@extend</span> <span class="nc">.icons-heroplace</span><span class="o">;</span>
+  <span class="o">@</span><span class="nt">extend</span> <span class="nc">.callout</span><span class="o">;</span>
 
-  @include +pie-clearfix;
+  <span class="o">@</span><span class="nt">include</span> <span class="nt">pie-clearfix</span><span class="o">;</span>
 
-  height: 10px;
-  width: 10px;
-  &amp;.active {
-    @extend .icons-heroplace_active;
-  }
-}
+  <span class="nt">height</span><span class="nd">:</span> <span class="nt">10px</span><span class="o">;</span>
+  <span class="nt">width</span><span class="nd">:</span> <span class="nt">10px</span><span class="o">;</span>
+  <span class="k">&amp;</span><span class="nc">.active</span> <span class="p">{</span>
+    <span class="k">@extend</span> <span class="nc">.icons-heroplace_active</span><span class="o">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </pre>
+</div>
+
 
 <p>The guideline here is:</p>
 
@@ -294,288 +328,337 @@ means it's referencing the parent selector.</li>
 
 <p>Here's the grand readability of all our recommendations put together:</p>
 
-<pre>.about {
-  color: $color-red;
-}
+<div class="highlight">
+<pre><span class="nc">.about</span> <span class="p">{</span>
+  <span class="na">color</span><span class="o">:</span> <span class="nv">$color-red</span><span class="p">;</span>
+<span class="p">}</span>
 
-.hero {
-  @extend .icons-heroplace;
-  @extend .callout;
+<span class="nc">.hero</span> <span class="p">{</span>
+  <span class="k">@extend</span> <span class="nc">.icons-heroplace</span><span class="o">;</span>
+  <span class="o">@</span><span class="nt">extend</span> <span class="nc">.callout</span><span class="o">;</span>
 
-  @include +pie-clearfix;
+  <span class="o">@</span><span class="nt">include</span> <span class="nt">pie-clearfix</span><span class="o">;</span>
 
-  height: 10px;
-  width: 10px;
-  &amp;.active {
-    @extend .icons-heroplace_active;
-  }
+  <span class="nt">height</span><span class="nd">:</span> <span class="nt">10px</span><span class="o">;</span>
+  <span class="nt">width</span><span class="nd">:</span> <span class="nt">10px</span><span class="o">;</span>
+  <span class="k">&amp;</span><span class="nc">.active</span> <span class="p">{</span>
+    <span class="k">@extend</span> <span class="nc">.icons-heroplace_active</span><span class="o">;</span>
+  <span class="p">}</span>
 
-  .contact {
-    background-color: $color-black;
-  }
-}
+  <span class="nc">.contact</span> <span class="p">{</span>
+    <span class="na">background-color</span><span class="o">:</span> <span class="nv">$color-black</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-.hi, 
-.monkey,
-.there, {
-  @extend .big-box;
+<span class="nc">.hi</span><span class="o">,</span> 
+<span class="nc">.monkey</span><span class="o">,</span>
+<span class="nc">.there</span><span class="o">,</span> <span class="p">{</span>
+  <span class="k">@extend</span> <span class="nc">.big-box</span><span class="o">;</span>
 
-  a {
-    color: $color-green;
-  }
-}
-
+  <span class="nt">a</span> <span class="p">{</span>
+    <span class="na">color</span><span class="o">:</span> <span class="nv">$color-green</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </pre>
+</div>
 
-<h3 id="toc_15">Maintainability, Semantics, Abstraction</h3>
+
+<h2 id="toc_15">Maintainability, Semantics, Abstraction</h2>
 
 <p>The expectation that anything style related is in the stylesheet is
 important. Some key things to be in mind of:</p>
 
-<h4 id="toc_16">Abstraction</h4>
+<h3 id="toc_16">Architecture</h3>
+
+<div class="alert-box">
+  Needs content.
+</div>
+
+<h3 id="toc_17">Abstraction</h3>
 
 <p>Abstraction allows your code to be more maintainable and understandable
 to you as a human.</p>
 
-<h5 id="toc_17">Abstraction Technique #1</h5>
+<h4 id="toc_18">Abstraction Technique #1</h4>
 
 <p>Let's say you have a bunch of classes like the following:</p>
 
-<pre>.icon-email {
-  @extend .icons-misc;
+<div class="highlight">
+<pre><span class="nc">.icon-email</span> <span class="p">{</span>
+  <span class="o">@</span><span class="n">extend</span> <span class="o">.</span><span class="n">icons</span><span class="o">-</span><span class="n">misc</span><span class="p">;</span>
 
-  height: 16px;
-  text-indent: -9999px;
-  width: 17px;
-}
+  <span class="k">height</span><span class="o">:</span> <span class="m">16px</span><span class="p">;</span>
+  <span class="k">text-indent</span><span class="o">:</span> <span class="m">-9999px</span><span class="p">;</span>
+  <span class="k">width</span><span class="o">:</span> <span class="m">17px</span><span class="p">;</span>
+<span class="p">}</span>
 
-.icon-facebook {
-  @extend .icons-fb;
+<span class="nc">.icon-facebook</span> <span class="p">{</span>
+  <span class="o">@</span><span class="n">extend</span> <span class="o">.</span><span class="n">icons</span><span class="o">-</span><span class="n">fb</span><span class="p">;</span>
 
-  height: 16px;
-  text-indent: -9999px;
-  width: 17px;
-}
+  <span class="k">height</span><span class="o">:</span> <span class="m">16px</span><span class="p">;</span>
+  <span class="k">text-indent</span><span class="o">:</span> <span class="m">-9999px</span><span class="p">;</span>
+  <span class="k">width</span><span class="o">:</span> <span class="m">17px</span><span class="p">;</span>
+<span class="p">}</span>
 
-.icon-tumblr {
-  @extend .icons-tumblr;
+<span class="nc">.icon-tumblr</span> <span class="p">{</span>
+  <span class="o">@</span><span class="n">extend</span> <span class="o">.</span><span class="n">icons</span><span class="o">-</span><span class="n">tumblr</span><span class="p">;</span>
 
-  height: 16px;
-  text-indent: -9999px;
-  width: 17px;
-}
+  <span class="k">height</span><span class="o">:</span> <span class="m">16px</span><span class="p">;</span>
+  <span class="k">text-indent</span><span class="o">:</span> <span class="m">-9999px</span><span class="p">;</span>
+  <span class="k">width</span><span class="o">:</span> <span class="m">17px</span><span class="p">;</span>
+<span class="p">}</span>
 
-.icon-twitter {
-  @extend .icons-twitter;
+<span class="nc">.icon-twitter</span> <span class="p">{</span>
+  <span class="o">@</span><span class="n">extend</span> <span class="o">.</span><span class="n">icons</span><span class="o">-</span><span class="n">twitter</span><span class="p">;</span>
 
-  height: 16px;
-  text-indent: -9999px;
-  width: 17px;
-}
-
+  <span class="k">height</span><span class="o">:</span> <span class="m">16px</span><span class="p">;</span>
+  <span class="k">text-indent</span><span class="o">:</span> <span class="m">-9999px</span><span class="p">;</span>
+  <span class="k">width</span><span class="o">:</span> <span class="m">17px</span><span class="p">;</span>
+<span class="p">}</span>
 </pre>
+</div>
+
 
 <p>That's a lot of repetition that we can abstract out.</p>
 
 <p>Here's a solution, abstract it out into a common class and <code>@extend</code> from
 it.</p>
 
-<pre>.icon-common {
-  height: 16px;
-  text-indent: -9999px;
-  width: 17px;
-}
+<div class="highlight">
+<pre><span class="nc">.icon-common</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">16</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">text-indent</span><span class="o">:</span> <span class="mi">-9999</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">17</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
 
-.icon-email {
-  @extend .icon-common;
-  @extend .icons-misc;
-}
+<span class="nc">.icon-email</span> <span class="p">{</span>
+  <span class="k">@extend</span> <span class="nc">.icon-common</span><span class="o">;</span>
+  <span class="o">@</span><span class="nt">extend</span> <span class="nc">.icons-misc</span><span class="o">;</span>
+<span class="p">}</span>
 
-.icon-facebook {
-  @extend .icon-common;
-  @extend .icons-fb;
-}
+<span class="nc">.icon-facebook</span> <span class="p">{</span>
+  <span class="k">@extend</span> <span class="nc">.icon-common</span><span class="o">;</span>
+  <span class="o">@</span><span class="nt">extend</span> <span class="nc">.icons-fb</span><span class="o">;</span>
+<span class="p">}</span>
 
-.icon-tumblr {
-  @extend .icon-common;
-  @extend .icons-tumblr;
-}
+<span class="nc">.icon-tumblr</span> <span class="p">{</span>
+  <span class="k">@extend</span> <span class="nc">.icon-common</span><span class="o">;</span>
+  <span class="o">@</span><span class="nt">extend</span> <span class="nc">.icons-tumblr</span><span class="o">;</span>
+<span class="p">}</span>
 
-.icon-twitter {
-  @extend .icon-common;
-  @extend .icons-twitter;
-}
+<span class="nc">.icon-twitter</span> <span class="p">{</span>
+  <span class="k">@extend</span> <span class="nc">.icon-common</span><span class="o">;</span>
+  <span class="o">@</span><span class="nt">extend</span> <span class="nc">.icons-twitter</span><span class="o">;</span>
+<span class="p">}</span>
 </pre>
+</div>
+
 
 <p><strong>Note</strong> In Sass 3.2 they're introducing placeholder selectors. It
 brings this exact functionality without generating extra markup in your
 stylesheets during compile time. 
 <a href="https://gist.github.com/1562442">https://gist.github.com/1562442</a></p>
 
-<h4 id="toc_18">Using vendor'd libraries</h4>
+<h4 id="toc_19">Using vendor'd libraries</h4>
 
 <p>Try to <code>@extend</code> vendor'd stylesheets into your main stylesheets for
 classes so you don't pollute the <code>Markup</code> layer with extraneous classes.</p>
 
-<h3 id="toc_19">Scss</h3>
+<h3 id="toc_20">Foresight</h3>
 
-<h4 id="toc_20">Scss Beginner</h4>
-
-<h5 id="toc_21">Variables</h5>
-
-<p>Variables are easy.</p>
-
-<pre>$color-black: #111;
-$common-width: 940px;
-
-body {
-  color: $color-black;
-  width: $common-width;
-}
-</pre>
-
-<p>Turns into this when compiled:</p>
-
-<pre>body {
-  color: #111;
-  width: 940px;
-}
-</pre>
+<div class="alert-box">
+  Needs content.
+</div>
 
 <p>Simple!</p>
 
-<h5 id="toc_22">Nesting</h5>
+<h2 id="toc_21">Scss</h2>
 
-<pre>.products {
-  width: 100px;
+<h3 id="toc_22">Scss Beginner</h3>
 
-  .product {
-    background-color: #000;
+<h4 id="toc_23">Variables</h4>
 
-    a {
-      color: #fff;
-    }
-  }
-}
+<p>Variables are easy.</p>
+
+<div class="highlight">
+<pre><span class="na">$color-black</span><span class="o">:</span> <span class="mh">#111</span><span class="p">;</span>
+<span class="na">$common-width</span><span class="o">:</span> <span class="mi">940</span><span class="kt">px</span><span class="p">;</span>
+
+<span class="nt">body</span> <span class="p">{</span>
+  <span class="na">color</span><span class="o">:</span> <span class="nv">$color-black</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="nv">$common-width</span><span class="p">;</span>
+<span class="p">}</span>
 </pre>
+</div>
+
+
+<p>Turns into this when compiled:</p>
+
+<div class="highlight">
+<pre><span class="nt">body</span> <span class="p">{</span>
+  <span class="k">color</span><span class="o">:</span> <span class="m">#111</span><span class="p">;</span>
+  <span class="k">width</span><span class="o">:</span> <span class="m">940px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<h4 id="toc_24">Nesting</h4>
+
+<div class="highlight">
+<pre><span class="nc">.products</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+
+  <span class="nc">.product</span> <span class="p">{</span>
+    <span class="na">background-color</span><span class="o">:</span> <span class="mh">#000</span><span class="p">;</span>
+
+    <span class="nt">a</span> <span class="p">{</span>
+      <span class="na">color</span><span class="o">:</span> <span class="mh">#fff</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+</div>
+
 
 <p>Turns into</p>
 
-<pre>.products {
-  width: 100px;
-}
-.products .product {
-  background-color: #000;
-}
-.products .product a{
-  color: #fff;
-}
+<div class="highlight">
+<pre><span class="nc">.products</span> <span class="p">{</span>
+  <span class="k">width</span><span class="o">:</span> <span class="m">100px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.products</span> <span class="nc">.product</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="m">#000</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.products</span> <span class="nc">.product</span> <span class="nt">a</span><span class="p">{</span>
+  <span class="k">color</span><span class="o">:</span> <span class="m">#fff</span><span class="p">;</span>
+<span class="p">}</span>
 
-Easy!
+<span class="nt">Easy</span><span class="o">!</span>
 </pre>
+</div>
 
-<h5 id="toc_23">Mixins</h5>
+
+<h4 id="toc_25">Mixins</h4>
 
 <p>Browser engines all have their different ways of implementing
 definitions (ugh, it's so annoying). So we have to do things like this
 usually:</p>
 
-<pre> .box {
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -0-border-radius: 5px;
-  border-radius: 5px;
- }
+<div class="highlight">
+<pre> <span class="nc">.box</span> <span class="p">{</span>
+  <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="k">border</span><span class="o">-</span><span class="n">radius</span><span class="o">:</span> <span class="m">5px</span><span class="p">;</span>
+  <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="k">border</span><span class="o">-</span><span class="n">radius</span><span class="o">:</span> <span class="m">5px</span><span class="p">;</span>
+  <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="k">border</span><span class="o">-</span><span class="n">radius</span><span class="o">:</span> <span class="m">5px</span><span class="p">;</span>
+  <span class="m">-0</span><span class="o">-</span><span class="k">border</span><span class="o">-</span><span class="n">radius</span><span class="o">:</span> <span class="m">5px</span><span class="p">;</span>
+  <span class="k">border</span><span class="o">-</span><span class="n">radius</span><span class="o">:</span> <span class="m">5px</span><span class="p">;</span>
+ <span class="p">}</span>
 </pre>
+</div>
+
 
 <p>Sass let's us solve that by doing the following:</p>
 
-<pre>@mixin border-radius($radius) {
-  -webkit-border-radius: $radius;
-  -moz-border-radius: $radius;
-  -ms-border-radius: $radius;
-  -0-border-radius: $radius;
-  border-radius: $radius;
-}
+<div class="highlight">
+<pre><span class="k">@mixin</span><span class="nf"> border-radius</span><span class="p">(</span><span class="nv">$radius</span><span class="p">)</span> <span class="p">{</span>
+  <span class="na">-webkit-border-radius</span><span class="o">:</span> <span class="nv">$radius</span><span class="p">;</span>
+  <span class="na">-moz-border-radius</span><span class="o">:</span> <span class="nv">$radius</span><span class="p">;</span>
+  <span class="na">-ms-border-radius</span><span class="o">:</span> <span class="nv">$radius</span><span class="p">;</span>
+  <span class="na">-0-border-radius</span><span class="o">:</span> <span class="nv">$radius</span><span class="p">;</span>
+  <span class="na">border-radius</span><span class="o">:</span> <span class="nv">$radius</span><span class="p">;</span>
+<span class="p">}</span>
 
-.box {
-  @include border-radius(5px);
-}
+<span class="nc">.box</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> border-radius</span><span class="p">(</span><span class="mi">5</span><span class="kt">px</span><span class="p">);</span>
+<span class="p">}</span>
 </pre>
+</div>
+
 
 <p>Side note: <a href="http://compass-style.org">Compass</a> Provides a lot of these
 mixins. Check it out. Also considered manditory for projects.</p>
 
-<h5 id="toc_24">@extend</h5>
+<h4 id="toc_26">@extend</h4>
 
 <p>Extend allows us to reuse portions of our code without duplicating it in
 the stylesheet. It just adds the current scope to the original selector.</p>
 
 <p>Take the following example:</p>
 
-<pre>.borders {
-  border: 1px solid red;
-  padding: 10px;
-}
+<div class="highlight">
+<pre><span class="nc">.borders</span> <span class="p">{</span>
+  <span class="na">border</span><span class="o">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="no">solid</span> <span class="nb">red</span><span class="p">;</span>
+  <span class="na">padding</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
 
-.products {
-  @extend .borders;
+<span class="nc">.products</span> <span class="p">{</span>
+  <span class="k">@extend</span> <span class="nc">.borders</span><span class="o">;</span>
 
-  background-color: #000;
-}
+  <span class="nt">background-color</span><span class="nd">:</span> <span class="nn">#000</span><span class="o">;</span>
+<span class="p">}</span>
 
-.box {
-  @extend .borders;
+<span class="nc">.box</span> <span class="p">{</span>
+  <span class="k">@extend</span> <span class="nc">.borders</span><span class="o">;</span>
 
-  padding: 20px;
-}
+  <span class="nt">padding</span><span class="nd">:</span> <span class="nt">20px</span><span class="o">;</span>
+<span class="p">}</span>
 </pre>
+</div>
+
 
 <p>Which turns into the following css</p>
 
-<pre>.borders, .products, .box {
-  border: 1px solid red;
-  padding: 10px;
-}
+<div class="highlight">
+<pre><span class="nc">.borders</span><span class="o">,</span> <span class="nc">.products</span><span class="o">,</span> <span class="nc">.box</span> <span class="p">{</span>
+  <span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="nb">red</span><span class="p">;</span>
+  <span class="k">padding</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span>
+<span class="p">}</span>
 
-.products {
-  background-color: #000;
-}
+<span class="nc">.products</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="m">#000</span><span class="p">;</span>
+<span class="p">}</span>
 
-.box {
-  padding: 20px;
-}
+<span class="nc">.box</span> <span class="p">{</span>
+  <span class="k">padding</span><span class="o">:</span> <span class="m">20px</span><span class="p">;</span>
+<span class="p">}</span>
 </pre>
+</div>
+
 
 <p><strong>Note</strong> In Sass 3.2 they're introducing placeholder selectors. It
 brings this exact functionality without generating extra markup in your
 stylesheets during compile time. 
 <a href="https://gist.github.com/1562442">https://gist.github.com/1562442</a></p>
 
-<h5 id="toc_25">Referencing parent selector &amp;</h5>
+<h5 id="toc_27">Referencing parent selector &amp;</h5>
 
-<pre>.product {
-  background-color: #000;
-  &amp;.old {
-    background-color: gray;
-  }
-}
+<div class="highlight">
+<pre><span class="nc">.product</span> <span class="p">{</span>
+  <span class="na">background-color</span><span class="o">:</span> <span class="mh">#000</span><span class="p">;</span>
+  <span class="k">&amp;</span><span class="nc">.old</span> <span class="p">{</span>
+    <span class="na">background-color</span><span class="o">:</span> <span class="nb">gray</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </pre>
+</div>
+
 
 <p>Turns into </p>
 
-<pre>.product {
-  background-color: #000;
-}
-.product.old {
-  background-color: gray;
-}
+<div class="highlight">
+<pre><span class="nc">.product</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="m">#000</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.product.old</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="nb">gray</span><span class="p">;</span>
+<span class="p">}</span>
 </pre>
+</div>
 
-<h4 id="toc_26">Scss Advanced</h4>
 
-<h5 id="toc_27">Logic</h5>
+<h3 id="toc_28">Scss Advanced</h3>
+
+<h4 id="toc_29">Logic</h4>
 
 <p><strong>If</strong>
 <strong>Else</strong>
@@ -583,7 +666,7 @@ stylesheets during compile time.
 <strong>For</strong>
 <strong>While</strong></p>
 
-<h2 id="toc_28">Directory Structure</h2>
+<h2 id="toc_30">Directory Structure</h2>
 
 <p><strong>Debate</strong> <strong>Issue</strong> <strong>In-Development</strong></p>
 
@@ -599,7 +682,7 @@ expectation and consistency?</p>
       layouts/
 </pre>
 
-<h3 id="toc_29">UI</h3>
+<h2 id="toc_31">UI</h2>
 
 <p>UI is anything related to a formatted structure of an interface consumed
 by a user.</p>
