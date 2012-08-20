@@ -62,10 +62,10 @@ jQuery(document).ready(function ($) {
     $("#js-toc").append(toc_items);
   });
 
-  $("#js-toc-sections-expand").click(function(e) {
+  $("#js-toc-sections-expand, #js-toc-heading-title").click(function(e) {
     e.preventDefault();
 
-    $(this).toggleClass("active");
+    $("#js-toc-sections-expand").toggleClass("active");
     $("#js-sections-flyout").slideToggle("fast");
   });
   

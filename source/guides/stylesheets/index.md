@@ -45,6 +45,40 @@ many tools of an ecosystem.
 * UI
 </div>
 
+## Directory Structure 
+
+What is the most efficient directory structure that enables proper
+expectation and consistency?
+
+```
+app/
+  assets/
+    stylesheets/
+      config/
+      layout/
+      mixins/
+      pages/ 
+      ui/ 
+```
+
+### Config
+
+Config is where files go related to settings. For example,
+`_colors.css.scss` or `_fonts.css.scss`.
+
+### Layout
+
+Styles that relate to main structure. E.g, main, blog post,
+no-sidebar.
+
+### Pages
+
+Sections of the site, e.g, forums, products, cart, profile.
+
+### Ui
+
+Ui-driven elements, like search-box, carousels, pagination.
+
 ## Stylesheet General Guidelines
 
 Consistency is absolutely key with stylesheets. Because you don't have a
@@ -618,22 +652,6 @@ Turns into
 **While**
 
 
-## Directory Structure 
-
-**Debate** **Issue** **In-Development**
-
-https://github.com/hybridgroup/betterfrontend/issues/4
-
-What is the most efficient directory structure that enables proper
-expectation and consistency?
-
-```
-app/
-  assets/
-    stylesheets/
-      ui/
-      layouts/
-```
 
 ## UI
 
