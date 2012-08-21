@@ -35,7 +35,7 @@ $(window).resize(function () { stickyFooter(); });
 
 jQuery(document).ready(function ($) {
 
-  $("article.post").each(function() {
+  $(".guides article.post").each(function() {
     var article = $(this);
     var toc = $("#js-toc");
     var toc_items = $("#js-toc-items");
