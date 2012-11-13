@@ -19,10 +19,10 @@ Defaults to a horizontal layout.
 ```
 :::haml
 = navigation do
-  = navigation_item 'Guides', '/guides'
-  = navigation_item 'Debates', '/debates'
-  = navigation_item 'Events', '/events'
-  = navigation_item 'About', '/about'
+  = item 'Guides', '/guides'
+  = item 'Debates', '/debates'
+  = item 'Events', '/events'
+  = item 'About', '/about'
 ```
 
 ### Vertical Layout
@@ -30,10 +30,10 @@ Defaults to a horizontal layout.
 ```
 :::haml
 = navigation direction: :vertical do
-  = navigation_item 'Guides', '/guides'
-  = navigation_item 'Debates', '/debates'
-  = navigation_item 'Events', '/events'
-  = navigation_item 'About', '/about'
+  = item 'Guides', '/guides'
+  = item 'Debates', '/debates'
+  = item 'Events', '/events'
+  = item 'About', '/about'
 ```
 
 ## Media Block
