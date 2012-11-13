@@ -63,3 +63,13 @@ Media blocks are very common UI elements. For example, Facebook feeds.
   = crumb 'Gems', '/gems'
   = crumb 'BFE', '/bfe'
 ```
+
+## Carousel
+
+<div class="alert-box">
+  Idea. Should this be included?
+</div>
+
+
+More ideas to be had at:
+http://developer.yahoo.com/ypatterns/everything.html
