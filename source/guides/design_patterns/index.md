@@ -36,7 +36,7 @@ However, using a pure CSS method can be just as fine.
 
 ### CSS Method
 
-If you browse the www.betterfrontend.com source could, you'll see that
+If you browse the www.betterfrontend.com source code, you'll see that
 it uses the CSS method.
 
 In the example we use `page_classes` to automatically put a contextual
