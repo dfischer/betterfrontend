@@ -1,3 +1,5 @@
+# CURRENTLY BEING REWORKED - repo is mostly deprecated/old. DONOTUSE.
+
 # [Betterfrontend](http://www.betterfrontend.com)
 
 Front-End Development lacks consistency. Betterfrontend is a
